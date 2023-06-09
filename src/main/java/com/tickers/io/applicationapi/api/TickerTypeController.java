@@ -1,6 +1,7 @@
 package com.tickers.io.applicationapi.api;
 
 import com.tickers.io.applicationapi.dto.TickerTypesDto;
+import com.tickers.io.applicationapi.dto.TickersDto;
 import com.tickers.io.applicationapi.repositories.TickersTypeRepository;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.TickerTypeProto;
@@ -31,6 +32,32 @@ public class TickerTypeController {
 
     @Autowired
     private WebClient webClient;
+
+    @GetMapping()
+    public TickersDto getTickers(
+            @RequestParam("search") String search,
+            @RequestParam("type") String type,
+            @RequestParam("ticker") String ticker) {
+        String urlPolygon = polygonService.
+                polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker);
+
+        try {
+            TickersDto response = webClient
+                    .get()
+                    .uri(urlPolygon)
+                    .retrieve()
+                    .bodyToMono(TickersDto.class)
+                    .map(jsonString -> {
+                        logger.info("{}", jsonString.getCount());
+                        return jsonString;
+                    })
+                    .block();
+            return response;
+        } catch (Exception e) {
+            logger.info("{}", e.getMessage());
+            throw new RuntimeException();
+        }
+    }
 
     @GetMapping("/types")
     public TickerTypeProto.TickerTypesResponse getListTickerType(
