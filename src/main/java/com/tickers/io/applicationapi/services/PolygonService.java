@@ -11,6 +11,7 @@ public class PolygonService {
 
     @Value("${tickers.polygon.apikey}")
     private String polygonKey;
+
     public String polygonTickerTypesEndpoint(String path, String assetClass, String locale) {
         String host = polygonUrl + path;
 
@@ -20,6 +21,19 @@ public class PolygonService {
                 .queryParam("asset_class", assetClass)
                 .queryParam("active", true)
                 .queryParam("locale", locale)
+                .queryParam("apiKey", polygonKey);
+        return uriComponentsBuilder.build().toString();
+    }
+
+    public String polygonTickersEndpoint(String path, String search, String type, String ticker) {
+        String host = polygonUrl + path;
+
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host(host)
+                .queryParam("search", search)
+                .queryParam("type", type)
+                .queryParam("ticker", ticker)
                 .queryParam("apiKey", polygonKey);
         return uriComponentsBuilder.build().toString();
     }
