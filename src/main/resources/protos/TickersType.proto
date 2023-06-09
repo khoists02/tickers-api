@@ -1,0 +1,18 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "TickerTypeProto";
+
+message TickerTypeResponse {
+  string code = 1;
+  string description = 2;
+  string asset_class = 3;
+  string locale = 4;
+}
+
+message TickerTypesResponse {
+  repeated TickerTypeResponse results = 1;
+  int32  count = 2;
+  string status = 3;
+  string request_id = 4;
+}
