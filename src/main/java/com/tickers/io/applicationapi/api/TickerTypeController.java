@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 
 @RestController
@@ -19,8 +20,6 @@ import java.util.Arrays;
 public class TickerTypeController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    private TickersTypeRepository tickersTypeRepository;
 
     @Autowired
     private PolygonService polygonService;
@@ -36,7 +35,7 @@ public class TickerTypeController {
             @RequestParam("search") String search,
             @RequestParam("type") String type,
             @RequestParam("ticker") String ticker,
-            @RequestParam("limit") Integer limit) {
+            @RequestParam("limit") @Nullable Integer limit) {
         String urlPolygon = polygonService.
                 polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, limit);
 
