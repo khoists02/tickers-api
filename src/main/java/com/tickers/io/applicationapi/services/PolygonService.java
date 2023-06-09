@@ -25,7 +25,7 @@ public class PolygonService {
         return uriComponentsBuilder.build().toString();
     }
 
-    public String polygonTickersEndpoint(String path, String search, String type, String ticker) {
+    public String polygonTickersEndpoint(String path, String search, String type, String ticker, Integer limit) {
         String host = polygonUrl + path;
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
@@ -34,6 +34,7 @@ public class PolygonService {
                 .queryParam("search", search)
                 .queryParam("type", type)
                 .queryParam("ticker", ticker)
+                .queryParam("limit", limit)
                 .queryParam("apiKey", polygonKey);
         return uriComponentsBuilder.build().toString();
     }

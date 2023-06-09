@@ -37,9 +37,10 @@ public class TickerTypeController {
     public TickersDto getTickers(
             @RequestParam("search") String search,
             @RequestParam("type") String type,
-            @RequestParam("ticker") String ticker) {
+            @RequestParam("ticker") String ticker,
+            @RequestParam("limit") Integer limit) {
         String urlPolygon = polygonService.
-                polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker);
+                polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, limit);
 
         try {
             TickersDto response = webClient
