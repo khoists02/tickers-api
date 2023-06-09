@@ -52,7 +52,13 @@ public class TickerTypeController {
                         return jsonString;
                     })
                     .block();
+            if (response.getResults() != null) {
+                TickersDto data = mapper.map(response, TickersDto.class);
+                data.setNextPage(response.getNextUrl() != null);
+                return data;
+            }
             return response;
+
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
             throw new RuntimeException();

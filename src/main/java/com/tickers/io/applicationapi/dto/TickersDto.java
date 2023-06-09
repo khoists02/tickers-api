@@ -30,4 +30,8 @@ public class TickersDto {
     @Getter
     @Setter
     private String nextUrl;
+
+    @Getter
+    @Setter
+    private Boolean nextPage;
 }
