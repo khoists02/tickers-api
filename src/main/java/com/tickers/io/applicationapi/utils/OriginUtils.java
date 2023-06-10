@@ -12,6 +12,6 @@ public class OriginUtils {
         String subDomain = Arrays.stream(URI.create(
                 Optional.ofNullable(RequestUtils.getCustomerOrigin()).orElseThrow(MissingOriginHeaderException::new)
         ).getHost().split("\\.")).findFirst().orElseThrow(BadRequestException::new);
-        return subDomain.equals("clinician")? "":subDomain;
+        return subDomain.equals("tickers")? "": subDomain;
     }
 }

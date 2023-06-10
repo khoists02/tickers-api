@@ -46,9 +46,10 @@ public class CorsFilter extends OncePerRequestFilter {
         configuration.addAllowedHeader("*");
         configuration.setExposedHeaders(List.of("Content-Disposition"));
         String requestOrigin = RequestUtils.getCustomerOrigin();
-        if (OriginUtils.getSubdomain().isBlank()) {
-            configuration.addAllowedOrigin(requestOrigin);
-        }
+        configuration.addAllowedOrigin(requestOrigin);
+//        if (OriginUtils.getSubdomain().isBlank()) {
+//            configuration.addAllowedOrigin(requestOrigin);
+//        }
         Boolean isValid = processRequest(configuration, request, response);
         if (isValid && !CorsUtils.isPreFlightRequest(request)) {
             filterChain.doFilter(request, response);
@@ -182,12 +183,12 @@ public class CorsFilter extends OncePerRequestFilter {
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "HEAD", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
-
-        String requestOrigin = RequestUtils.getCustomerOrigin();
-        if(requestOrigin != null)
-        {
-            configuration.addAllowedOrigin(requestOrigin);
-        }
+        configuration.addAllowedOrigin("localhost:3000");
+//        String requestOrigin = RequestUtils.getCustomerOrigin();
+//        if(requestOrigin != null)
+//        {
+//            configuration.addAllowedOrigin(requestOrigin);
+//        }
 
         processRequest(configuration, request, response);
     }
