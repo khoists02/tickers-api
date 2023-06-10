@@ -43,7 +43,7 @@ public class WebSecurityConfiguration {
         http.addFilterAfter(beanFactory.createBean(FilterChainExceptionHandler.class), CsrfFilter.class);
         http.addFilterAfter(corsFilter(), FilterChainExceptionHandler.class);
         http.csrf().ignoringRequestMatchers("/api/v1/csrf").csrfTokenRepository(csrfTokenRepository()).csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler());
-//        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
+        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
 //        http.authorizeHttpRequests().requestMatchers("/api/v1/csrf").permitAll().anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
