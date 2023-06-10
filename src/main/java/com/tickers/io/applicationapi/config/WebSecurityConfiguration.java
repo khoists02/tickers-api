@@ -42,10 +42,9 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.addFilterAfter(beanFactory.createBean(FilterChainExceptionHandler.class), CsrfFilter.class);
         http.addFilterAfter(corsFilter(), FilterChainExceptionHandler.class);
-        http.addFilterAfter(beanFactory.createBean(CorsFilter.class), AuthorizationFilter.class);
-        http.csrf().ignoringRequestMatchers("/api/v1/tickers", "/api/v1/tickers/type", "/api/v1/tickers/**").csrfTokenRepository(csrfTokenRepository()).csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler());
-        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
-        http.authorizeHttpRequests().requestMatchers("/api/v1/tickers", "/api/v1/tickers/type", "/api/v1/tickers/**", "api/v1/csrf").permitAll().anyRequest().authenticated();
+        http.csrf().ignoringRequestMatchers("/api/v1/csrf").csrfTokenRepository(csrfTokenRepository()).csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler());
+//        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
+//        http.authorizeHttpRequests().requestMatchers("/api/v1/csrf").permitAll().anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }

@@ -58,7 +58,8 @@ public class RequestUtils {
     {
         if(staticReference == null || staticReference.request == null)
             return null;
-        return Optional.ofNullable(staticReference.request.getHeader("Origin")).or(()->Optional.ofNullable(staticReference.request.getParameter("origin"))).orElse(null);
+        String result = Optional.ofNullable(staticReference.request.getHeader("Origin")).or(()->Optional.ofNullable(staticReference.request.getParameter("origin"))).orElse(null);
+        return result;
     }
 
     public static String randomToken(Integer length)

@@ -1,0 +1,8 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "AuthenticationProtos";
+
+message CsrfResponse {
+  string token = 1;
+}

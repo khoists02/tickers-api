@@ -23,10 +23,9 @@ public class FilterChainExceptionHandler extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return pathMatcher.match("/api/v1/tickers", request.getRequestURI())
-                || pathMatcher.match("/api/v1/tickers/**", request.getRequestURI())
-                || pathMatcher.match("/api/v1/csrf", request.getRequestURI())
+        boolean shouldFilter = pathMatcher.match("/api/v1/csrf", request.getRequestURI())
                 || pathMatcher.match("/api/v1/auth/**", request.getRequestURI());
+        return shouldFilter;
     }
 
     @Override
