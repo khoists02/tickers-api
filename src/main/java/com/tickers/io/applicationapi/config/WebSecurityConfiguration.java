@@ -1,5 +1,8 @@
 package com.tickers.io.applicationapi.config;
 
+import com.tickers.io.applicationapi.api.auth.CookieCsrfTokenRepository;
+import com.tickers.io.applicationapi.api.auth.UnauthenticatedHandler;
+import com.tickers.io.applicationapi.api.auth.UnauthorisedHandler;
 import com.tickers.io.applicationapi.api.filter.CorsFilter;
 import com.tickers.io.applicationapi.api.filter.FilterChainExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,16 @@ import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 public class WebSecurityConfiguration {
     @Autowired
     private AutowireCapableBeanFactory beanFactory;
+    @Autowired
+    private UnauthenticatedHandler unauthenticatedHandler;
+    @Autowired
+    private UnauthorisedHandler unauthorisedHandler;
+
+    @Bean
+    public CookieCsrfTokenRepository csrfTokenRepository() {
+        return new CookieCsrfTokenRepository();
+    }
+
 
     @Bean
     public CorsFilter corsFilter() {
@@ -26,6 +39,7 @@ public class WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.addFilterAfter(beanFactory.createBean(FilterChainExceptionHandler.class), CsrfFilter.class);
         http.addFilterAfter(corsFilter(), FilterChainExceptionHandler.class);
 //        http.addFilterAfter(beanFactory.createBean(CookieAuthFilter.class), CsrfFilter.class);
 //        http.addFilterBefore(beanFactory.createBean(OrganisationResolvingFilter.class), CookieAuthFilter.class);
@@ -34,6 +48,9 @@ public class WebSecurityConfiguration {
 //                .csrfTokenRepository(csrfTokenRepository());
 //        http.authorizeHttpRequests().requestMatchers(PUBLIC_URL_PATTERNS.toArray(String[]::new)).permitAll().anyRequest().authenticated();
 //        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
+        http.csrf().ignoringRequestMatchers("/tickers", "/auth/saml2/*/acs").csrfTokenRepository(csrfTokenRepository()).csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler());
+        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
+        http.authorizeHttpRequests().requestMatchers("/tickers/**", "/csrf", "/languages", "/studies/shares").permitAll().anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }
