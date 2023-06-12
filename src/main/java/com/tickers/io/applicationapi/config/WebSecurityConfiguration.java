@@ -6,6 +6,7 @@ import com.tickers.io.applicationapi.api.auth.UnauthorisedHandler;
 import com.tickers.io.applicationapi.api.filter.CookieAuthFilter;
 import com.tickers.io.applicationapi.api.filter.CorsFilter;
 import com.tickers.io.applicationapi.api.filter.FilterChainExceptionHandler;
+import com.tickers.io.applicationapi.api.filter.OrganisationResolvingFilter;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -49,6 +50,7 @@ public class WebSecurityConfiguration {
         http.addFilterAfter(beanFactory.createBean(FilterChainExceptionHandler.class), CsrfFilter.class);
         http.addFilterAfter(corsFilter(), FilterChainExceptionHandler.class);
         http.addFilterAfter(beanFactory.createBean(CookieAuthFilter.class), CsrfFilter.class);
+        http.addFilterAfter(beanFactory.createBean(OrganisationResolvingFilter.class), CookieAuthFilter.class);
         http.csrf().ignoringRequestMatchers("/csrf")
                 .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                 .csrfTokenRepository(csrfTokenRepository());
