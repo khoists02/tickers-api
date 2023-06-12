@@ -13,6 +13,7 @@ import org.springframework.security.web.csrf.MissingCsrfTokenException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 @ControllerAdvice
@@ -35,6 +36,17 @@ public class WebExceptionHandler {
     public ResponseEntity<GenericProtos.ErrorResponse> handleAccessDeniedException(AccessDeniedException accessDeniedException) {
         UnauthorizedException exception = UnauthorizedException.ACCESS_DENIED;
         return this.handle(exception);
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<GenericProtos.ErrorResponse> handleResponseStatusException(ResponseStatusException exception) {
+        return switch (exception.getStatusCode().value()) {
+            case 404 -> handle(new NotFoundException());
+            default -> {
+                logger.error("Unexpected exception", exception);
+                yield this.handle(new ApplicationException());
+            }
+        };
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
