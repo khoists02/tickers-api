@@ -36,9 +36,11 @@ public class TickerTypeController {
             @RequestParam("search") Optional<String> search,
             @RequestParam("type") Optional<String> type,
             @RequestParam("ticker") Optional<String> ticker,
+            @RequestParam("sort") Optional<String> sort,
+            @RequestParam("order") Optional<String> order,
             @RequestParam("limit") @Nullable Integer limit) {
         String urlPolygon = polygonService.
-                polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, limit);
+                polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, sort , order, limit);
 
         try {
             TickersDto response = webClient

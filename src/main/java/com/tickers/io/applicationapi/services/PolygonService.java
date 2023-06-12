@@ -30,13 +30,21 @@ public class PolygonService {
         return uriComponentsBuilder.build().toString();
     }
 
-    public String polygonTickersEndpoint(String path, Optional<String> search, Optional<String> type, Optional<String> ticker, Integer limit) {
+    public String polygonTickersEndpoint(
+            String path, Optional<String> search,
+            Optional<String> type,
+            Optional<String> ticker,
+            Optional<String> sort,
+            Optional<String> order,
+            Integer limit) {
         String host = polygonUrl + path;
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host(host)
                 .queryParam("search", search)
+                .queryParam("sort", sort)
+                .queryParam("order", order)
                 .queryParam("type", type)
                 .queryParam("ticker", ticker)
                 .queryParam("limit", limit)
