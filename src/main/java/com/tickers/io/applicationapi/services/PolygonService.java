@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Optional;
+
 @Service
 public class PolygonService {
     @Value("${tickers.polygon.host}")
@@ -15,7 +17,7 @@ public class PolygonService {
     @Value("${app.secret.key}")
     private String appSecretKey;
 
-    public String polygonTickerTypesEndpoint(String path, String assetClass, String locale) {
+    public String polygonTickerTypesEndpoint(String path, Optional<String> assetClass, Optional<String> locale) {
         String host = polygonUrl + path;
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
@@ -28,7 +30,7 @@ public class PolygonService {
         return uriComponentsBuilder.build().toString();
     }
 
-    public String polygonTickersEndpoint(String path, String search, String type, String ticker, Integer limit) {
+    public String polygonTickersEndpoint(String path, Optional<String> search, Optional<String> type, Optional<String> ticker, Integer limit) {
         String host = polygonUrl + path;
 
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
