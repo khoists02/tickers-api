@@ -14,9 +14,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/tickers")
+@RequestMapping("/tickers")
 public class TickerTypeController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -32,9 +33,9 @@ public class TickerTypeController {
 
     @GetMapping()
     public TickersDto getTickers(
-            @RequestParam("search") String search,
-            @RequestParam("type") String type,
-            @RequestParam("ticker") String ticker,
+            @RequestParam("search") Optional<String> search,
+            @RequestParam("type") Optional<String> type,
+            @RequestParam("ticker") Optional<String> ticker,
             @RequestParam("limit") @Nullable Integer limit) {
         String urlPolygon = polygonService.
                 polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, limit);
@@ -88,8 +89,8 @@ public class TickerTypeController {
 
     @GetMapping("/types")
     public TickerTypeProto.TickerTypesResponse getListTickerType(
-            @RequestParam("asset_class") String assetClass,
-            @RequestParam("locale") String locale) {
+            @RequestParam("asset_class") Optional<String> assetClass,
+            @RequestParam("locale") Optional<String> locale) {
         try {
             String urlPolygon = polygonService.
                     polygonTickerTypesEndpoint("/v3/reference/tickers/types", assetClass, locale);
@@ -128,5 +129,10 @@ public class TickerTypeController {
             logger.info("{}", e.getMessage());
             throw new RuntimeException();
         }
+    }
+
+    @PostMapping("/test")
+    public String test() {
+        return "Work!!!";
     }
 }
