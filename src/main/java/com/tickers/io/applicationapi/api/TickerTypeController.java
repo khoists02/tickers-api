@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 
 @RestController
-@RequestMapping("/api/v1/tickers")
+@RequestMapping("/tickers")
 public class TickerTypeController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -128,5 +128,10 @@ public class TickerTypeController {
             logger.info("{}", e.getMessage());
             throw new RuntimeException();
         }
+    }
+
+    @PostMapping("/test")
+    public String test() {
+        return "Work!!!";
     }
 }

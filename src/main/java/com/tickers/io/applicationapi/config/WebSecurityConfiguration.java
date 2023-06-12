@@ -3,8 +3,10 @@ package com.tickers.io.applicationapi.config;
 import com.tickers.io.applicationapi.api.auth.CookieCsrfTokenRepository;
 import com.tickers.io.applicationapi.api.auth.UnauthenticatedHandler;
 import com.tickers.io.applicationapi.api.auth.UnauthorisedHandler;
+import com.tickers.io.applicationapi.api.filter.CookieAuthFilter;
 import com.tickers.io.applicationapi.api.filter.CorsFilter;
 import com.tickers.io.applicationapi.api.filter.FilterChainExceptionHandler;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -32,6 +37,7 @@ public class WebSecurityConfiguration {
         return new CookieCsrfTokenRepository();
     }
 
+    public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**");
 
     @Bean
     public CorsFilter corsFilter() {
@@ -42,9 +48,12 @@ public class WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.addFilterAfter(beanFactory.createBean(FilterChainExceptionHandler.class), CsrfFilter.class);
         http.addFilterAfter(corsFilter(), FilterChainExceptionHandler.class);
-        http.csrf().ignoringRequestMatchers("/api/v1/csrf").csrfTokenRepository(csrfTokenRepository()).csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler());
+        http.addFilterAfter(beanFactory.createBean(CookieAuthFilter.class), CsrfFilter.class);
+        http.csrf().ignoringRequestMatchers("/csrf", "/auth/saml2/*/acs")
+                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
+                .csrfTokenRepository(csrfTokenRepository());
+        http.authorizeHttpRequests().requestMatchers(PUBLIC_URL_PATTERNS.toArray(String[]::new)).permitAll().anyRequest().authenticated();
         http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
-//        http.authorizeHttpRequests().requestMatchers("/api/v1/csrf").permitAll().anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }

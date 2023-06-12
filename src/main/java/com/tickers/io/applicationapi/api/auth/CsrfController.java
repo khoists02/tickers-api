@@ -5,6 +5,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,12 +14,11 @@ import org.springframework.web.util.WebUtils;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1")
 public class CsrfController {
     @Autowired
     private CookieCsrfTokenRepository csrfTokenRepository;
 
-    @PostMapping("/csrf")
+    @GetMapping("/csrf")
     public AuthenticationProtos.CsrfResponse getCsrfToken(HttpServletRequest request, HttpServletResponse response) {
 
         Cookie csrfCookie = WebUtils.getCookie(request, "XSRF-TOKEN");

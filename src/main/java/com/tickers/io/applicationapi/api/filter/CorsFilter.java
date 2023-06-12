@@ -47,27 +47,11 @@ public class CorsFilter extends OncePerRequestFilter {
         configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
         configuration.setExposedHeaders(List.of("Content-Disposition"));
-
-        Authentication authenticatedUser = SecurityContextHolder.getContext().getAuthentication();
         String requestOrigin = RequestUtils.getCustomerOrigin();
-//        if(authenticatedUser == null && requestOrigin != null)
-//        {
-//            //Not logged in, use current request Origin
-//            if(customerService.getCustomerId() != null)
-//            {
-//                logger.trace("Customer exists for Origin: {}", requestOrigin);
-//                configuration.addAllowedOrigin(requestOrigin);
-//            }else{
-//                logger.debug("Unable locate customer for Origin: {}. CORS will be rejected", requestOrigin);
-//            }
-//        }else if (authenticatedUser instanceof AuthenticatedUser){
-//            //User is authenticated, allow from the users domain in the JWT
-//            configuration.addAllowedOrigin(((AuthenticatedUser) authenticatedUser).getAllowedOrigin());
-//        } else if ((authenticatedUser instanceof ActuatorAuthentication) && requestOrigin != null) {
-//            configuration.addAllowedOrigin(requestOrigin);
-//        }
 
-        configuration.addAllowedOrigin(requestOrigin);
+        if (requestOrigin != null) {
+            configuration.addAllowedOrigin(requestOrigin);
+        }
 
         Boolean isValid = processRequest(configuration, request, response);
         if(isValid && !CorsUtils.isPreFlightRequest(request))
@@ -203,7 +187,6 @@ public class CorsFilter extends OncePerRequestFilter {
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "HEAD", "DELETE", "OPTIONS"));
         configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
-//        configuration.addAllowedOrigin("localhost:3000");
         String requestOrigin = RequestUtils.getCustomerOrigin();
         if(requestOrigin != null)
         {
