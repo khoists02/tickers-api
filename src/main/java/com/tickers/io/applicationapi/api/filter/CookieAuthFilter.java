@@ -43,6 +43,7 @@ public class CookieAuthFilter extends OncePerRequestFilter {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
 
     }
 

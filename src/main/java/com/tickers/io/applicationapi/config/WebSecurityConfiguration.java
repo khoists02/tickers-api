@@ -37,7 +37,7 @@ public class WebSecurityConfiguration {
         return new CookieCsrfTokenRepository();
     }
 
-    public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**");
+    public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**", "/tickers/**");
 
     @Bean
     public CorsFilter corsFilter() {
@@ -49,7 +49,7 @@ public class WebSecurityConfiguration {
         http.addFilterAfter(beanFactory.createBean(FilterChainExceptionHandler.class), CsrfFilter.class);
         http.addFilterAfter(corsFilter(), FilterChainExceptionHandler.class);
         http.addFilterAfter(beanFactory.createBean(CookieAuthFilter.class), CsrfFilter.class);
-        http.csrf().ignoringRequestMatchers("/csrf", "/auth/saml2/*/acs")
+        http.csrf().ignoringRequestMatchers("/csrf")
                 .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                 .csrfTokenRepository(csrfTokenRepository());
         http.authorizeHttpRequests().requestMatchers(PUBLIC_URL_PATTERNS.toArray(String[]::new)).permitAll().anyRequest().authenticated();

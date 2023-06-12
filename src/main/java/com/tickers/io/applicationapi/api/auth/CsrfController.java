@@ -18,7 +18,7 @@ public class CsrfController {
     @Autowired
     private CookieCsrfTokenRepository csrfTokenRepository;
 
-    @GetMapping("/csrf")
+    @PostMapping("/csrf")
     public AuthenticationProtos.CsrfResponse getCsrfToken(HttpServletRequest request, HttpServletResponse response) {
 
         Cookie csrfCookie = WebUtils.getCookie(request, "XSRF-TOKEN");
