@@ -1,0 +1,11 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "GenericProtos";
+
+message ErrorResponse {
+  string type = 1;
+  string code = 2;
+  string message = 3;
+  map<string, string> params = 4;
+}
