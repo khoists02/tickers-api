@@ -3,11 +3,10 @@ package com.tickers.io.applicationapi.config;
 import com.tickers.io.applicationapi.api.auth.CookieCsrfTokenRepository;
 import com.tickers.io.applicationapi.api.auth.UnauthenticatedHandler;
 import com.tickers.io.applicationapi.api.auth.UnauthorisedHandler;
+import com.tickers.io.applicationapi.api.filter.ActuatorAuthenticationFilter;
 import com.tickers.io.applicationapi.api.filter.CookieAuthFilter;
 import com.tickers.io.applicationapi.api.filter.CorsFilter;
-import com.tickers.io.applicationapi.api.filter.FilterChainExceptionHandler;
 import com.tickers.io.applicationapi.api.filter.OrganisationResolvingFilter;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +15,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.List;
 
@@ -47,8 +44,8 @@ public class WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.addFilterAfter(beanFactory.createBean(FilterChainExceptionHandler.class), CsrfFilter.class);
-        http.addFilterAfter(corsFilter(), FilterChainExceptionHandler.class);
+        http.addFilterAfter(beanFactory.createBean(ActuatorAuthenticationFilter.class), CsrfFilter.class);
+        http.addFilterAfter(corsFilter(), ActuatorAuthenticationFilter.class);
         http.addFilterAfter(beanFactory.createBean(CookieAuthFilter.class), CsrfFilter.class);
         http.addFilterAfter(beanFactory.createBean(OrganisationResolvingFilter.class), CookieAuthFilter.class);
         http.csrf().ignoringRequestMatchers("/csrf")
