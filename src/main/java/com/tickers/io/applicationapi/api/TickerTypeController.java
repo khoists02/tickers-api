@@ -2,7 +2,7 @@ package com.tickers.io.applicationapi.api;
 
 import com.tickers.io.applicationapi.dto.TickerTypesDto;
 import com.tickers.io.applicationapi.dto.TickersDto;
-import com.tickers.io.applicationapi.repositories.TickersTypeRepository;
+import com.tickers.io.applicationapi.exceptions.BadRequestException;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.TickerTypeProto;
 import org.modelmapper.ModelMapper;
@@ -60,7 +60,7 @@ public class TickerTypeController {
 
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
-            throw new RuntimeException();
+            throw new BadRequestException("polygon_exception");
         }
     }
 
@@ -79,11 +79,11 @@ public class TickerTypeController {
                         return jsonString;
                     })
                     .block();
-            return response.toString();
+            return response;
 
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
-            throw new RuntimeException();
+            throw new BadRequestException("polygon_exception");
         }
     }
 
@@ -127,7 +127,7 @@ public class TickerTypeController {
 
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
-            throw new RuntimeException();
+            throw new BadRequestException("polygon_exception");
         }
     }
 
