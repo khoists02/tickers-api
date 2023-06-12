@@ -53,7 +53,7 @@ public class CorsFilter extends OncePerRequestFilter {
             configuration.addAllowedOrigin(requestOrigin);
         }
 
-        Boolean isValid = processRequest(configuration, request, response);
+        Boolean isValid = processRequest(configuration, request, response, requestOrigin);
         if(isValid && !CorsUtils.isPreFlightRequest(request))
         {
             filterChain.doFilter(request, response);
@@ -61,7 +61,7 @@ public class CorsFilter extends OncePerRequestFilter {
     }
 
     public boolean processRequest(@Nullable CorsConfiguration config, HttpServletRequest request,
-                                  HttpServletResponse response) throws IOException {
+                                  HttpServletResponse response, String requestOrigin) throws IOException {
         Collection<String> varyHeaders = response.getHeaders(HttpHeaders.VARY);
         if (!varyHeaders.contains(HttpHeaders.ORIGIN)) {
             response.addHeader(HttpHeaders.VARY, HttpHeaders.ORIGIN);
@@ -71,6 +71,11 @@ public class CorsFilter extends OncePerRequestFilter {
         }
         if (!varyHeaders.contains(HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS)) {
             response.addHeader(HttpHeaders.VARY, HttpHeaders.ACCESS_CONTROL_REQUEST_HEADERS);
+        }
+
+        if (requestOrigin == null) {
+            rejectRequest(new ServletServerHttpRequest(request), new ServletServerHttpResponse(response));
+            return false;
         }
 
         if (!CorsUtils.isCorsRequest(request)) {
@@ -102,7 +107,8 @@ public class CorsFilter extends OncePerRequestFilter {
         String requestOrigin = request.getHeaders().getOrigin();
         String allowOrigin = checkOrigin(config, requestOrigin);
         HttpHeaders responseHeaders = response.getHeaders();
-        if (allowOrigin == null) {
+        // check if not match with origin header
+        if (allowOrigin == null || !allowOrigin.equals("https://mylocal.tickers.local:3000")) {
 //            logger.debug("Reject: '{}' origin is not allowed", requestOrigin);
             rejectRequest(request, response);
             return false;
@@ -193,6 +199,6 @@ public class CorsFilter extends OncePerRequestFilter {
             configuration.addAllowedOrigin(requestOrigin);
         }
 
-        processRequest(configuration, request, response);
+        processRequest(configuration, request, response, "");
     }
 }
