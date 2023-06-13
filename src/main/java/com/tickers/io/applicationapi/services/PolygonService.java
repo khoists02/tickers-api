@@ -30,6 +30,16 @@ public class PolygonService {
         return uriComponentsBuilder.build().toString();
     }
 
+    public String polyQueryPagination(Optional<String> cursor) {
+        String host = polygonUrl + "/v3/reference/tickers";
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host(host)
+                .queryParam("cursor", cursor)
+                .queryParam("apiKey", polygonKey);
+        return uriComponentsBuilder.build().toString();
+    }
+
     public String polygonTickersEndpoint(
             String path, Optional<String> search,
             Optional<String> type,
