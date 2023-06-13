@@ -21,8 +21,10 @@ public class TickerStock extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TypeEnum type;
 
-    private String customerAttributeJSON;
+    @Column(name = "ticker_attributes_json")
+    private String tickerAttributesJson;
 
+    @Column(name = "ticker_attributes")
     @Convert(converter = HashMapConverter.class)
-    private Map<String, Object> customerAttributes;
+    private Map<String, Object> tickerAttributes;
 }
