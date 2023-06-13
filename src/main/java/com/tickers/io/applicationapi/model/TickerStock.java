@@ -6,8 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Map;
+
 @Entity
-@Table(name = "ticker_stock")
+@Table(name = "tickers_stock")
 @Getter
 @Setter
 public class TickerStock extends BaseEntity {
@@ -19,6 +21,8 @@ public class TickerStock extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TypeEnum type;
 
-    @Column(columnDefinition = "JSON")
-    private TickerRecord properties;
+    private String customerAttributeJSON;
+
+    @Convert(converter = HashMapConverter.class)
+    private Map<String, Object> customerAttributes;
 }
