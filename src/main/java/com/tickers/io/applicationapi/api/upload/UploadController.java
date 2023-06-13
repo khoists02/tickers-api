@@ -1,16 +1,17 @@
 package com.tickers.io.applicationapi.api.upload;
 
+import com.tickers.io.applicationapi.enums.TypeEnum;
+import com.tickers.io.applicationapi.exceptions.BadRequestException;
+import com.tickers.io.applicationapi.services.UploadService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -18,20 +19,29 @@ import java.util.stream.Collectors;
 public class UploadController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @PostMapping()
-    public String uploadCSVStocksDataFile(@RequestBody @Valid MultipartFile file) {
-        if (!file.isEmpty()) {
-            try {
+    @Autowired
+    private UploadService uploadService;
+
+    @PostMapping("/{ticker}/{type}")
+    public String uploadCSVStocksDataFile(
+            @PathVariable("ticker") String ticker,
+            @PathVariable("type") String type,
+            @RequestBody @Valid MultipartFile file) {
+
+        try {
+            if (!file.isEmpty()) {
                 byte[] bytes = file.getBytes();
                 String completeData = new String(bytes);
                 String[] rows = completeData.split("\n");
                 String json = csvToJson(List.of(rows));
+                uploadService.storeTickerData(json, ticker, TypeEnum.valueOf(type));
                 return json;
-            } catch (Exception e) {
-                logger.info("{}", e.getMessage());
             }
+            throw new BadRequestException("file_empty");
+        } catch (Exception e) {
+            logger.info("{}", e.getMessage());
+            throw new BadRequestException("upload_or_store_json_fail");
         }
-        return file.getOriginalFilename();
     }
 
     public static String csvToJson(List<String> csv){
