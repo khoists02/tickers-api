@@ -137,4 +137,36 @@ public class TickerTypeController {
     public String test() {
         return "Work!!!";
     }
+
+    @GetMapping("/pagination")
+    public  TickersDto getTickersPagination(
+            @RequestParam Optional<String> cursor
+    ) {
+        String urlPolygon = polygonService.
+                polyQueryPagination(cursor);
+
+        try {
+            TickersDto response = webClient
+                    .get()
+                    .uri(urlPolygon)
+                    .retrieve()
+                    .bodyToMono(TickersDto.class)
+                    .map(jsonString -> {
+                        logger.info("{}", jsonString.getCount());
+                        return jsonString;
+                    })
+                    .block();
+            if (response.getResults() != null) {
+                TickersDto data = mapper.map(response, TickersDto.class);
+                data.setNextPage(response.getNextUrl() != null);
+                return data;
+            }
+            return response;
+
+        } catch (Exception e) {
+            logger.info("{}", e.getMessage());
+            throw new BadRequestException("polygon_exception");
+        }
+
+    }
 }
