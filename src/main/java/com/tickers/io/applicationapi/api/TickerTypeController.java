@@ -5,6 +5,7 @@ import com.tickers.io.applicationapi.dto.TickersDto;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.TickerTypeProto;
+import jakarta.websocket.server.PathParam;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,6 +84,24 @@ public class TickerTypeController {
                     .block();
             return response;
 
+        } catch (Exception e) {
+            logger.info("{}", e.getMessage());
+            throw new BadRequestException("polygon_exception");
+        }
+    }
+
+    @GetMapping("logo")
+    public String getLogo(@PathParam("url") String url) {
+        try {
+            String urlPolygon = polygonService.
+                    getLogoUrl(url);
+            String result = webClient
+                    .get()
+                    .uri(urlPolygon)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+            return result;
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
             throw new BadRequestException("polygon_exception");

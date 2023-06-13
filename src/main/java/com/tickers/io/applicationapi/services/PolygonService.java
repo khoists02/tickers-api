@@ -40,6 +40,14 @@ public class PolygonService {
         return uriComponentsBuilder.build().toString();
     }
 
+    public String getLogoUrl(String url) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host(url)
+                .queryParam("apiKey", polygonKey);
+        return uriComponentsBuilder.build().toString();
+    }
+
     public String polygonTickersEndpoint(
             String path, Optional<String> search,
             Optional<String> type,
