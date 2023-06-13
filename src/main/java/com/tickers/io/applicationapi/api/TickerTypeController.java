@@ -22,7 +22,6 @@ import java.util.Optional;
 public class TickerTypeController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-
     @Autowired
     private PolygonService polygonService;
 

@@ -35,7 +35,7 @@ public class WebSecurityConfiguration {
         return new CookieCsrfTokenRepository();
     }
 
-    public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**", "/tickers/**");
+    public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**", "/tickers/**", "/upload/**");
 
     @Bean
     public CorsFilter corsFilter() {
