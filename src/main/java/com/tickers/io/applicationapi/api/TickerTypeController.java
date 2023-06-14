@@ -1,10 +1,14 @@
 package com.tickers.io.applicationapi.api;
 
+import com.tickers.io.applicationapi.dto.TickerDto;
 import com.tickers.io.applicationapi.dto.TickerTypesDto;
 import com.tickers.io.applicationapi.dto.TickersDto;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
+import com.tickers.io.applicationapi.services.ImportDataService;
 import com.tickers.io.applicationapi.services.PolygonService;
+import com.tickers.io.protobuf.GenericProtos;
 import com.tickers.io.protobuf.TickerTypeProto;
+import jakarta.transaction.Transactional;
 import jakarta.websocket.server.PathParam;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -14,8 +18,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Optional;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.sql.SQLException;
+import java.util.*;
 
 @RestController
 @RequestMapping("/tickers")
@@ -31,8 +39,12 @@ public class TickerTypeController {
     @Autowired
     private WebClient webClient;
 
+    @Autowired
+    private ImportDataService importDataService;
+
     @GetMapping()
-    public TickersDto getTickers(
+    @Transactional
+    public GenericProtos.ImportDataResponse getTickers(
             @RequestParam("search") Optional<String> search,
             @RequestParam("type") Optional<String> type,
             @RequestParam("ticker") Optional<String> ticker,
@@ -42,28 +54,42 @@ public class TickerTypeController {
         String urlPolygon = polygonService.
                 polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, sort , order, limit);
 
-        try {
-            TickersDto response = webClient
-                    .get()
-                    .uri(urlPolygon)
-                    .retrieve()
-                    .bodyToMono(TickersDto.class)
-                    .map(jsonString -> {
-                        logger.info("{}", jsonString.getCount());
-                        return jsonString;
-                    })
-                    .block();
-            if (response.getResults() != null) {
-                TickersDto data = mapper.map(response, TickersDto.class);
-                data.setNextPage(response.getNextUrl() != null);
-                return data;
+        TickersDto response = webClient
+                .get()
+                .uri(urlPolygon)
+                .retrieve()
+                .bodyToMono(TickersDto.class)
+                .map(jsonString -> {
+                    logger.info("{}", jsonString.getCount());
+                    return jsonString;
+                })
+                .block();
+        if (response.getResults() != null) {
+            TickersDto data = mapper.map(response, TickersDto.class);
+            data.setNextPage(response.getNextUrl() != null);
+            try {
+                List<TickerDto> dataResponse = importDataService.importTickersDataFromPolygon(data);
+                String cursorStr = "";
+                if (response.getNextUrl() != null) {
+                    Map<String, String> query = splitQuery(new URL(response.getNextUrl()));
+                    cursorStr = query.get("cursor");
+                }
+                return GenericProtos.ImportDataResponse.newBuilder()
+                        .setCount(dataResponse.size())
+                        .setMessage("Import Success ")
+                        .setCursor(cursorStr)
+                        .build();
+            } catch (SQLException e) {
+                logger.info("{}", e.getMessage());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                logger.info("{}", e.getMessage());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                logger.info("{}", e.getMessage());
             }
-            return response;
-
-        } catch (Exception e) {
-            logger.info("{}", e.getMessage());
-            throw new BadRequestException("polygon_exception");
         }
+        throw new BadRequestException("polygon_exception");
     }
 
     @GetMapping("/{ticker}")
@@ -151,40 +177,59 @@ public class TickerTypeController {
         }
     }
 
-    @PostMapping("/test")
-    public String test() {
-        return "Work!!!";
-    }
-
     @GetMapping("/pagination")
-    public  TickersDto getTickersPagination(
+    public  GenericProtos.ImportDataResponse getTickersPagination(
             @RequestParam Optional<String> cursor
     ) {
         String urlPolygon = polygonService.
                 polyQueryPagination(cursor);
-
-        try {
-            TickersDto response = webClient
-                    .get()
-                    .uri(urlPolygon)
-                    .retrieve()
-                    .bodyToMono(TickersDto.class)
-                    .map(jsonString -> {
-                        logger.info("{}", jsonString.getCount());
-                        return jsonString;
-                    })
-                    .block();
-            if (response.getResults() != null) {
-                TickersDto data = mapper.map(response, TickersDto.class);
-                data.setNextPage(response.getNextUrl() != null);
-                return data;
+        TickersDto response = webClient
+                .get()
+                .uri(urlPolygon)
+                .retrieve()
+                .bodyToMono(TickersDto.class)
+                .map(jsonString -> {
+                    logger.info("{}", jsonString.getCount());
+                    return jsonString;
+                })
+                .block();
+        if (response.getResults() != null) {
+            TickersDto data = mapper.map(response, TickersDto.class);
+            data.setNextPage(response.getNextUrl() != null);
+            try {
+                String cursorStr = "";
+                if (response.getNextUrl() != null) {
+                    Map<String, String> query = splitQuery(new URL(response.getNextUrl()));
+                    cursorStr = query.get("cursor");
+                }
+                List<TickerDto> dataResponse = importDataService.importTickersDataFromPolygon(data);
+                return GenericProtos.ImportDataResponse.newBuilder()
+                        .setCount(dataResponse.size())
+                        .setMessage("Import Pagination Success ")
+                        .setCursor(cursorStr)
+                        .build();
+            } catch (SQLException e) {
+                logger.info("{}", e.getMessage());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                logger.info("{}", e.getMessage());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                logger.info("{}", e.getMessage());
             }
-            return response;
 
-        } catch (Exception e) {
-            logger.info("{}", e.getMessage());
-            throw new BadRequestException("polygon_exception");
         }
+        throw new BadRequestException("polygon_exception");
+    }
 
+    public static Map<String, String> splitQuery(URL url) throws UnsupportedEncodingException {
+        Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+        String query = url.getQuery();
+        String[] pairs = query.split("&");
+        for (String pair : pairs) {
+            int idx = pair.indexOf("=");
+            query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+        }
+        return query_pairs;
     }
 }
