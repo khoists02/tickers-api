@@ -1,15 +1,13 @@
 package com.tickers.io.applicationapi.dto;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import org.checkerframework.common.aliasing.qual.Unique;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TickerDetailsDto {
     @Setter
     @Getter
-    @Unique
     public String ticker;
 
     @Setter
@@ -46,7 +44,7 @@ public class TickerDetailsDto {
 
     @Getter
     @Setter
-    private String address;
+    private Address address;
 
     @Getter
     @Setter
@@ -78,7 +76,7 @@ public class TickerDetailsDto {
 
     @Getter
     @Setter
-    private String branding;
+    private Branding branding;
 
     @Getter
     @Setter

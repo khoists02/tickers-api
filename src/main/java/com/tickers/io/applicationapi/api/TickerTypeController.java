@@ -1,9 +1,9 @@
 package com.tickers.io.applicationapi.api;
 
-import com.tickers.io.applicationapi.dto.TickerDto;
-import com.tickers.io.applicationapi.dto.TickerTypesDto;
-import com.tickers.io.applicationapi.dto.TickersDto;
+import com.tickers.io.applicationapi.dto.*;
+import com.tickers.io.applicationapi.exceptions.ApplicationException;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
+import com.tickers.io.applicationapi.services.ImportDataDetaisServices;
 import com.tickers.io.applicationapi.services.ImportDataService;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.GenericProtos;
@@ -41,6 +41,9 @@ public class TickerTypeController {
 
     @Autowired
     private ImportDataService importDataService;
+
+    @Autowired
+    private ImportDataDetaisServices importDataDetaisServices;
 
     @GetMapping()
     @Transactional
@@ -93,20 +96,29 @@ public class TickerTypeController {
     }
 
     @PostMapping("/{ticker}")
-    public String getTickerDetails(@PathVariable("ticker") String ticker) {
+    public TickerDetailsDto getTickerDetails(@PathVariable("ticker") String ticker) {
         String urlPolygon = polygonService.
                 polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
-        String response = webClient
+        TickerDetailsResponseDto response = webClient
                 .get()
                 .uri(urlPolygon)
                 .retrieve()
-                .bodyToMono(String.class)
+                .bodyToMono(TickerDetailsResponseDto.class)
                 .map(jsonString -> {
                     logger.info("{}", jsonString);
                     return jsonString;
                 })
                 .block();
-        return response;
+        if (response.getResults() != null) {
+            try {
+                TickerDetailsDto data = importDataDetaisServices.importDataForTickerDetails(response.getResults());
+                return data;
+            } catch (Exception e) {
+                logger.info("{}", e.getMessage());
+            }
+
+        }
+        throw new ApplicationException();
     }
 
     @GetMapping("logo")

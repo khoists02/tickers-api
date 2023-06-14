@@ -1,5 +1,6 @@
 package com.tickers.io.applicationapi.services;
 
+import com.tickers.io.applicationapi.dto.TickerDetailsDto;
 import com.tickers.io.applicationapi.dto.TickerDto;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
@@ -23,10 +24,10 @@ public class ImportDataDetaisServices {
     @Autowired
     private ModelMapper mapper;
 
-    public TickerDetails importDataForTickerDetails(TickerDto dto) throws ApplicationException {
+    public TickerDetailsDto importDataForTickerDetails(TickerDetailsDto dto) throws ApplicationException {
         boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(dto.getTicker());
         if (exitsTicker) {
-            throw new ApplicationException("unique_ticker");
+            return dto;
         }
 
         TickerDetails details = mapper.map(dto, TickerDetails.class);
@@ -39,6 +40,6 @@ public class ImportDataDetaisServices {
             ticker.setTickerDetails(response);
             tickersRepository.save(ticker);
         }
-        return response;
+        return mapper.map(response, TickerDetailsDto.class);
     }
 }
