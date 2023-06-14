@@ -1,5 +1,10 @@
 package com.tickers.io.applicationapi.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.tickers.io.applicationapi.dto.Address;
+import com.tickers.io.applicationapi.dto.Branding;
 import com.tickers.io.applicationapi.dto.TickerDetailsDto;
 import com.tickers.io.applicationapi.dto.TickerDto;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
@@ -24,15 +29,17 @@ public class ImportDataDetaisServices {
     @Autowired
     private ModelMapper mapper;
 
-    public TickerDetailsDto importDataForTickerDetails(TickerDetailsDto dto) throws ApplicationException {
+    public TickerDetailsDto importDataForTickerDetails(TickerDetailsDto dto) throws ApplicationException, JsonProcessingException {
         boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(dto.getTicker());
         if (exitsTicker) {
             return dto;
         }
 
         TickerDetails details = mapper.map(dto, TickerDetails.class);
-        TickerDetails response = tickerDetailsRepository.save(details);
+        if (dto.getAddress() != null) details.setAddress(convertObjectToJson(dto.getAddress()));
 
+        if (dto.getBranding() != null) details.setBranding(convertObjectToJson(dto.getBranding()));
+        TickerDetails response = tickerDetailsRepository.save(details);
         boolean exitsTickers = tickersRepository.checkExitsTicker(response.getTicker());
 
         if (exitsTickers) {
@@ -40,6 +47,27 @@ public class ImportDataDetaisServices {
             ticker.setTickerDetails(response);
             tickersRepository.save(ticker);
         }
-        return mapper.map(response, TickerDetailsDto.class);
+        TickerDetailsDto dataResponse = mapper.map(response, TickerDetailsDto.class);
+        if (response.getAddress() != null)
+            dataResponse.setAddress(convertAddressJsonToObj(response.getAddress()));
+        if (response.getBranding() != null)
+            dataResponse.setBranding(convertBrandingJsonToObj(response.getBranding()));
+        return dataResponse;
+    }
+
+    public String convertObjectToJson(Object object) throws JsonProcessingException {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String json = ow.writeValueAsString(object);
+        return json;
+    }
+
+    public Address convertAddressJsonToObj(String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json, Address.class);
+    }
+
+    public Branding convertBrandingJsonToObj(String json) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json, Branding.class);
     }
 }
