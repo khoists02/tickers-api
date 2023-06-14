@@ -6,6 +6,7 @@ import com.tickers.io.applicationapi.model.TickerStock;
 import com.tickers.io.applicationapi.repositories.TickersStockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ public class UploadService {
     @Autowired
     private TickersStockRepository tickersStockRepository;
 
+    @Transactional
     public void storeTickerData(String json, String ticker, TypeEnum type) {
         TickerStock exits = tickersStockRepository.findFirstByTickerNameAndType(ticker, type);
         if (exits != null) {
