@@ -19,12 +19,24 @@ public final class StockProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string ticker = 1;</code>
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    java.lang.String getId();
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>string ticker = 2;</code>
      * @return The ticker.
      */
     java.lang.String getTicker();
     /**
-     * <code>string ticker = 1;</code>
+     * <code>string ticker = 2;</code>
      * @return The bytes for ticker.
      */
     com.google.protobuf.ByteString
@@ -43,6 +55,7 @@ public final class StockProto {
       super(builder);
     }
     private StockResponse() {
+      id_ = "";
       ticker_ = "";
     }
 
@@ -77,6 +90,12 @@ public final class StockProto {
               done = true;
               break;
             case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
               ticker_ = s;
@@ -114,10 +133,46 @@ public final class StockProto {
               com.tickers.io.protobuf.StockProto.StockResponse.class, com.tickers.io.protobuf.StockProto.StockResponse.Builder.class);
     }
 
-    public static final int TICKER_FIELD_NUMBER = 1;
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TICKER_FIELD_NUMBER = 2;
     private volatile java.lang.Object ticker_;
     /**
-     * <code>string ticker = 1;</code>
+     * <code>string ticker = 2;</code>
      * @return The ticker.
      */
     public java.lang.String getTicker() {
@@ -133,7 +188,7 @@ public final class StockProto {
       }
     }
     /**
-     * <code>string ticker = 1;</code>
+     * <code>string ticker = 2;</code>
      * @return The bytes for ticker.
      */
     public com.google.protobuf.ByteString
@@ -164,8 +219,11 @@ public final class StockProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      }
       if (!getTickerBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, ticker_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ticker_);
       }
       unknownFields.writeTo(output);
     }
@@ -176,8 +234,11 @@ public final class StockProto {
       if (size != -1) return size;
 
       size = 0;
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
       if (!getTickerBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, ticker_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ticker_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -194,6 +255,8 @@ public final class StockProto {
       }
       com.tickers.io.protobuf.StockProto.StockResponse other = (com.tickers.io.protobuf.StockProto.StockResponse) obj;
 
+      if (!getId()
+          .equals(other.getId())) return false;
       if (!getTicker()
           .equals(other.getTicker())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -207,6 +270,8 @@ public final class StockProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
       hash = (37 * hash) + TICKER_FIELD_NUMBER;
       hash = (53 * hash) + getTicker().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -342,6 +407,8 @@ public final class StockProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        id_ = "";
+
         ticker_ = "";
 
         return this;
@@ -370,6 +437,7 @@ public final class StockProto {
       @java.lang.Override
       public com.tickers.io.protobuf.StockProto.StockResponse buildPartial() {
         com.tickers.io.protobuf.StockProto.StockResponse result = new com.tickers.io.protobuf.StockProto.StockResponse(this);
+        result.id_ = id_;
         result.ticker_ = ticker_;
         onBuilt();
         return result;
@@ -419,6 +487,10 @@ public final class StockProto {
 
       public Builder mergeFrom(com.tickers.io.protobuf.StockProto.StockResponse other) {
         if (other == com.tickers.io.protobuf.StockProto.StockResponse.getDefaultInstance()) return this;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
         if (!other.getTicker().isEmpty()) {
           ticker_ = other.ticker_;
           onChanged();
@@ -452,9 +524,85 @@ public final class StockProto {
         return this;
       }
 
+      private java.lang.Object id_ = "";
+      /**
+       * <code>string id = 1;</code>
+       * @return The id.
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return The bytes for id.
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object ticker_ = "";
       /**
-       * <code>string ticker = 1;</code>
+       * <code>string ticker = 2;</code>
        * @return The ticker.
        */
       public java.lang.String getTicker() {
@@ -470,7 +618,7 @@ public final class StockProto {
         }
       }
       /**
-       * <code>string ticker = 1;</code>
+       * <code>string ticker = 2;</code>
        * @return The bytes for ticker.
        */
       public com.google.protobuf.ByteString
@@ -487,7 +635,7 @@ public final class StockProto {
         }
       }
       /**
-       * <code>string ticker = 1;</code>
+       * <code>string ticker = 2;</code>
        * @param value The ticker to set.
        * @return This builder for chaining.
        */
@@ -502,7 +650,7 @@ public final class StockProto {
         return this;
       }
       /**
-       * <code>string ticker = 1;</code>
+       * <code>string ticker = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearTicker() {
@@ -512,7 +660,7 @@ public final class StockProto {
         return this;
       }
       /**
-       * <code>string ticker = 1;</code>
+       * <code>string ticker = 2;</code>
        * @param value The bytes for ticker to set.
        * @return This builder for chaining.
        */
@@ -1387,10 +1535,11 @@ public final class StockProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013Stock.proto\022\005model\"\037\n\rStockResponse\022\016\n" +
-      "\006ticker\030\001 \001(\t\"7\n\016StocksResponse\022%\n\007ticke" +
-      "rs\030\001 \003(\0132\024.model.StockResponseB%\n\027com.ti" +
-      "ckers.io.protobufB\nStockProtob\006proto3"
+      "\n\013Stock.proto\022\005model\"+\n\rStockResponse\022\n\n" +
+      "\002id\030\001 \001(\t\022\016\n\006ticker\030\002 \001(\t\"7\n\016StocksRespo" +
+      "nse\022%\n\007tickers\030\001 \003(\0132\024.model.StockRespon" +
+      "seB%\n\027com.tickers.io.protobufB\nStockProt" +
+      "ob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1401,7 +1550,7 @@ public final class StockProto {
     internal_static_model_StockResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_model_StockResponse_descriptor,
-        new java.lang.String[] { "Ticker", });
+        new java.lang.String[] { "Id", "Ticker", });
     internal_static_model_StocksResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_model_StocksResponse_fieldAccessorTable = new

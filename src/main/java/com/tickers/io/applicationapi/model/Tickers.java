@@ -72,6 +72,10 @@ public class Tickers extends BaseEntity {
     @Nullable
     public ZonedDateTime lastUpdatedUtc;
 
+    @Getter
+    @Setter
+    private Boolean migrated;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticker_id")
     private TickerDetails tickerDetails;

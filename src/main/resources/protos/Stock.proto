@@ -4,7 +4,8 @@ option java_package = "com.tickers.io.protobuf";
 option java_outer_classname = "StockProto";
 
 message StockResponse {
-  string ticker = 1;
+  string id = 1;
+  string ticker = 2;
 }
 
 message StocksResponse {

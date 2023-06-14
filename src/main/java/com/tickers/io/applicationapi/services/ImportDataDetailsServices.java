@@ -38,6 +38,8 @@ public class ImportDataDetailsServices {
         if (exitsTickers) {
             Tickers ticker = tickersRepository.getTickersByTicker(response.getTicker());
             ticker.setTickerDetails(response);
+            // set migrated
+            ticker.setMigrated(true);
             tickersRepository.save(ticker);
         }
         TickerDetailsDto dataResponse = mapper.map(response, TickerDetailsDto.class);

@@ -22,5 +22,6 @@ public interface TickersRepository extends BaseEntityRepository<Tickers, UUID> {
     @Query("SELECT DISTINCT tk.type from Tickers tk where tk.type is not null")
     List<String> getDistinctTickerTypes();
 
-    Stream<Tickers> getTickersByType(String type);
+    @Query("SELECT tk from Tickers tk where tk.type = :type and tk.migrated = false")
+    List<Tickers> getTickersByTypeAndNotMigrated(String type);
 }
