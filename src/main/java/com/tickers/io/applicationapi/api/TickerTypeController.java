@@ -92,7 +92,7 @@ public class TickerTypeController {
         throw new BadRequestException("polygon_exception");
     }
 
-    @GetMapping("/{ticker}")
+    @PostMapping("/{ticker}")
     public String getTickerDetails(@PathVariable("ticker") String ticker) {
         String urlPolygon = polygonService.
                 polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
