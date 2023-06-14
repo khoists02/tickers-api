@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.tickers.io.applicationapi.dto.Address;
 import com.tickers.io.applicationapi.dto.Branding;
 import com.tickers.io.applicationapi.dto.TickerDetailsDto;
-import com.tickers.io.applicationapi.dto.TickerDto;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
-import com.tickers.io.applicationapi.exceptions.BadRequestException;
 import com.tickers.io.applicationapi.model.TickerDetails;
 import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.repositories.TickerDetailsRepository;
@@ -18,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImportDataDetaisServices {
+public class ImportDataDetailsServices {
 
     @Autowired
     private TickersRepository tickersRepository;
@@ -30,11 +28,6 @@ public class ImportDataDetaisServices {
     private ModelMapper mapper;
 
     public TickerDetailsDto importDataForTickerDetails(TickerDetailsDto dto) throws ApplicationException, JsonProcessingException {
-        boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(dto.getTicker());
-        if (exitsTicker) {
-            return dto;
-        }
-
         TickerDetails details = mapper.map(dto, TickerDetails.class);
         if (dto.getAddress() != null) details.setAddress(convertObjectToJson(dto.getAddress()));
 
