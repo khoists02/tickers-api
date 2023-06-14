@@ -18,7 +18,8 @@ public class StockController {
             while (true) {
                 count = count + 1;
                 logger.info("{}", count);
-                Thread.sleep(20 * 1000); // 1mn
+                if (count == 4) break;
+                Thread.sleep(10 * 1000); // 10ms
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
