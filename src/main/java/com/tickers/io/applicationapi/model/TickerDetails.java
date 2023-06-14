@@ -9,7 +9,7 @@ import lombok.Setter;
 import org.checkerframework.common.aliasing.qual.Unique;
 
 @Entity
-@Table("ticker_details")
+@Table(name = "ticker_details")
 @Getter
 @Setter
 public class TickerDetails extends BaseEntity{
