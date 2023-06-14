@@ -6,8 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Map;
-
 @Entity
 @Table(name = "tickers_stock")
 
@@ -29,9 +27,15 @@ public class TickerStock extends BaseEntity {
     @Column(name = "ticker_attributes_json")
     private String tickerAttributesJson;
 
-    @Getter
-    @Setter
-    @Column(name = "ticker_attributes")
-    @Convert(converter = HashMapConverter.class)
-    private Map<String, Object> tickerAttributes;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TickerStock)) return false;
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
