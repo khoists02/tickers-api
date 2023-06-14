@@ -1,7 +1,10 @@
 package com.tickers.io.applicationapi.api.exceptions;
 
+import com.google.protobuf.Message;
 import com.tickers.io.applicationapi.exceptions.*;
+import com.tickers.io.applicationapi.interfaces.PathUUID;
 import com.tickers.io.protobuf.GenericProtos;
+import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class WebExceptionHandler {
@@ -65,6 +71,37 @@ public class WebExceptionHandler {
         }
         return this.handle(UnauthenticatedException.UNAUTHENTICATED);
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Message> handleConstraintViolationException(ConstraintViolationException constraintViolationException) {
+
+        if(constraintViolationException.getConstraintViolations().stream().anyMatch(v->v.getConstraintDescriptor().getAnnotation().annotationType().equals(PathUUID.class)))
+        {
+            return this.handle(new NotFoundException());
+        }
+        return new ResponseEntity<>(GenericProtos.ValidationErrorResponse.newBuilder()
+                .setType(constraintViolationException.getClass().getSimpleName())
+                .addAllErrors(
+                        constraintViolationException.getConstraintViolations().stream().map(
+                                v -> GenericProtos.ValidationError.newBuilder()
+                                        .setField(v.getPropertyPath().toString())
+                                        .setMessage(v.getMessage())
+                                        .setValue(Optional.ofNullable(v.getInvalidValue()).orElse("").toString()).build()).collect(Collectors.toSet())
+                )
+                .setCode("422")
+                .build(),
+                null,
+                422);
+    }
+
+    @ExceptionHandler(Throwable.class)
+    public ResponseEntity<GenericProtos.ErrorResponse> handleGenericError(Throwable throwable) {
+        logger.error("Unhandled exception", throwable);
+        //We don't want to throw anything non-specific as it could leak information to the user
+        ApplicationException exception = new ApplicationException();
+        return this.handle(exception);
+    }
+
 
     private ResponseEntity handle(ApplicationException exception) {
         return new ResponseEntity<>(

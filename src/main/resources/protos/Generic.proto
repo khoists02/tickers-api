@@ -9,3 +9,21 @@ message ErrorResponse {
   string message = 3;
   map<string, string> params = 4;
 }
+
+message ValidationError {
+  string field = 1;
+  string value = 2;
+  string message = 3;
+}
+
+message ValidationErrorResponse {
+  string type = 1;
+  string code = 2;
+  repeated ValidationError errors = 3;
+}
+
+message ImportDataResponse {
+  int32 count = 1;
+  string message = 2;
+  string cursor = 3;
+}
