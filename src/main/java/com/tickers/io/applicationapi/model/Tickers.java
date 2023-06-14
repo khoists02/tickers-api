@@ -1,8 +1,6 @@
 package com.tickers.io.applicationapi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +8,7 @@ import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.annotation.Nullable;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -72,6 +71,10 @@ public class Tickers extends BaseEntity {
     @Column(name = "last_updated_utc")
     @Nullable
     public ZonedDateTime lastUpdatedUtc;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticker_id")
+    private TickerDetails tickerDetails;
 
     @Override
     public boolean equals(Object o) {

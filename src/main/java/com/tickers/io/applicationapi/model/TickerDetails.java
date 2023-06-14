@@ -110,4 +110,16 @@ public class TickerDetails extends BaseEntity{
     @Setter
     @Column(name = "round_lot")
     private Integer roundLot;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TickerDetails)) return false;
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
