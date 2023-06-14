@@ -96,23 +96,17 @@ public class TickerTypeController {
     public String getTickerDetails(@PathVariable("ticker") String ticker) {
         String urlPolygon = polygonService.
                 polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
-        try {
-            String response = webClient
-                    .get()
-                    .uri(urlPolygon)
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .map(jsonString -> {
-                        logger.info("{}", jsonString);
-                        return jsonString;
-                    })
-                    .block();
-            return response;
-
-        } catch (Exception e) {
-            logger.info("{}", e.getMessage());
-            throw new BadRequestException("polygon_exception");
-        }
+        String response = webClient
+                .get()
+                .uri(urlPolygon)
+                .retrieve()
+                .bodyToMono(String.class)
+                .map(jsonString -> {
+                    logger.info("{}", jsonString);
+                    return jsonString;
+                })
+                .block();
+        return response;
     }
 
     @GetMapping("logo")
