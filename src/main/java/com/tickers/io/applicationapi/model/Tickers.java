@@ -73,6 +73,10 @@ public class Tickers extends BaseEntity {
     @Nullable
     public ZonedDateTime lastUpdatedUtc;
 
+    @Getter
+    @Setter
+    private Boolean migrated;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

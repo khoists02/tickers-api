@@ -5,5 +5,9 @@ option java_outer_classname = "TickersProto";
 
 message TypeResponse {
   string label = 1;
-  string value = 1;
+  string value = 2;
+}
+
+message TypesResponse {
+  repeated TypeResponse content = 1;
 }

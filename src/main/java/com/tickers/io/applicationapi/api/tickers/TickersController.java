@@ -3,11 +3,14 @@ package com.tickers.io.applicationapi.api.tickers;
 import com.tickers.io.applicationapi.dto.TickerDto;
 import com.tickers.io.applicationapi.dto.TickerTypesDto;
 import com.tickers.io.applicationapi.dto.TickersDto;
+import com.tickers.io.applicationapi.enums.TickerTypesEnum;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
+import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.services.ImportDataService;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.GenericProtos;
 import com.tickers.io.protobuf.TickerTypeProto;
+import com.tickers.io.protobuf.TickersProto;
 import jakarta.transaction.Transactional;
 import jakarta.websocket.server.PathParam;
 import org.modelmapper.ModelMapper;
@@ -134,6 +137,17 @@ public class TickersController {
     }
 
     @GetMapping("/types")
+    public TickersProto.TypesResponse getTypes() {
+        return TickersProto.TypesResponse.newBuilder()
+                .addAllContent(Arrays.stream(TickerTypesEnum.values())
+                        .map(x ->
+                                TickersProto.TypeResponse.newBuilder().setLabel(x.toString()).setLabel(x.toString())
+                                        .build())
+                        .toList())
+                .build();
+    }
+
+    @GetMapping("/types/polygon")
     public TickerTypeProto.TickerTypesResponse getListTickerType(
             @RequestParam("asset_class") Optional<String> assetClass,
             @RequestParam("locale") Optional<String> locale) {
