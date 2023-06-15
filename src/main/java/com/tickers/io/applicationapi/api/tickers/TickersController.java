@@ -1,4 +1,4 @@
-package com.tickers.io.applicationapi.api;
+package com.tickers.io.applicationapi.api.tickers;
 
 import com.tickers.io.applicationapi.dto.TickerDto;
 import com.tickers.io.applicationapi.dto.TickerTypesDto;
@@ -27,7 +27,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/tickers")
-public class TickerTypeController {
+public class TickersController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired

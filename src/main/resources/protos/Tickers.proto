@@ -1,0 +1,9 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "TickersProto";
+
+message TypeResponse {
+  string label = 1;
+  string value = 1;
+}
