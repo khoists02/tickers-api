@@ -25,21 +25,6 @@ public class StockController {
     @Autowired
     private ModelMapper mapper;
 
-    @PostMapping("/ImportData")
-    public void importDataFromPolyAPI() {
-        try {
-            int count = 0;
-            while (true) {
-                count = count + 1;
-                logger.info("{}", count);
-                if (count == 4) break;
-                Thread.sleep(10 * 1000); // 10ms
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     @GetMapping()
     public StockProto.StocksResponse getStocksByType(@RequestParam(name = "type") String type) {
         List<Tickers> tickersList = tickersRepository.getTickersByTypeAndNotMigrated(type);
@@ -50,10 +35,5 @@ public class StockController {
                             return builder.build();
                         }).toList())
                 .build();
-    }
-
-    @GetMapping("/types")
-    public List<String> getTypes() {
-        return tickersRepository.getDistinctTickerTypes();
     }
 }

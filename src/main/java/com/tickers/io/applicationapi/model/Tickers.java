@@ -8,7 +8,6 @@ import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.annotation.Nullable;
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -82,8 +81,10 @@ public class Tickers extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Tickers)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Tickers))
+            return false;
         return super.equals(o);
     }
 

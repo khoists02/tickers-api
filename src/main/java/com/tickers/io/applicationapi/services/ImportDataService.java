@@ -39,6 +39,7 @@ public class ImportDataService {
                             }
 //                            ProtobufHelper.mapIfNotNull(x::getName, tickers::setName, v -> v);
                             if (x.getName() == null) tickers.setName("");
+                            tickers.setMigrated(false);
                             return tickers;
                         }).filter(x-> !tickersRepository.checkExitsTicker(x.getTicker()))
                         .collect(Collectors.toList());

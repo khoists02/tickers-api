@@ -1,14 +1,16 @@
-package com.tickers.io.applicationapi.api;
+package com.tickers.io.applicationapi.api.tickers;
 
+import com.tickers.io.applicationapi.enums.TickerTypesEnum;
+import com.tickers.io.applicationapi.exceptions.BadRequestException;
 import com.tickers.io.applicationapi.dto.*;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
-import com.tickers.io.applicationapi.exceptions.BadRequestException;
 import com.tickers.io.applicationapi.repositories.TickerDetailsRepository;
 import com.tickers.io.applicationapi.services.ImportDataDetailsServices;
 import com.tickers.io.applicationapi.services.ImportDataService;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.GenericProtos;
 import com.tickers.io.protobuf.TickerTypeProto;
+import com.tickers.io.protobuf.TickersProto;
 import jakarta.transaction.Transactional;
 import jakarta.websocket.server.PathParam;
 import org.modelmapper.ModelMapper;
@@ -28,7 +30,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/tickers")
-public class TickerTypeController {
+public class TickersController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -58,8 +60,8 @@ public class TickerTypeController {
             @RequestParam("sort") Optional<String> sort,
             @RequestParam("order") Optional<String> order,
             @RequestParam("limit") @Nullable Integer limit) {
-        String urlPolygon = polygonService.
-                polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, sort , order, limit);
+        String urlPolygon = polygonService.polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, sort,
+                order, limit);
 
         TickersDto response = webClient
                 .get()
@@ -101,8 +103,7 @@ public class TickerTypeController {
 
     @PostMapping("/{ticker}")
     public String getTickerDetails(@PathVariable("ticker") String ticker) {
-        String urlPolygon = polygonService.
-                polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
+        String urlPolygon = polygonService.polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
         TickerDetailsResponseDto response = webClient
                 .get()
                 .uri(urlPolygon)
@@ -133,8 +134,7 @@ public class TickerTypeController {
     @GetMapping("logo")
     public String getLogo(@PathParam("url") String url) {
         try {
-            String urlPolygon = polygonService.
-                    getLogoUrl(url);
+            String urlPolygon = polygonService.getLogoUrl(url);
             String result = webClient
                     .get()
                     .uri(urlPolygon)
@@ -148,14 +148,23 @@ public class TickerTypeController {
         }
     }
 
-
     @GetMapping("/types")
+    public TickersProto.TypesResponse getTypes() {
+        return TickersProto.TypesResponse.newBuilder()
+                .addAllContent(Arrays.stream(TickerTypesEnum.values())
+                        .map(x -> TickersProto.TypeResponse.newBuilder().setLabel(x.toString()).setValue(x.toString())
+                                .build())
+                        .toList())
+                .build();
+    }
+
+    @GetMapping("/types/polygon")
     public TickerTypeProto.TickerTypesResponse getListTickerType(
             @RequestParam("asset_class") Optional<String> assetClass,
             @RequestParam("locale") Optional<String> locale) {
         try {
-            String urlPolygon = polygonService.
-                    polygonTickerTypesEndpoint("/v3/reference/tickers/types", assetClass, locale);
+            String urlPolygon = polygonService.polygonTickerTypesEndpoint("/v3/reference/tickers/types", assetClass,
+                    locale);
             TickerTypesDto response = webClient
                     .get()
                     .uri(urlPolygon)
@@ -167,7 +176,7 @@ public class TickerTypeController {
                     })
                     .block();
             if (response.getResults() == null) {
-                return  TickerTypeProto.TickerTypesResponse.newBuilder()
+                return TickerTypeProto.TickerTypesResponse.newBuilder()
                         .setCount(response.getCount())
                         .setRequestId(response.getRequestId())
                         .setStatus(response.getStatus())
@@ -182,10 +191,12 @@ public class TickerTypeController {
                             response.getResults()
                                     .stream()
                                     .map(r -> {
-                                        TickerTypeProto.TickerTypeResponse.Builder builder = mapper.map(r, TickerTypeProto.TickerTypeResponse.Builder.class);
+                                        TickerTypeProto.TickerTypeResponse.Builder builder = mapper.map(r,
+                                                TickerTypeProto.TickerTypeResponse.Builder.class);
                                         builder.setAssetClass(r.getAssetClass());
-                                        return  builder.build();
-                                    }).toList()).build();
+                                        return builder.build();
+                                    }).toList())
+                    .build();
 
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
@@ -194,11 +205,9 @@ public class TickerTypeController {
     }
 
     @GetMapping("/pagination")
-    public  GenericProtos.ImportDataResponse getTickersPagination(
-            @RequestParam Optional<String> cursor
-    ) {
-        String urlPolygon = polygonService.
-                polyQueryPagination(cursor);
+    public GenericProtos.ImportDataResponse getTickersPagination(
+            @RequestParam Optional<String> cursor) {
+        String urlPolygon = polygonService.polyQueryPagination(cursor);
         TickersDto response = webClient
                 .get()
                 .uri(urlPolygon)
@@ -244,7 +253,8 @@ public class TickerTypeController {
         String[] pairs = query.split("&");
         for (String pair : pairs) {
             int idx = pair.indexOf("=");
-            query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+            query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"),
+                    URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
         }
         return query_pairs;
     }
