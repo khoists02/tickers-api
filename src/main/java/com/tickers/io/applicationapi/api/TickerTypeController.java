@@ -1,9 +1,10 @@
 package com.tickers.io.applicationapi.api;
 
-import com.tickers.io.applicationapi.dto.TickerDto;
-import com.tickers.io.applicationapi.dto.TickerTypesDto;
-import com.tickers.io.applicationapi.dto.TickersDto;
+import com.tickers.io.applicationapi.dto.*;
+import com.tickers.io.applicationapi.exceptions.ApplicationException;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
+import com.tickers.io.applicationapi.repositories.TickerDetailsRepository;
+import com.tickers.io.applicationapi.services.ImportDataDetailsServices;
 import com.tickers.io.applicationapi.services.ImportDataService;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.GenericProtos;
@@ -41,6 +42,12 @@ public class TickerTypeController {
 
     @Autowired
     private ImportDataService importDataService;
+
+    @Autowired
+    private ImportDataDetailsServices importDataDetaisServices;
+
+    @Autowired
+    private TickerDetailsRepository tickerDetailsRepository;
 
     @GetMapping()
     @Transactional
@@ -92,27 +99,35 @@ public class TickerTypeController {
         throw new BadRequestException("polygon_exception");
     }
 
-    @GetMapping("/{ticker}")
+    @PostMapping("/{ticker}")
     public String getTickerDetails(@PathVariable("ticker") String ticker) {
         String urlPolygon = polygonService.
                 polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
-        try {
-            String response = webClient
-                    .get()
-                    .uri(urlPolygon)
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .map(jsonString -> {
-                        logger.info("{}", jsonString);
-                        return jsonString;
-                    })
-                    .block();
-            return response;
+        TickerDetailsResponseDto response = webClient
+                .get()
+                .uri(urlPolygon)
+                .retrieve()
+                .bodyToMono(TickerDetailsResponseDto.class)
+                .map(jsonString -> {
+                    logger.info("{}", jsonString);
+                    return jsonString;
+                })
+                .block();
+        if (response.getResults() != null) {
+            try {
+                boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(response.getResults().getTicker());
+                if (exitsTicker) {
+                    logger.info("Ticker already exists {}", response.getResults().getTicker());
+                    return String.format("Ticker already exists %s", response.getResults().getTicker());
+                }
+                TickerDetailsDto data = importDataDetaisServices.importDataForTickerDetails(response.getResults());
+                return data.getName();
+            } catch (Exception e) {
+                logger.info("{}", e.getMessage());
+            }
 
-        } catch (Exception e) {
-            logger.info("{}", e.getMessage());
-            throw new BadRequestException("polygon_exception");
         }
+        throw new ApplicationException();
     }
 
     @GetMapping("logo")
@@ -132,6 +147,7 @@ public class TickerTypeController {
             throw new BadRequestException("polygon_exception");
         }
     }
+
 
     @GetMapping("/types")
     public TickerTypeProto.TickerTypesResponse getListTickerType(

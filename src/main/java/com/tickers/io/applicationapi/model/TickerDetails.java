@@ -1,20 +1,18 @@
 package com.tickers.io.applicationapi.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.checkerframework.common.aliasing.qual.Unique;
 
-import javax.annotation.Nullable;
-import java.time.ZonedDateTime;
-import java.util.UUID;
-
+@Entity
+@Table(name = "ticker_details")
 @Getter
 @Setter
-@Entity
-@Table(name = "tickers")
-public class Tickers extends BaseEntity {
+public class TickerDetails extends BaseEntity{
     @Setter
     @Getter
     @Unique
@@ -56,6 +54,19 @@ public class Tickers extends BaseEntity {
     @Getter
     public String cik;
 
+    @Getter
+    @Setter
+    private String address;
+
+    @Getter
+    @Setter
+    private String description;
+
+    @Getter
+    @Setter
+    @Column(name = "market_cap")
+    private Long marketCap;
+
     @Setter
     @Getter
     @Column(name = "composite_figi")
@@ -66,24 +77,44 @@ public class Tickers extends BaseEntity {
     @Column(name = "share_class_figi")
     public String shareClassFigi;
 
-    @Setter
     @Getter
-    @Column(name = "last_updated_utc")
-    @Nullable
-    public ZonedDateTime lastUpdatedUtc;
+    @Setter
+    @Column(name = "sic_code")
+    private String sicCode;
 
     @Getter
     @Setter
-    private Boolean migrated;
+    @Column(name = "sic_description")
+    private String sicDescription;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ticker_id")
-    private TickerDetails tickerDetails;
+    @Getter
+    @Setter
+    @Column(name = "total_employees")
+    private Long totalEmployees;
+
+    @Getter
+    @Setter
+    private String branding;
+
+    @Getter
+    @Setter
+    @Column(name = "share_class_shares_outstanding")
+    private Long shareClassSharesOutstanding;
+
+    @Getter
+    @Setter
+    @Column(name = "weighted_shares_outstanding")
+    private Long weightedSharesOutstanding;
+
+    @Getter
+    @Setter
+    @Column(name = "round_lot")
+    private Integer roundLot;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Tickers)) return false;
+        if (!(o instanceof TickerDetails)) return false;
         return super.equals(o);
     }
 
@@ -91,5 +122,4 @@ public class Tickers extends BaseEntity {
     public int hashCode() {
         return super.hashCode();
     }
-
 }
