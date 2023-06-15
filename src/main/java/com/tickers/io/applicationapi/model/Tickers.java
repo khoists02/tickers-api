@@ -8,7 +8,6 @@ import org.checkerframework.common.aliasing.qual.Unique;
 
 import javax.annotation.Nullable;
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter

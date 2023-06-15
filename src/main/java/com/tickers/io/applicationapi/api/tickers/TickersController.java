@@ -152,7 +152,7 @@ public class TickersController {
     public TickersProto.TypesResponse getTypes() {
         return TickersProto.TypesResponse.newBuilder()
                 .addAllContent(Arrays.stream(TickerTypesEnum.values())
-                        .map(x -> TickersProto.TypeResponse.newBuilder().setLabel(x.toString()).setLabel(x.toString())
+                        .map(x -> TickersProto.TypeResponse.newBuilder().setLabel(x.toString()).setValue(x.toString())
                                 .build())
                         .toList())
                 .build();
