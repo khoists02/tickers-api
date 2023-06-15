@@ -1,11 +1,11 @@
 package com.tickers.io.applicationapi.api.tickers;
 
-import com.tickers.io.applicationapi.dto.TickerDto;
-import com.tickers.io.applicationapi.dto.TickerTypesDto;
-import com.tickers.io.applicationapi.dto.TickersDto;
 import com.tickers.io.applicationapi.enums.TickerTypesEnum;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
-import com.tickers.io.applicationapi.model.Tickers;
+import com.tickers.io.applicationapi.dto.*;
+import com.tickers.io.applicationapi.exceptions.ApplicationException;
+import com.tickers.io.applicationapi.repositories.TickerDetailsRepository;
+import com.tickers.io.applicationapi.services.ImportDataDetailsServices;
 import com.tickers.io.applicationapi.services.ImportDataService;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.GenericProtos;
@@ -45,6 +45,12 @@ public class TickersController {
     @Autowired
     private ImportDataService importDataService;
 
+    @Autowired
+    private ImportDataDetailsServices importDataDetaisServices;
+
+    @Autowired
+    private TickerDetailsRepository tickerDetailsRepository;
+
     @GetMapping()
     @Transactional
     public GenericProtos.ImportDataResponse getTickers(
@@ -54,8 +60,8 @@ public class TickersController {
             @RequestParam("sort") Optional<String> sort,
             @RequestParam("order") Optional<String> order,
             @RequestParam("limit") @Nullable Integer limit) {
-        String urlPolygon = polygonService.
-                polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, sort , order, limit);
+        String urlPolygon = polygonService.polygonTickersEndpoint("/v3/reference/tickers", search, type, ticker, sort,
+                order, limit);
 
         TickersDto response = webClient
                 .get()
@@ -95,34 +101,40 @@ public class TickersController {
         throw new BadRequestException("polygon_exception");
     }
 
-    @GetMapping("/{ticker}")
+    @PostMapping("/{ticker}")
     public String getTickerDetails(@PathVariable("ticker") String ticker) {
-        String urlPolygon = polygonService.
-                polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
-        try {
-            String response = webClient
-                    .get()
-                    .uri(urlPolygon)
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .map(jsonString -> {
-                        logger.info("{}", jsonString);
-                        return jsonString;
-                    })
-                    .block();
-            return response;
+        String urlPolygon = polygonService.polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
+        TickerDetailsResponseDto response = webClient
+                .get()
+                .uri(urlPolygon)
+                .retrieve()
+                .bodyToMono(TickerDetailsResponseDto.class)
+                .map(jsonString -> {
+                    logger.info("{}", jsonString);
+                    return jsonString;
+                })
+                .block();
+        if (response.getResults() != null) {
+            try {
+                boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(response.getResults().getTicker());
+                if (exitsTicker) {
+                    logger.info("Ticker already exists {}", response.getResults().getTicker());
+                    return String.format("Ticker already exists %s", response.getResults().getTicker());
+                }
+                TickerDetailsDto data = importDataDetaisServices.importDataForTickerDetails(response.getResults());
+                return data.getName();
+            } catch (Exception e) {
+                logger.info("{}", e.getMessage());
+            }
 
-        } catch (Exception e) {
-            logger.info("{}", e.getMessage());
-            throw new BadRequestException("polygon_exception");
         }
+        throw new ApplicationException();
     }
 
     @GetMapping("logo")
     public String getLogo(@PathParam("url") String url) {
         try {
-            String urlPolygon = polygonService.
-                    getLogoUrl(url);
+            String urlPolygon = polygonService.getLogoUrl(url);
             String result = webClient
                     .get()
                     .uri(urlPolygon)
@@ -140,9 +152,8 @@ public class TickersController {
     public TickersProto.TypesResponse getTypes() {
         return TickersProto.TypesResponse.newBuilder()
                 .addAllContent(Arrays.stream(TickerTypesEnum.values())
-                        .map(x ->
-                                TickersProto.TypeResponse.newBuilder().setLabel(x.toString()).setLabel(x.toString())
-                                        .build())
+                        .map(x -> TickersProto.TypeResponse.newBuilder().setLabel(x.toString()).setLabel(x.toString())
+                                .build())
                         .toList())
                 .build();
     }
@@ -152,8 +163,8 @@ public class TickersController {
             @RequestParam("asset_class") Optional<String> assetClass,
             @RequestParam("locale") Optional<String> locale) {
         try {
-            String urlPolygon = polygonService.
-                    polygonTickerTypesEndpoint("/v3/reference/tickers/types", assetClass, locale);
+            String urlPolygon = polygonService.polygonTickerTypesEndpoint("/v3/reference/tickers/types", assetClass,
+                    locale);
             TickerTypesDto response = webClient
                     .get()
                     .uri(urlPolygon)
@@ -165,7 +176,7 @@ public class TickersController {
                     })
                     .block();
             if (response.getResults() == null) {
-                return  TickerTypeProto.TickerTypesResponse.newBuilder()
+                return TickerTypeProto.TickerTypesResponse.newBuilder()
                         .setCount(response.getCount())
                         .setRequestId(response.getRequestId())
                         .setStatus(response.getStatus())
@@ -180,10 +191,12 @@ public class TickersController {
                             response.getResults()
                                     .stream()
                                     .map(r -> {
-                                        TickerTypeProto.TickerTypeResponse.Builder builder = mapper.map(r, TickerTypeProto.TickerTypeResponse.Builder.class);
+                                        TickerTypeProto.TickerTypeResponse.Builder builder = mapper.map(r,
+                                                TickerTypeProto.TickerTypeResponse.Builder.class);
                                         builder.setAssetClass(r.getAssetClass());
-                                        return  builder.build();
-                                    }).toList()).build();
+                                        return builder.build();
+                                    }).toList())
+                    .build();
 
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
@@ -192,11 +205,9 @@ public class TickersController {
     }
 
     @GetMapping("/pagination")
-    public  GenericProtos.ImportDataResponse getTickersPagination(
-            @RequestParam Optional<String> cursor
-    ) {
-        String urlPolygon = polygonService.
-                polyQueryPagination(cursor);
+    public GenericProtos.ImportDataResponse getTickersPagination(
+            @RequestParam Optional<String> cursor) {
+        String urlPolygon = polygonService.polyQueryPagination(cursor);
         TickersDto response = webClient
                 .get()
                 .uri(urlPolygon)
@@ -242,7 +253,8 @@ public class TickersController {
         String[] pairs = query.split("&");
         for (String pair : pairs) {
             int idx = pair.indexOf("=");
-            query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"), URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
+            query_pairs.put(URLDecoder.decode(pair.substring(0, idx), "UTF-8"),
+                    URLDecoder.decode(pair.substring(idx + 1), "UTF-8"));
         }
         return query_pairs;
     }
