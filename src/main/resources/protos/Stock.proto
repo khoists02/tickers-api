@@ -11,3 +11,17 @@ message StockResponse {
 message StocksResponse {
   repeated StockResponse tickers = 1;
 }
+
+message StockData {
+  string date = 1;
+  string open = 2;
+  string close = 3;
+  string high = 4;
+  string low = 5;
+  string volume = 6;
+  int32 higher = 7;
+}
+
+message StockDataResponse {
+  repeated StockData content = 1;
+}

@@ -1516,6 +1516,2168 @@ public final class StockProto {
 
   }
 
+  public interface StockDataOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.StockData)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string date = 1;</code>
+     * @return The date.
+     */
+    java.lang.String getDate();
+    /**
+     * <code>string date = 1;</code>
+     * @return The bytes for date.
+     */
+    com.google.protobuf.ByteString
+        getDateBytes();
+
+    /**
+     * <code>string open = 2;</code>
+     * @return The open.
+     */
+    java.lang.String getOpen();
+    /**
+     * <code>string open = 2;</code>
+     * @return The bytes for open.
+     */
+    com.google.protobuf.ByteString
+        getOpenBytes();
+
+    /**
+     * <code>string close = 3;</code>
+     * @return The close.
+     */
+    java.lang.String getClose();
+    /**
+     * <code>string close = 3;</code>
+     * @return The bytes for close.
+     */
+    com.google.protobuf.ByteString
+        getCloseBytes();
+
+    /**
+     * <code>string high = 4;</code>
+     * @return The high.
+     */
+    java.lang.String getHigh();
+    /**
+     * <code>string high = 4;</code>
+     * @return The bytes for high.
+     */
+    com.google.protobuf.ByteString
+        getHighBytes();
+
+    /**
+     * <code>string low = 5;</code>
+     * @return The low.
+     */
+    java.lang.String getLow();
+    /**
+     * <code>string low = 5;</code>
+     * @return The bytes for low.
+     */
+    com.google.protobuf.ByteString
+        getLowBytes();
+
+    /**
+     * <code>string volume = 6;</code>
+     * @return The volume.
+     */
+    java.lang.String getVolume();
+    /**
+     * <code>string volume = 6;</code>
+     * @return The bytes for volume.
+     */
+    com.google.protobuf.ByteString
+        getVolumeBytes();
+
+    /**
+     * <code>int32 higher = 7;</code>
+     * @return The higher.
+     */
+    int getHigher();
+  }
+  /**
+   * Protobuf type {@code model.StockData}
+   */
+  public  static final class StockData extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.StockData)
+      StockDataOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use StockData.newBuilder() to construct.
+    private StockData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private StockData() {
+      date_ = "";
+      open_ = "";
+      close_ = "";
+      high_ = "";
+      low_ = "";
+      volume_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new StockData();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private StockData(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              date_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              open_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              close_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              high_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              low_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              volume_ = s;
+              break;
+            }
+            case 56: {
+
+              higher_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StockData_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StockData_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.StockProto.StockData.class, com.tickers.io.protobuf.StockProto.StockData.Builder.class);
+    }
+
+    public static final int DATE_FIELD_NUMBER = 1;
+    private volatile java.lang.Object date_;
+    /**
+     * <code>string date = 1;</code>
+     * @return The date.
+     */
+    public java.lang.String getDate() {
+      java.lang.Object ref = date_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        date_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string date = 1;</code>
+     * @return The bytes for date.
+     */
+    public com.google.protobuf.ByteString
+        getDateBytes() {
+      java.lang.Object ref = date_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        date_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int OPEN_FIELD_NUMBER = 2;
+    private volatile java.lang.Object open_;
+    /**
+     * <code>string open = 2;</code>
+     * @return The open.
+     */
+    public java.lang.String getOpen() {
+      java.lang.Object ref = open_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        open_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string open = 2;</code>
+     * @return The bytes for open.
+     */
+    public com.google.protobuf.ByteString
+        getOpenBytes() {
+      java.lang.Object ref = open_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        open_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CLOSE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object close_;
+    /**
+     * <code>string close = 3;</code>
+     * @return The close.
+     */
+    public java.lang.String getClose() {
+      java.lang.Object ref = close_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        close_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string close = 3;</code>
+     * @return The bytes for close.
+     */
+    public com.google.protobuf.ByteString
+        getCloseBytes() {
+      java.lang.Object ref = close_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        close_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int HIGH_FIELD_NUMBER = 4;
+    private volatile java.lang.Object high_;
+    /**
+     * <code>string high = 4;</code>
+     * @return The high.
+     */
+    public java.lang.String getHigh() {
+      java.lang.Object ref = high_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        high_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string high = 4;</code>
+     * @return The bytes for high.
+     */
+    public com.google.protobuf.ByteString
+        getHighBytes() {
+      java.lang.Object ref = high_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        high_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LOW_FIELD_NUMBER = 5;
+    private volatile java.lang.Object low_;
+    /**
+     * <code>string low = 5;</code>
+     * @return The low.
+     */
+    public java.lang.String getLow() {
+      java.lang.Object ref = low_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        low_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string low = 5;</code>
+     * @return The bytes for low.
+     */
+    public com.google.protobuf.ByteString
+        getLowBytes() {
+      java.lang.Object ref = low_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        low_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int VOLUME_FIELD_NUMBER = 6;
+    private volatile java.lang.Object volume_;
+    /**
+     * <code>string volume = 6;</code>
+     * @return The volume.
+     */
+    public java.lang.String getVolume() {
+      java.lang.Object ref = volume_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        volume_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string volume = 6;</code>
+     * @return The bytes for volume.
+     */
+    public com.google.protobuf.ByteString
+        getVolumeBytes() {
+      java.lang.Object ref = volume_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        volume_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int HIGHER_FIELD_NUMBER = 7;
+    private int higher_;
+    /**
+     * <code>int32 higher = 7;</code>
+     * @return The higher.
+     */
+    public int getHigher() {
+      return higher_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getDateBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, date_);
+      }
+      if (!getOpenBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, open_);
+      }
+      if (!getCloseBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, close_);
+      }
+      if (!getHighBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, high_);
+      }
+      if (!getLowBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, low_);
+      }
+      if (!getVolumeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, volume_);
+      }
+      if (higher_ != 0) {
+        output.writeInt32(7, higher_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getDateBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, date_);
+      }
+      if (!getOpenBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, open_);
+      }
+      if (!getCloseBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, close_);
+      }
+      if (!getHighBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, high_);
+      }
+      if (!getLowBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, low_);
+      }
+      if (!getVolumeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, volume_);
+      }
+      if (higher_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, higher_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.StockProto.StockData)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.StockProto.StockData other = (com.tickers.io.protobuf.StockProto.StockData) obj;
+
+      if (!getDate()
+          .equals(other.getDate())) return false;
+      if (!getOpen()
+          .equals(other.getOpen())) return false;
+      if (!getClose()
+          .equals(other.getClose())) return false;
+      if (!getHigh()
+          .equals(other.getHigh())) return false;
+      if (!getLow()
+          .equals(other.getLow())) return false;
+      if (!getVolume()
+          .equals(other.getVolume())) return false;
+      if (getHigher()
+          != other.getHigher()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DATE_FIELD_NUMBER;
+      hash = (53 * hash) + getDate().hashCode();
+      hash = (37 * hash) + OPEN_FIELD_NUMBER;
+      hash = (53 * hash) + getOpen().hashCode();
+      hash = (37 * hash) + CLOSE_FIELD_NUMBER;
+      hash = (53 * hash) + getClose().hashCode();
+      hash = (37 * hash) + HIGH_FIELD_NUMBER;
+      hash = (53 * hash) + getHigh().hashCode();
+      hash = (37 * hash) + LOW_FIELD_NUMBER;
+      hash = (53 * hash) + getLow().hashCode();
+      hash = (37 * hash) + VOLUME_FIELD_NUMBER;
+      hash = (53 * hash) + getVolume().hashCode();
+      hash = (37 * hash) + HIGHER_FIELD_NUMBER;
+      hash = (53 * hash) + getHigher();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockData parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.StockProto.StockData prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.StockData}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.StockData)
+        com.tickers.io.protobuf.StockProto.StockDataOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockData_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockData_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.StockProto.StockData.class, com.tickers.io.protobuf.StockProto.StockData.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.StockProto.StockData.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        date_ = "";
+
+        open_ = "";
+
+        close_ = "";
+
+        high_ = "";
+
+        low_ = "";
+
+        volume_ = "";
+
+        higher_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockData_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockData getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.StockProto.StockData.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockData build() {
+        com.tickers.io.protobuf.StockProto.StockData result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockData buildPartial() {
+        com.tickers.io.protobuf.StockProto.StockData result = new com.tickers.io.protobuf.StockProto.StockData(this);
+        result.date_ = date_;
+        result.open_ = open_;
+        result.close_ = close_;
+        result.high_ = high_;
+        result.low_ = low_;
+        result.volume_ = volume_;
+        result.higher_ = higher_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.StockProto.StockData) {
+          return mergeFrom((com.tickers.io.protobuf.StockProto.StockData)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.StockProto.StockData other) {
+        if (other == com.tickers.io.protobuf.StockProto.StockData.getDefaultInstance()) return this;
+        if (!other.getDate().isEmpty()) {
+          date_ = other.date_;
+          onChanged();
+        }
+        if (!other.getOpen().isEmpty()) {
+          open_ = other.open_;
+          onChanged();
+        }
+        if (!other.getClose().isEmpty()) {
+          close_ = other.close_;
+          onChanged();
+        }
+        if (!other.getHigh().isEmpty()) {
+          high_ = other.high_;
+          onChanged();
+        }
+        if (!other.getLow().isEmpty()) {
+          low_ = other.low_;
+          onChanged();
+        }
+        if (!other.getVolume().isEmpty()) {
+          volume_ = other.volume_;
+          onChanged();
+        }
+        if (other.getHigher() != 0) {
+          setHigher(other.getHigher());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.StockProto.StockData parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.StockProto.StockData) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object date_ = "";
+      /**
+       * <code>string date = 1;</code>
+       * @return The date.
+       */
+      public java.lang.String getDate() {
+        java.lang.Object ref = date_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          date_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string date = 1;</code>
+       * @return The bytes for date.
+       */
+      public com.google.protobuf.ByteString
+          getDateBytes() {
+        java.lang.Object ref = date_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          date_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string date = 1;</code>
+       * @param value The date to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDate(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        date_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string date = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDate() {
+        
+        date_ = getDefaultInstance().getDate();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string date = 1;</code>
+       * @param value The bytes for date to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        date_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object open_ = "";
+      /**
+       * <code>string open = 2;</code>
+       * @return The open.
+       */
+      public java.lang.String getOpen() {
+        java.lang.Object ref = open_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          open_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string open = 2;</code>
+       * @return The bytes for open.
+       */
+      public com.google.protobuf.ByteString
+          getOpenBytes() {
+        java.lang.Object ref = open_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          open_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string open = 2;</code>
+       * @param value The open to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOpen(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        open_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string open = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOpen() {
+        
+        open_ = getDefaultInstance().getOpen();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string open = 2;</code>
+       * @param value The bytes for open to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOpenBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        open_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object close_ = "";
+      /**
+       * <code>string close = 3;</code>
+       * @return The close.
+       */
+      public java.lang.String getClose() {
+        java.lang.Object ref = close_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          close_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string close = 3;</code>
+       * @return The bytes for close.
+       */
+      public com.google.protobuf.ByteString
+          getCloseBytes() {
+        java.lang.Object ref = close_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          close_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string close = 3;</code>
+       * @param value The close to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClose(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        close_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string close = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClose() {
+        
+        close_ = getDefaultInstance().getClose();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string close = 3;</code>
+       * @param value The bytes for close to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCloseBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        close_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object high_ = "";
+      /**
+       * <code>string high = 4;</code>
+       * @return The high.
+       */
+      public java.lang.String getHigh() {
+        java.lang.Object ref = high_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          high_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string high = 4;</code>
+       * @return The bytes for high.
+       */
+      public com.google.protobuf.ByteString
+          getHighBytes() {
+        java.lang.Object ref = high_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          high_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string high = 4;</code>
+       * @param value The high to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHigh(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        high_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string high = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHigh() {
+        
+        high_ = getDefaultInstance().getHigh();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string high = 4;</code>
+       * @param value The bytes for high to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHighBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        high_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object low_ = "";
+      /**
+       * <code>string low = 5;</code>
+       * @return The low.
+       */
+      public java.lang.String getLow() {
+        java.lang.Object ref = low_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          low_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string low = 5;</code>
+       * @return The bytes for low.
+       */
+      public com.google.protobuf.ByteString
+          getLowBytes() {
+        java.lang.Object ref = low_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          low_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string low = 5;</code>
+       * @param value The low to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLow(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        low_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string low = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLow() {
+        
+        low_ = getDefaultInstance().getLow();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string low = 5;</code>
+       * @param value The bytes for low to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLowBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        low_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object volume_ = "";
+      /**
+       * <code>string volume = 6;</code>
+       * @return The volume.
+       */
+      public java.lang.String getVolume() {
+        java.lang.Object ref = volume_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          volume_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string volume = 6;</code>
+       * @return The bytes for volume.
+       */
+      public com.google.protobuf.ByteString
+          getVolumeBytes() {
+        java.lang.Object ref = volume_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          volume_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string volume = 6;</code>
+       * @param value The volume to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVolume(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        volume_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string volume = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVolume() {
+        
+        volume_ = getDefaultInstance().getVolume();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string volume = 6;</code>
+       * @param value The bytes for volume to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVolumeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        volume_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int higher_ ;
+      /**
+       * <code>int32 higher = 7;</code>
+       * @return The higher.
+       */
+      public int getHigher() {
+        return higher_;
+      }
+      /**
+       * <code>int32 higher = 7;</code>
+       * @param value The higher to set.
+       * @return This builder for chaining.
+       */
+      public Builder setHigher(int value) {
+        
+        higher_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 higher = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearHigher() {
+        
+        higher_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.StockData)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.StockData)
+    private static final com.tickers.io.protobuf.StockProto.StockData DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.StockProto.StockData();
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StockData getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<StockData>
+        PARSER = new com.google.protobuf.AbstractParser<StockData>() {
+      @java.lang.Override
+      public StockData parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new StockData(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<StockData> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<StockData> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.StockProto.StockData getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface StockDataResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.StockDataResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    java.util.List<com.tickers.io.protobuf.StockProto.StockData> 
+        getContentList();
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    com.tickers.io.protobuf.StockProto.StockData getContent(int index);
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    int getContentCount();
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    java.util.List<? extends com.tickers.io.protobuf.StockProto.StockDataOrBuilder> 
+        getContentOrBuilderList();
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    com.tickers.io.protobuf.StockProto.StockDataOrBuilder getContentOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code model.StockDataResponse}
+   */
+  public  static final class StockDataResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.StockDataResponse)
+      StockDataResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use StockDataResponse.newBuilder() to construct.
+    private StockDataResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private StockDataResponse() {
+      content_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new StockDataResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private StockDataResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                content_ = new java.util.ArrayList<com.tickers.io.protobuf.StockProto.StockData>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              content_.add(
+                  input.readMessage(com.tickers.io.protobuf.StockProto.StockData.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          content_ = java.util.Collections.unmodifiableList(content_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StockDataResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StockDataResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.StockProto.StockDataResponse.class, com.tickers.io.protobuf.StockProto.StockDataResponse.Builder.class);
+    }
+
+    public static final int CONTENT_FIELD_NUMBER = 1;
+    private java.util.List<com.tickers.io.protobuf.StockProto.StockData> content_;
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    public java.util.List<com.tickers.io.protobuf.StockProto.StockData> getContentList() {
+      return content_;
+    }
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    public java.util.List<? extends com.tickers.io.protobuf.StockProto.StockDataOrBuilder> 
+        getContentOrBuilderList() {
+      return content_;
+    }
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    public int getContentCount() {
+      return content_.size();
+    }
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    public com.tickers.io.protobuf.StockProto.StockData getContent(int index) {
+      return content_.get(index);
+    }
+    /**
+     * <code>repeated .model.StockData content = 1;</code>
+     */
+    public com.tickers.io.protobuf.StockProto.StockDataOrBuilder getContentOrBuilder(
+        int index) {
+      return content_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < content_.size(); i++) {
+        output.writeMessage(1, content_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < content_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, content_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.StockProto.StockDataResponse)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.StockProto.StockDataResponse other = (com.tickers.io.protobuf.StockProto.StockDataResponse) obj;
+
+      if (!getContentList()
+          .equals(other.getContentList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getContentCount() > 0) {
+        hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+        hash = (53 * hash) + getContentList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.StockProto.StockDataResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.StockDataResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.StockDataResponse)
+        com.tickers.io.protobuf.StockProto.StockDataResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockDataResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockDataResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.StockProto.StockDataResponse.class, com.tickers.io.protobuf.StockProto.StockDataResponse.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.StockProto.StockDataResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getContentFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (contentBuilder_ == null) {
+          content_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          contentBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockDataResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockDataResponse getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.StockProto.StockDataResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockDataResponse build() {
+        com.tickers.io.protobuf.StockProto.StockDataResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockDataResponse buildPartial() {
+        com.tickers.io.protobuf.StockProto.StockDataResponse result = new com.tickers.io.protobuf.StockProto.StockDataResponse(this);
+        int from_bitField0_ = bitField0_;
+        if (contentBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            content_ = java.util.Collections.unmodifiableList(content_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.content_ = content_;
+        } else {
+          result.content_ = contentBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.StockProto.StockDataResponse) {
+          return mergeFrom((com.tickers.io.protobuf.StockProto.StockDataResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.StockProto.StockDataResponse other) {
+        if (other == com.tickers.io.protobuf.StockProto.StockDataResponse.getDefaultInstance()) return this;
+        if (contentBuilder_ == null) {
+          if (!other.content_.isEmpty()) {
+            if (content_.isEmpty()) {
+              content_ = other.content_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureContentIsMutable();
+              content_.addAll(other.content_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.content_.isEmpty()) {
+            if (contentBuilder_.isEmpty()) {
+              contentBuilder_.dispose();
+              contentBuilder_ = null;
+              content_ = other.content_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              contentBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getContentFieldBuilder() : null;
+            } else {
+              contentBuilder_.addAllMessages(other.content_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.StockProto.StockDataResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.StockProto.StockDataResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.tickers.io.protobuf.StockProto.StockData> content_ =
+        java.util.Collections.emptyList();
+      private void ensureContentIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          content_ = new java.util.ArrayList<com.tickers.io.protobuf.StockProto.StockData>(content_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.tickers.io.protobuf.StockProto.StockData, com.tickers.io.protobuf.StockProto.StockData.Builder, com.tickers.io.protobuf.StockProto.StockDataOrBuilder> contentBuilder_;
+
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public java.util.List<com.tickers.io.protobuf.StockProto.StockData> getContentList() {
+        if (contentBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(content_);
+        } else {
+          return contentBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public int getContentCount() {
+        if (contentBuilder_ == null) {
+          return content_.size();
+        } else {
+          return contentBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockData getContent(int index) {
+        if (contentBuilder_ == null) {
+          return content_.get(index);
+        } else {
+          return contentBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder setContent(
+          int index, com.tickers.io.protobuf.StockProto.StockData value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.set(index, value);
+          onChanged();
+        } else {
+          contentBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder setContent(
+          int index, com.tickers.io.protobuf.StockProto.StockData.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder addContent(com.tickers.io.protobuf.StockProto.StockData value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.add(value);
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder addContent(
+          int index, com.tickers.io.protobuf.StockProto.StockData value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.add(index, value);
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder addContent(
+          com.tickers.io.protobuf.StockProto.StockData.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.add(builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder addContent(
+          int index, com.tickers.io.protobuf.StockProto.StockData.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder addAllContent(
+          java.lang.Iterable<? extends com.tickers.io.protobuf.StockProto.StockData> values) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, content_);
+          onChanged();
+        } else {
+          contentBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder clearContent() {
+        if (contentBuilder_ == null) {
+          content_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          contentBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public Builder removeContent(int index) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.remove(index);
+          onChanged();
+        } else {
+          contentBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockData.Builder getContentBuilder(
+          int index) {
+        return getContentFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockDataOrBuilder getContentOrBuilder(
+          int index) {
+        if (contentBuilder_ == null) {
+          return content_.get(index);  } else {
+          return contentBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public java.util.List<? extends com.tickers.io.protobuf.StockProto.StockDataOrBuilder> 
+           getContentOrBuilderList() {
+        if (contentBuilder_ != null) {
+          return contentBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(content_);
+        }
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockData.Builder addContentBuilder() {
+        return getContentFieldBuilder().addBuilder(
+            com.tickers.io.protobuf.StockProto.StockData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockData.Builder addContentBuilder(
+          int index) {
+        return getContentFieldBuilder().addBuilder(
+            index, com.tickers.io.protobuf.StockProto.StockData.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .model.StockData content = 1;</code>
+       */
+      public java.util.List<com.tickers.io.protobuf.StockProto.StockData.Builder> 
+           getContentBuilderList() {
+        return getContentFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.tickers.io.protobuf.StockProto.StockData, com.tickers.io.protobuf.StockProto.StockData.Builder, com.tickers.io.protobuf.StockProto.StockDataOrBuilder> 
+          getContentFieldBuilder() {
+        if (contentBuilder_ == null) {
+          contentBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.tickers.io.protobuf.StockProto.StockData, com.tickers.io.protobuf.StockProto.StockData.Builder, com.tickers.io.protobuf.StockProto.StockDataOrBuilder>(
+                  content_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          content_ = null;
+        }
+        return contentBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.StockDataResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.StockDataResponse)
+    private static final com.tickers.io.protobuf.StockProto.StockDataResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.StockProto.StockDataResponse();
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StockDataResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<StockDataResponse>
+        PARSER = new com.google.protobuf.AbstractParser<StockDataResponse>() {
+      @java.lang.Override
+      public StockDataResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new StockDataResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<StockDataResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<StockDataResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.StockProto.StockDataResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_model_StockResponse_descriptor;
   private static final 
@@ -1526,6 +3688,16 @@ public final class StockProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_model_StocksResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_StockData_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_StockData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_StockDataResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_StockDataResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1538,8 +3710,12 @@ public final class StockProto {
       "\n\013Stock.proto\022\005model\"+\n\rStockResponse\022\n\n" +
       "\002id\030\001 \001(\t\022\016\n\006ticker\030\002 \001(\t\"7\n\016StocksRespo" +
       "nse\022%\n\007tickers\030\001 \003(\0132\024.model.StockRespon" +
-      "seB%\n\027com.tickers.io.protobufB\nStockProt" +
-      "ob\006proto3"
+      "se\"q\n\tStockData\022\014\n\004date\030\001 \001(\t\022\014\n\004open\030\002 " +
+      "\001(\t\022\r\n\005close\030\003 \001(\t\022\014\n\004high\030\004 \001(\t\022\013\n\003low\030" +
+      "\005 \001(\t\022\016\n\006volume\030\006 \001(\t\022\016\n\006higher\030\007 \001(\005\"6\n" +
+      "\021StockDataResponse\022!\n\007content\030\001 \003(\0132\020.mo" +
+      "del.StockDataB%\n\027com.tickers.io.protobuf" +
+      "B\nStockProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1557,6 +3733,18 @@ public final class StockProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_model_StocksResponse_descriptor,
         new java.lang.String[] { "Tickers", });
+    internal_static_model_StockData_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_model_StockData_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_StockData_descriptor,
+        new java.lang.String[] { "Date", "Open", "Close", "High", "Low", "Volume", "Higher", });
+    internal_static_model_StockDataResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_model_StockDataResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_StockDataResponse_descriptor,
+        new java.lang.String[] { "Content", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
