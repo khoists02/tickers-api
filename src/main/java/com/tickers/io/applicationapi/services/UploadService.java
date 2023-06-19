@@ -14,7 +14,7 @@ public class UploadService {
     private TickersStockRepository tickersStockRepository;
 
     @Transactional
-    public void storeTickerData(String json, String ticker, TypeEnum type) {
+    public void storeTickerData(String json, String ticker, TypeEnum type, String fileName) {
         boolean exits = tickersStockRepository.checkExitsTicker(ticker, type);
         if (exits) {
             throw new BadRequestException("ticker_exits");
@@ -23,24 +23,10 @@ public class UploadService {
                 TickerStock tickerStock = new TickerStock();
                 tickerStock.setTickerName(ticker);
                 tickerStock.setType(type);
+                tickerStock.setFileName(fileName);
                 tickerStock.setTickerAttributesJson(json);
                 tickersStockRepository.save(tickerStock);
             }
         }
-    }
-
-    public void storeTickerData(String json, String ticker, TypeEnum type, String fileName) {
-        boolean exits = tickersStockRepository.checkExitsTicker(ticker, type);
-        if (exits)
-            throw new BadRequestException("ticker_exits");
-        if (!json.isEmpty()) {
-            TickerStock tickerStock = new TickerStock();
-            tickerStock.setTickerName(ticker);
-            tickerStock.setType(type);
-            tickerStock.setFileName(fileName);
-            tickerStock.setTickerAttributesJson(json);
-            tickersStockRepository.save(tickerStock);
-        }
-
     }
 }
