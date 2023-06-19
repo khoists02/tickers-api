@@ -71,7 +71,7 @@ public class UploadController {
 
                     for(int i = 0; i < columns.length; i++){
                         json.append("\t\t\"")
-                                .append(columns[i])
+                                .append(columns[i].toLowerCase(Locale.ROOT))
                                 .append("\" : \"")
                                 .append(row[i].replace("\"", ""))
                                 .append("\",\n"); //comma-1
