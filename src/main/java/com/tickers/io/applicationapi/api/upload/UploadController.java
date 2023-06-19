@@ -34,7 +34,7 @@ public class UploadController {
                 String completeData = new String(bytes);
                 String[] rows = completeData.split("\n");
                 String json = csvToJson(List.of(rows));
-                uploadService.storeTickerData(json, ticker, TypeEnum.valueOf(type));
+                uploadService.storeTickerData(json, ticker, TypeEnum.valueOf(type), file.getOriginalFilename());
                 return "Upload completed";
             }
             throw new BadRequestException("file_empty");

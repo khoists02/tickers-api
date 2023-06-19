@@ -34,6 +34,10 @@ public class TickerStock extends BaseEntity {
         return super.equals(o);
     }
 
+    @Getter
+    @Setter
+    private String fileName;
+
     @Override
     public int hashCode() {
         return super.hashCode();
