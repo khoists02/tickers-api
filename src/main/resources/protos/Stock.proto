@@ -18,7 +18,7 @@ message StockData {
   string close = 3;
   string high = 4;
   string low = 5;
-  string volume = 6;
+  int64 volume = 6;
   int32 higher = 7;
 }
 

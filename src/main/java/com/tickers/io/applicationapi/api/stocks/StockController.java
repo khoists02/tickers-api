@@ -64,22 +64,30 @@ public class StockController {
             if (stocksList.size() == 0)
                 throw new NotFoundException();
             return StockProto.StockDataResponse.newBuilder().addAllContent(stocksList.stream().map((x) -> {
-                StockProto.StockData.Builder builder = mapper.map(x, StockProto.StockData.Builder.class);
+                Integer higher = 0;
                 Integer indexed = stocksList.stream().toList().indexOf(x);
                 if (indexed == 0) {
-                    builder.setHigher(Float.parseFloat(stocksList.get(0).getClose()) < Float
-                            .parseFloat(stocksList.get(1).getClose()) ? 0 : 1);
+                    higher = Float.parseFloat(stocksList.get(0).getClose()) < Float
+                            .parseFloat(stocksList.get(1).getClose()) ? 0 : 1;
                 } else if (indexed == stocksList.size()) {
-                    builder.setHigher(0);
+                    higher = 0;
                 } else if (indexed < stocksList.size() - 1) {
                     if (Float.parseFloat(stocksList.get(indexed).getClose()) < Float
                             .parseFloat(stocksList.get(indexed + 1).getClose())) {
-                        builder.setHigher(0);
+                        higher = 0;
                     } else {
-                        builder.setHigher(1);
+                        higher = 1;
                     }
                 }
-                return builder.build();
+                return StockProto.StockData.newBuilder()
+                        .setVolume(Integer.parseInt(x.getVolume().replace(",", "")))
+                        .setHigher(higher)
+                        .setClose(x.getClose())
+                        .setDate(x.getDate())
+                        .setHigh(x.getHigh())
+                        .setLow(x.getLow())
+                        .setOpen(x.getOpen())
+                        .build();
             }).toList()).build();
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
