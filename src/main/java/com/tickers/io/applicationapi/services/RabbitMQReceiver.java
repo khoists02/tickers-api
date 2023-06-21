@@ -1,4 +1,4 @@
-package com.tickers.io.applicationapi.config;
+package com.tickers.io.applicationapi.services;
 
 import com.tickers.io.applicationapi.dto.StockDto;
 import org.apache.logging.log4j.LogManager;
