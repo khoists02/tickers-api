@@ -40,6 +40,10 @@ public class RabbitmqConfig {
     @Value("${rabbitmq.host}")
     private String host;
 
+    @Value("${rabbitmq.port}")
+    private Integer port;
+
+
     @Value("${rabbitmq.virtualhost}")
     private String virtualHost;
 
@@ -79,7 +83,7 @@ public class RabbitmqConfig {
         return connectionFactory;
     }
     @Bean
-    public AmqpTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+    public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setDefaultReceiveQueue(queueName);
         rabbitTemplate.setMessageConverter(jsonMessageConverter());

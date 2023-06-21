@@ -11,6 +11,7 @@ import com.tickers.io.applicationapi.model.TickerStock;
 import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.repositories.TickersRepository;
 import com.tickers.io.applicationapi.repositories.TickersStockRepository;
+import com.tickers.io.applicationapi.services.RabbitMQSender;
 import com.tickers.io.protobuf.StockProto;
 import lombok.Getter;
 import org.modelmapper.ModelMapper;
@@ -39,7 +40,7 @@ public class StockController {
     private ModelMapper mapper;
 
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private RabbitMQSender rabbitMQSender;
 
     @GetMapping()
     public StockProto.StocksResponse getStocksByType(@RequestParam(name = "type") String type) {
@@ -72,8 +73,8 @@ public class StockController {
             if (stocksList.size() == 0)
                 throw new NotFoundException();
             StockDto test = new StockDto();
-            test.setOpen("1");
-            rabbitTemplate.convertAndSend("stock", "rabbitmq.*", "get-prediction");
+            test.setClose("1");
+            rabbitMQSender.send(test);
             return StockProto.StockDataResponse.newBuilder().addAllContent(stocksList.stream().map((x) -> {
                 Integer higher = 0;
                 Integer indexed = stocksList.stream().toList().indexOf(x);
