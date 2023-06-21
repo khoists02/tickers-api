@@ -16,6 +16,7 @@ import lombok.Getter;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,9 @@ public class StockController {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @GetMapping()
     public StockProto.StocksResponse getStocksByType(@RequestParam(name = "type") String type) {
         List<Tickers> tickersList = tickersRepository.getTickersByTypeAndNotMigrated(type);
@@ -55,14 +59,21 @@ public class StockController {
             @PathVariable("ticker") String ticker,
             @RequestParam("type") TypeEnum type) {
         try {
+
             TickerStock tickerStock = tickersStockRepository.findFirstByTickerNameAndType(ticker, type)
                     .orElseThrow(NotFoundException::new);
             if (tickerStock == null)
                 throw new NotFoundException();
             StockDto[] response = new JsonHelper().convertStockJsonToObj(tickerStock.getTickerAttributesJson());
+            // test rabbitmq template
+
             List<StockDto> stocksList = List.of(response);
+
             if (stocksList.size() == 0)
                 throw new NotFoundException();
+            StockDto test = new StockDto();
+            test.setOpen("1");
+            rabbitTemplate.convertAndSend("stock", "rabbitmq.*", "get-prediction");
             return StockProto.StockDataResponse.newBuilder().addAllContent(stocksList.stream().map((x) -> {
                 Integer higher = 0;
                 Integer indexed = stocksList.stream().toList().indexOf(x);
@@ -89,6 +100,7 @@ public class StockController {
                         .setOpen(x.getOpen())
                         .build();
             }).toList()).build();
+
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
             throw new ApplicationException();
