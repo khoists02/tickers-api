@@ -8,9 +8,10 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
-@RabbitListener(queues = "rabbitmq.queue", id = "listener")
+@RabbitListener(queues = "report-stock", id = "listener")
 public class RabbitMQReceiver {
     private static Logger logger = LogManager.getLogger(RabbitMQReceiver.class.toString());
+
     @RabbitHandler
     public void receiver(StockDto stockDto) {
         logger.info("MenuOrder listener invoked - Consuming Message with MenuOrder Identifier : " + stockDto.getClose());

@@ -40,7 +40,7 @@ public class StockController {
     private ModelMapper mapper;
 
     @Autowired
-    private RabbitMQSender rabbitMQSender;
+    private RabbitMQSender sender;
 
     @GetMapping()
     public StockProto.StocksResponse getStocksByType(@RequestParam(name = "type") String type) {
@@ -74,7 +74,7 @@ public class StockController {
                 throw new NotFoundException();
             StockDto test = new StockDto();
             test.setClose("1");
-            rabbitMQSender.send(test);
+            sender.send(test);
             return StockProto.StockDataResponse.newBuilder().addAllContent(stocksList.stream().map((x) -> {
                 Integer higher = 0;
                 Integer indexed = stocksList.stream().toList().indexOf(x);
