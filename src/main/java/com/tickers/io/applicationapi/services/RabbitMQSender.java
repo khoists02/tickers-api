@@ -22,8 +22,8 @@ public class RabbitMQSender {
 
 
     private static Logger logger = LogManager.getLogger(RabbitMQSender.class.toString());
-    public void send(StockDto stockDto) {
-        rabbitTemplate.convertAndSend(exchange, routingkey , stockDto);
-        logger.info("Sending Message to the Queue : " + stockDto.toString());
+    public void send(String message) {
+        rabbitTemplate.convertAndSend(exchange, routingkey , message);
+        logger.info("Sending Message to the Queue : " + message);
     }
 }

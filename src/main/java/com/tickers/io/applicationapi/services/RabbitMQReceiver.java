@@ -13,7 +13,7 @@ public class RabbitMQReceiver {
     private static Logger logger = LogManager.getLogger(RabbitMQReceiver.class.toString());
 
     @RabbitHandler
-    public void receiver(StockDto stockDto) {
-        logger.info("MenuOrder listener invoked - Consuming Message with MenuOrder Identifier : " + stockDto.getClose());
+    public void receiver(String json) {
+        logger.info("MenuOrder listener invoked - Consuming Message with MenuOrder Identifier : " + json);
     }
 }
