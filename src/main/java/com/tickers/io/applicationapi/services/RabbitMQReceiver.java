@@ -14,6 +14,6 @@ public class RabbitMQReceiver {
 
     @RabbitHandler
     public void receiver(String json) {
-        logger.info("MenuOrder listener invoked - Consuming Message with MenuOrder Identifier : " + json);
+        logger.info("Receiver listener invoked: " + json);
     }
 }
