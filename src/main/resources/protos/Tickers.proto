@@ -2,6 +2,7 @@ syntax = "proto3";
 package model;
 option java_package = "com.tickers.io.protobuf";
 option java_outer_classname = "TickersProto";
+import "Generic.proto";
 
 message TypeResponse {
   string label = 1;
@@ -10,4 +11,24 @@ message TypeResponse {
 
 message TypesResponse {
   repeated TypeResponse content = 1;
+}
+
+message TickerDetail {
+  string id = 1;
+  string ticker = 2;
+  string name = 3;
+  string type = 4;
+  string currency = 5;
+  string lastUpdated = 6;
+}
+
+message TickerResponse {
+  string id = 1;
+    TickerDetail tickerDetails = 2;
+}
+
+message TickersResponse {
+  repeated TickerResponse content = 1;
+  PageableResponse pageable = 2;
+
 }

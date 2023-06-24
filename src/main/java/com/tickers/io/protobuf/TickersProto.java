@@ -1516,6 +1516,3066 @@ public final class TickersProto {
 
   }
 
+  public interface TickerDetailOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.TickerDetail)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    java.lang.String getId();
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>string ticker = 2;</code>
+     * @return The ticker.
+     */
+    java.lang.String getTicker();
+    /**
+     * <code>string ticker = 2;</code>
+     * @return The bytes for ticker.
+     */
+    com.google.protobuf.ByteString
+        getTickerBytes();
+
+    /**
+     * <code>string name = 3;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 3;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>string type = 4;</code>
+     * @return The type.
+     */
+    java.lang.String getType();
+    /**
+     * <code>string type = 4;</code>
+     * @return The bytes for type.
+     */
+    com.google.protobuf.ByteString
+        getTypeBytes();
+
+    /**
+     * <code>string currency = 5;</code>
+     * @return The currency.
+     */
+    java.lang.String getCurrency();
+    /**
+     * <code>string currency = 5;</code>
+     * @return The bytes for currency.
+     */
+    com.google.protobuf.ByteString
+        getCurrencyBytes();
+
+    /**
+     * <code>string lastUpdated = 6;</code>
+     * @return The lastUpdated.
+     */
+    java.lang.String getLastUpdated();
+    /**
+     * <code>string lastUpdated = 6;</code>
+     * @return The bytes for lastUpdated.
+     */
+    com.google.protobuf.ByteString
+        getLastUpdatedBytes();
+  }
+  /**
+   * Protobuf type {@code model.TickerDetail}
+   */
+  public  static final class TickerDetail extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.TickerDetail)
+      TickerDetailOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TickerDetail.newBuilder() to construct.
+    private TickerDetail(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TickerDetail() {
+      id_ = "";
+      ticker_ = "";
+      name_ = "";
+      type_ = "";
+      currency_ = "";
+      lastUpdated_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TickerDetail();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TickerDetail(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              ticker_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              type_ = s;
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              currency_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              lastUpdated_ = s;
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerDetail_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerDetail_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.TickersProto.TickerDetail.class, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TICKER_FIELD_NUMBER = 2;
+    private volatile java.lang.Object ticker_;
+    /**
+     * <code>string ticker = 2;</code>
+     * @return The ticker.
+     */
+    public java.lang.String getTicker() {
+      java.lang.Object ref = ticker_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ticker_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string ticker = 2;</code>
+     * @return The bytes for ticker.
+     */
+    public com.google.protobuf.ByteString
+        getTickerBytes() {
+      java.lang.Object ref = ticker_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ticker_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAME_FIELD_NUMBER = 3;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 3;</code>
+     * @return The name.
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 3;</code>
+     * @return The bytes for name.
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object type_;
+    /**
+     * <code>string type = 4;</code>
+     * @return The type.
+     */
+    public java.lang.String getType() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        type_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string type = 4;</code>
+     * @return The bytes for type.
+     */
+    public com.google.protobuf.ByteString
+        getTypeBytes() {
+      java.lang.Object ref = type_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        type_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CURRENCY_FIELD_NUMBER = 5;
+    private volatile java.lang.Object currency_;
+    /**
+     * <code>string currency = 5;</code>
+     * @return The currency.
+     */
+    public java.lang.String getCurrency() {
+      java.lang.Object ref = currency_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        currency_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string currency = 5;</code>
+     * @return The bytes for currency.
+     */
+    public com.google.protobuf.ByteString
+        getCurrencyBytes() {
+      java.lang.Object ref = currency_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        currency_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LASTUPDATED_FIELD_NUMBER = 6;
+    private volatile java.lang.Object lastUpdated_;
+    /**
+     * <code>string lastUpdated = 6;</code>
+     * @return The lastUpdated.
+     */
+    public java.lang.String getLastUpdated() {
+      java.lang.Object ref = lastUpdated_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        lastUpdated_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string lastUpdated = 6;</code>
+     * @return The bytes for lastUpdated.
+     */
+    public com.google.protobuf.ByteString
+        getLastUpdatedBytes() {
+      java.lang.Object ref = lastUpdated_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        lastUpdated_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      }
+      if (!getTickerBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, ticker_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, type_);
+      }
+      if (!getCurrencyBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, currency_);
+      }
+      if (!getLastUpdatedBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, lastUpdated_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
+      if (!getTickerBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, ticker_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
+      }
+      if (!getTypeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, type_);
+      }
+      if (!getCurrencyBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, currency_);
+      }
+      if (!getLastUpdatedBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, lastUpdated_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.TickersProto.TickerDetail)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.TickersProto.TickerDetail other = (com.tickers.io.protobuf.TickersProto.TickerDetail) obj;
+
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getTicker()
+          .equals(other.getTicker())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getType()
+          .equals(other.getType())) return false;
+      if (!getCurrency()
+          .equals(other.getCurrency())) return false;
+      if (!getLastUpdated()
+          .equals(other.getLastUpdated())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + TICKER_FIELD_NUMBER;
+      hash = (53 * hash) + getTicker().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType().hashCode();
+      hash = (37 * hash) + CURRENCY_FIELD_NUMBER;
+      hash = (53 * hash) + getCurrency().hashCode();
+      hash = (37 * hash) + LASTUPDATED_FIELD_NUMBER;
+      hash = (53 * hash) + getLastUpdated().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.TickersProto.TickerDetail prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.TickerDetail}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.TickerDetail)
+        com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerDetail_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerDetail_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.TickersProto.TickerDetail.class, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.TickersProto.TickerDetail.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = "";
+
+        ticker_ = "";
+
+        name_ = "";
+
+        type_ = "";
+
+        currency_ = "";
+
+        lastUpdated_ = "";
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerDetail_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickerDetail getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickerDetail build() {
+        com.tickers.io.protobuf.TickersProto.TickerDetail result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickerDetail buildPartial() {
+        com.tickers.io.protobuf.TickersProto.TickerDetail result = new com.tickers.io.protobuf.TickersProto.TickerDetail(this);
+        result.id_ = id_;
+        result.ticker_ = ticker_;
+        result.name_ = name_;
+        result.type_ = type_;
+        result.currency_ = currency_;
+        result.lastUpdated_ = lastUpdated_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.TickersProto.TickerDetail) {
+          return mergeFrom((com.tickers.io.protobuf.TickersProto.TickerDetail)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.TickersProto.TickerDetail other) {
+        if (other == com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance()) return this;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (!other.getTicker().isEmpty()) {
+          ticker_ = other.ticker_;
+          onChanged();
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (!other.getType().isEmpty()) {
+          type_ = other.type_;
+          onChanged();
+        }
+        if (!other.getCurrency().isEmpty()) {
+          currency_ = other.currency_;
+          onChanged();
+        }
+        if (!other.getLastUpdated().isEmpty()) {
+          lastUpdated_ = other.lastUpdated_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.TickersProto.TickerDetail parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.TickersProto.TickerDetail) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <code>string id = 1;</code>
+       * @return The id.
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return The bytes for id.
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object ticker_ = "";
+      /**
+       * <code>string ticker = 2;</code>
+       * @return The ticker.
+       */
+      public java.lang.String getTicker() {
+        java.lang.Object ref = ticker_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ticker_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string ticker = 2;</code>
+       * @return The bytes for ticker.
+       */
+      public com.google.protobuf.ByteString
+          getTickerBytes() {
+        java.lang.Object ref = ticker_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ticker_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string ticker = 2;</code>
+       * @param value The ticker to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTicker(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        ticker_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ticker = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTicker() {
+        
+        ticker_ = getDefaultInstance().getTicker();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ticker = 2;</code>
+       * @param value The bytes for ticker to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTickerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        ticker_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 3;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 3;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 3;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 3;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object type_ = "";
+      /**
+       * <code>string type = 4;</code>
+       * @return The type.
+       */
+      public java.lang.String getType() {
+        java.lang.Object ref = type_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          type_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string type = 4;</code>
+       * @return The bytes for type.
+       */
+      public com.google.protobuf.ByteString
+          getTypeBytes() {
+        java.lang.Object ref = type_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          type_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string type = 4;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        
+        type_ = getDefaultInstance().getType();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string type = 4;</code>
+       * @param value The bytes for type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object currency_ = "";
+      /**
+       * <code>string currency = 5;</code>
+       * @return The currency.
+       */
+      public java.lang.String getCurrency() {
+        java.lang.Object ref = currency_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          currency_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string currency = 5;</code>
+       * @return The bytes for currency.
+       */
+      public com.google.protobuf.ByteString
+          getCurrencyBytes() {
+        java.lang.Object ref = currency_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          currency_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string currency = 5;</code>
+       * @param value The currency to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCurrency(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        currency_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string currency = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCurrency() {
+        
+        currency_ = getDefaultInstance().getCurrency();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string currency = 5;</code>
+       * @param value The bytes for currency to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCurrencyBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        currency_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object lastUpdated_ = "";
+      /**
+       * <code>string lastUpdated = 6;</code>
+       * @return The lastUpdated.
+       */
+      public java.lang.String getLastUpdated() {
+        java.lang.Object ref = lastUpdated_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          lastUpdated_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string lastUpdated = 6;</code>
+       * @return The bytes for lastUpdated.
+       */
+      public com.google.protobuf.ByteString
+          getLastUpdatedBytes() {
+        java.lang.Object ref = lastUpdated_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          lastUpdated_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string lastUpdated = 6;</code>
+       * @param value The lastUpdated to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastUpdated(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        lastUpdated_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string lastUpdated = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLastUpdated() {
+        
+        lastUpdated_ = getDefaultInstance().getLastUpdated();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string lastUpdated = 6;</code>
+       * @param value The bytes for lastUpdated to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLastUpdatedBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        lastUpdated_ = value;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.TickerDetail)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.TickerDetail)
+    private static final com.tickers.io.protobuf.TickersProto.TickerDetail DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.TickersProto.TickerDetail();
+    }
+
+    public static com.tickers.io.protobuf.TickersProto.TickerDetail getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TickerDetail>
+        PARSER = new com.google.protobuf.AbstractParser<TickerDetail>() {
+      @java.lang.Override
+      public TickerDetail parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TickerDetail(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TickerDetail> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TickerDetail> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.TickersProto.TickerDetail getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TickerResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.TickerResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    java.lang.String getId();
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>.model.TickerDetail tickerDetails = 2;</code>
+     * @return Whether the tickerDetails field is set.
+     */
+    boolean hasTickerDetails();
+    /**
+     * <code>.model.TickerDetail tickerDetails = 2;</code>
+     * @return The tickerDetails.
+     */
+    com.tickers.io.protobuf.TickersProto.TickerDetail getTickerDetails();
+    /**
+     * <code>.model.TickerDetail tickerDetails = 2;</code>
+     */
+    com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder getTickerDetailsOrBuilder();
+  }
+  /**
+   * Protobuf type {@code model.TickerResponse}
+   */
+  public  static final class TickerResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.TickerResponse)
+      TickerResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TickerResponse.newBuilder() to construct.
+    private TickerResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TickerResponse() {
+      id_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TickerResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TickerResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 18: {
+              com.tickers.io.protobuf.TickersProto.TickerDetail.Builder subBuilder = null;
+              if (tickerDetails_ != null) {
+                subBuilder = tickerDetails_.toBuilder();
+              }
+              tickerDetails_ = input.readMessage(com.tickers.io.protobuf.TickersProto.TickerDetail.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(tickerDetails_);
+                tickerDetails_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.TickersProto.TickerResponse.class, com.tickers.io.protobuf.TickersProto.TickerResponse.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TICKERDETAILS_FIELD_NUMBER = 2;
+    private com.tickers.io.protobuf.TickersProto.TickerDetail tickerDetails_;
+    /**
+     * <code>.model.TickerDetail tickerDetails = 2;</code>
+     * @return Whether the tickerDetails field is set.
+     */
+    public boolean hasTickerDetails() {
+      return tickerDetails_ != null;
+    }
+    /**
+     * <code>.model.TickerDetail tickerDetails = 2;</code>
+     * @return The tickerDetails.
+     */
+    public com.tickers.io.protobuf.TickersProto.TickerDetail getTickerDetails() {
+      return tickerDetails_ == null ? com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance() : tickerDetails_;
+    }
+    /**
+     * <code>.model.TickerDetail tickerDetails = 2;</code>
+     */
+    public com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder getTickerDetailsOrBuilder() {
+      return getTickerDetails();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      }
+      if (tickerDetails_ != null) {
+        output.writeMessage(2, getTickerDetails());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
+      if (tickerDetails_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getTickerDetails());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.TickersProto.TickerResponse)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.TickersProto.TickerResponse other = (com.tickers.io.protobuf.TickersProto.TickerResponse) obj;
+
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (hasTickerDetails() != other.hasTickerDetails()) return false;
+      if (hasTickerDetails()) {
+        if (!getTickerDetails()
+            .equals(other.getTickerDetails())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      if (hasTickerDetails()) {
+        hash = (37 * hash) + TICKERDETAILS_FIELD_NUMBER;
+        hash = (53 * hash) + getTickerDetails().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.TickersProto.TickerResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.TickerResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.TickerResponse)
+        com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.TickersProto.TickerResponse.class, com.tickers.io.protobuf.TickersProto.TickerResponse.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.TickersProto.TickerResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = "";
+
+        if (tickerDetailsBuilder_ == null) {
+          tickerDetails_ = null;
+        } else {
+          tickerDetails_ = null;
+          tickerDetailsBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickerResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickerResponse getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.TickersProto.TickerResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickerResponse build() {
+        com.tickers.io.protobuf.TickersProto.TickerResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickerResponse buildPartial() {
+        com.tickers.io.protobuf.TickersProto.TickerResponse result = new com.tickers.io.protobuf.TickersProto.TickerResponse(this);
+        result.id_ = id_;
+        if (tickerDetailsBuilder_ == null) {
+          result.tickerDetails_ = tickerDetails_;
+        } else {
+          result.tickerDetails_ = tickerDetailsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.TickersProto.TickerResponse) {
+          return mergeFrom((com.tickers.io.protobuf.TickersProto.TickerResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.TickersProto.TickerResponse other) {
+        if (other == com.tickers.io.protobuf.TickersProto.TickerResponse.getDefaultInstance()) return this;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (other.hasTickerDetails()) {
+          mergeTickerDetails(other.getTickerDetails());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.TickersProto.TickerResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.TickersProto.TickerResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <code>string id = 1;</code>
+       * @return The id.
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return The bytes for id.
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      private com.tickers.io.protobuf.TickersProto.TickerDetail tickerDetails_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.tickers.io.protobuf.TickersProto.TickerDetail, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder, com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder> tickerDetailsBuilder_;
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       * @return Whether the tickerDetails field is set.
+       */
+      public boolean hasTickerDetails() {
+        return tickerDetailsBuilder_ != null || tickerDetails_ != null;
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       * @return The tickerDetails.
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerDetail getTickerDetails() {
+        if (tickerDetailsBuilder_ == null) {
+          return tickerDetails_ == null ? com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance() : tickerDetails_;
+        } else {
+          return tickerDetailsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       */
+      public Builder setTickerDetails(com.tickers.io.protobuf.TickersProto.TickerDetail value) {
+        if (tickerDetailsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          tickerDetails_ = value;
+          onChanged();
+        } else {
+          tickerDetailsBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       */
+      public Builder setTickerDetails(
+          com.tickers.io.protobuf.TickersProto.TickerDetail.Builder builderForValue) {
+        if (tickerDetailsBuilder_ == null) {
+          tickerDetails_ = builderForValue.build();
+          onChanged();
+        } else {
+          tickerDetailsBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       */
+      public Builder mergeTickerDetails(com.tickers.io.protobuf.TickersProto.TickerDetail value) {
+        if (tickerDetailsBuilder_ == null) {
+          if (tickerDetails_ != null) {
+            tickerDetails_ =
+              com.tickers.io.protobuf.TickersProto.TickerDetail.newBuilder(tickerDetails_).mergeFrom(value).buildPartial();
+          } else {
+            tickerDetails_ = value;
+          }
+          onChanged();
+        } else {
+          tickerDetailsBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       */
+      public Builder clearTickerDetails() {
+        if (tickerDetailsBuilder_ == null) {
+          tickerDetails_ = null;
+          onChanged();
+        } else {
+          tickerDetails_ = null;
+          tickerDetailsBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerDetail.Builder getTickerDetailsBuilder() {
+        
+        onChanged();
+        return getTickerDetailsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder getTickerDetailsOrBuilder() {
+        if (tickerDetailsBuilder_ != null) {
+          return tickerDetailsBuilder_.getMessageOrBuilder();
+        } else {
+          return tickerDetails_ == null ?
+              com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance() : tickerDetails_;
+        }
+      }
+      /**
+       * <code>.model.TickerDetail tickerDetails = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.tickers.io.protobuf.TickersProto.TickerDetail, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder, com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder> 
+          getTickerDetailsFieldBuilder() {
+        if (tickerDetailsBuilder_ == null) {
+          tickerDetailsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.tickers.io.protobuf.TickersProto.TickerDetail, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder, com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder>(
+                  getTickerDetails(),
+                  getParentForChildren(),
+                  isClean());
+          tickerDetails_ = null;
+        }
+        return tickerDetailsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.TickerResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.TickerResponse)
+    private static final com.tickers.io.protobuf.TickersProto.TickerResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.TickersProto.TickerResponse();
+    }
+
+    public static com.tickers.io.protobuf.TickersProto.TickerResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TickerResponse>
+        PARSER = new com.google.protobuf.AbstractParser<TickerResponse>() {
+      @java.lang.Override
+      public TickerResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TickerResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TickerResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TickerResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.TickersProto.TickerResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface TickersResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.TickersResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    java.util.List<com.tickers.io.protobuf.TickersProto.TickerResponse> 
+        getContentList();
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    com.tickers.io.protobuf.TickersProto.TickerResponse getContent(int index);
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    int getContentCount();
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    java.util.List<? extends com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder> 
+        getContentOrBuilderList();
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder getContentOrBuilder(
+        int index);
+
+    /**
+     * <code>.model.PageableResponse pageable = 2;</code>
+     * @return Whether the pageable field is set.
+     */
+    boolean hasPageable();
+    /**
+     * <code>.model.PageableResponse pageable = 2;</code>
+     * @return The pageable.
+     */
+    com.tickers.io.protobuf.GenericProtos.PageableResponse getPageable();
+    /**
+     * <code>.model.PageableResponse pageable = 2;</code>
+     */
+    com.tickers.io.protobuf.GenericProtos.PageableResponseOrBuilder getPageableOrBuilder();
+  }
+  /**
+   * Protobuf type {@code model.TickersResponse}
+   */
+  public  static final class TickersResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.TickersResponse)
+      TickersResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use TickersResponse.newBuilder() to construct.
+    private TickersResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private TickersResponse() {
+      content_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new TickersResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TickersResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                content_ = new java.util.ArrayList<com.tickers.io.protobuf.TickersProto.TickerResponse>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              content_.add(
+                  input.readMessage(com.tickers.io.protobuf.TickersProto.TickerResponse.parser(), extensionRegistry));
+              break;
+            }
+            case 18: {
+              com.tickers.io.protobuf.GenericProtos.PageableResponse.Builder subBuilder = null;
+              if (pageable_ != null) {
+                subBuilder = pageable_.toBuilder();
+              }
+              pageable_ = input.readMessage(com.tickers.io.protobuf.GenericProtos.PageableResponse.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(pageable_);
+                pageable_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          content_ = java.util.Collections.unmodifiableList(content_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.TickersProto.internal_static_model_TickersResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.TickersProto.internal_static_model_TickersResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.TickersProto.TickersResponse.class, com.tickers.io.protobuf.TickersProto.TickersResponse.Builder.class);
+    }
+
+    public static final int CONTENT_FIELD_NUMBER = 1;
+    private java.util.List<com.tickers.io.protobuf.TickersProto.TickerResponse> content_;
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    public java.util.List<com.tickers.io.protobuf.TickersProto.TickerResponse> getContentList() {
+      return content_;
+    }
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    public java.util.List<? extends com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder> 
+        getContentOrBuilderList() {
+      return content_;
+    }
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    public int getContentCount() {
+      return content_.size();
+    }
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    public com.tickers.io.protobuf.TickersProto.TickerResponse getContent(int index) {
+      return content_.get(index);
+    }
+    /**
+     * <code>repeated .model.TickerResponse content = 1;</code>
+     */
+    public com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder getContentOrBuilder(
+        int index) {
+      return content_.get(index);
+    }
+
+    public static final int PAGEABLE_FIELD_NUMBER = 2;
+    private com.tickers.io.protobuf.GenericProtos.PageableResponse pageable_;
+    /**
+     * <code>.model.PageableResponse pageable = 2;</code>
+     * @return Whether the pageable field is set.
+     */
+    public boolean hasPageable() {
+      return pageable_ != null;
+    }
+    /**
+     * <code>.model.PageableResponse pageable = 2;</code>
+     * @return The pageable.
+     */
+    public com.tickers.io.protobuf.GenericProtos.PageableResponse getPageable() {
+      return pageable_ == null ? com.tickers.io.protobuf.GenericProtos.PageableResponse.getDefaultInstance() : pageable_;
+    }
+    /**
+     * <code>.model.PageableResponse pageable = 2;</code>
+     */
+    public com.tickers.io.protobuf.GenericProtos.PageableResponseOrBuilder getPageableOrBuilder() {
+      return getPageable();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < content_.size(); i++) {
+        output.writeMessage(1, content_.get(i));
+      }
+      if (pageable_ != null) {
+        output.writeMessage(2, getPageable());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < content_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, content_.get(i));
+      }
+      if (pageable_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getPageable());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.TickersProto.TickersResponse)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.TickersProto.TickersResponse other = (com.tickers.io.protobuf.TickersProto.TickersResponse) obj;
+
+      if (!getContentList()
+          .equals(other.getContentList())) return false;
+      if (hasPageable() != other.hasPageable()) return false;
+      if (hasPageable()) {
+        if (!getPageable()
+            .equals(other.getPageable())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getContentCount() > 0) {
+        hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+        hash = (53 * hash) + getContentList().hashCode();
+      }
+      if (hasPageable()) {
+        hash = (37 * hash) + PAGEABLE_FIELD_NUMBER;
+        hash = (53 * hash) + getPageable().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.TickersProto.TickersResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.TickersResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.TickersResponse)
+        com.tickers.io.protobuf.TickersProto.TickersResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickersResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickersResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.TickersProto.TickersResponse.class, com.tickers.io.protobuf.TickersProto.TickersResponse.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.TickersProto.TickersResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getContentFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (contentBuilder_ == null) {
+          content_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          contentBuilder_.clear();
+        }
+        if (pageableBuilder_ == null) {
+          pageable_ = null;
+        } else {
+          pageable_ = null;
+          pageableBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.TickersProto.internal_static_model_TickersResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickersResponse getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.TickersProto.TickersResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickersResponse build() {
+        com.tickers.io.protobuf.TickersProto.TickersResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.TickersProto.TickersResponse buildPartial() {
+        com.tickers.io.protobuf.TickersProto.TickersResponse result = new com.tickers.io.protobuf.TickersProto.TickersResponse(this);
+        int from_bitField0_ = bitField0_;
+        if (contentBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            content_ = java.util.Collections.unmodifiableList(content_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.content_ = content_;
+        } else {
+          result.content_ = contentBuilder_.build();
+        }
+        if (pageableBuilder_ == null) {
+          result.pageable_ = pageable_;
+        } else {
+          result.pageable_ = pageableBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.TickersProto.TickersResponse) {
+          return mergeFrom((com.tickers.io.protobuf.TickersProto.TickersResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.TickersProto.TickersResponse other) {
+        if (other == com.tickers.io.protobuf.TickersProto.TickersResponse.getDefaultInstance()) return this;
+        if (contentBuilder_ == null) {
+          if (!other.content_.isEmpty()) {
+            if (content_.isEmpty()) {
+              content_ = other.content_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureContentIsMutable();
+              content_.addAll(other.content_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.content_.isEmpty()) {
+            if (contentBuilder_.isEmpty()) {
+              contentBuilder_.dispose();
+              contentBuilder_ = null;
+              content_ = other.content_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              contentBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getContentFieldBuilder() : null;
+            } else {
+              contentBuilder_.addAllMessages(other.content_);
+            }
+          }
+        }
+        if (other.hasPageable()) {
+          mergePageable(other.getPageable());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.TickersProto.TickersResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.TickersProto.TickersResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.tickers.io.protobuf.TickersProto.TickerResponse> content_ =
+        java.util.Collections.emptyList();
+      private void ensureContentIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          content_ = new java.util.ArrayList<com.tickers.io.protobuf.TickersProto.TickerResponse>(content_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.tickers.io.protobuf.TickersProto.TickerResponse, com.tickers.io.protobuf.TickersProto.TickerResponse.Builder, com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder> contentBuilder_;
+
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public java.util.List<com.tickers.io.protobuf.TickersProto.TickerResponse> getContentList() {
+        if (contentBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(content_);
+        } else {
+          return contentBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public int getContentCount() {
+        if (contentBuilder_ == null) {
+          return content_.size();
+        } else {
+          return contentBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerResponse getContent(int index) {
+        if (contentBuilder_ == null) {
+          return content_.get(index);
+        } else {
+          return contentBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder setContent(
+          int index, com.tickers.io.protobuf.TickersProto.TickerResponse value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.set(index, value);
+          onChanged();
+        } else {
+          contentBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder setContent(
+          int index, com.tickers.io.protobuf.TickersProto.TickerResponse.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder addContent(com.tickers.io.protobuf.TickersProto.TickerResponse value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.add(value);
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder addContent(
+          int index, com.tickers.io.protobuf.TickersProto.TickerResponse value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.add(index, value);
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder addContent(
+          com.tickers.io.protobuf.TickersProto.TickerResponse.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.add(builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder addContent(
+          int index, com.tickers.io.protobuf.TickersProto.TickerResponse.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder addAllContent(
+          java.lang.Iterable<? extends com.tickers.io.protobuf.TickersProto.TickerResponse> values) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, content_);
+          onChanged();
+        } else {
+          contentBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder clearContent() {
+        if (contentBuilder_ == null) {
+          content_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          contentBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public Builder removeContent(int index) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.remove(index);
+          onChanged();
+        } else {
+          contentBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerResponse.Builder getContentBuilder(
+          int index) {
+        return getContentFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder getContentOrBuilder(
+          int index) {
+        if (contentBuilder_ == null) {
+          return content_.get(index);  } else {
+          return contentBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public java.util.List<? extends com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder> 
+           getContentOrBuilderList() {
+        if (contentBuilder_ != null) {
+          return contentBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(content_);
+        }
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerResponse.Builder addContentBuilder() {
+        return getContentFieldBuilder().addBuilder(
+            com.tickers.io.protobuf.TickersProto.TickerResponse.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerResponse.Builder addContentBuilder(
+          int index) {
+        return getContentFieldBuilder().addBuilder(
+            index, com.tickers.io.protobuf.TickersProto.TickerResponse.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .model.TickerResponse content = 1;</code>
+       */
+      public java.util.List<com.tickers.io.protobuf.TickersProto.TickerResponse.Builder> 
+           getContentBuilderList() {
+        return getContentFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.tickers.io.protobuf.TickersProto.TickerResponse, com.tickers.io.protobuf.TickersProto.TickerResponse.Builder, com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder> 
+          getContentFieldBuilder() {
+        if (contentBuilder_ == null) {
+          contentBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.tickers.io.protobuf.TickersProto.TickerResponse, com.tickers.io.protobuf.TickersProto.TickerResponse.Builder, com.tickers.io.protobuf.TickersProto.TickerResponseOrBuilder>(
+                  content_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          content_ = null;
+        }
+        return contentBuilder_;
+      }
+
+      private com.tickers.io.protobuf.GenericProtos.PageableResponse pageable_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.tickers.io.protobuf.GenericProtos.PageableResponse, com.tickers.io.protobuf.GenericProtos.PageableResponse.Builder, com.tickers.io.protobuf.GenericProtos.PageableResponseOrBuilder> pageableBuilder_;
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       * @return Whether the pageable field is set.
+       */
+      public boolean hasPageable() {
+        return pageableBuilder_ != null || pageable_ != null;
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       * @return The pageable.
+       */
+      public com.tickers.io.protobuf.GenericProtos.PageableResponse getPageable() {
+        if (pageableBuilder_ == null) {
+          return pageable_ == null ? com.tickers.io.protobuf.GenericProtos.PageableResponse.getDefaultInstance() : pageable_;
+        } else {
+          return pageableBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       */
+      public Builder setPageable(com.tickers.io.protobuf.GenericProtos.PageableResponse value) {
+        if (pageableBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          pageable_ = value;
+          onChanged();
+        } else {
+          pageableBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       */
+      public Builder setPageable(
+          com.tickers.io.protobuf.GenericProtos.PageableResponse.Builder builderForValue) {
+        if (pageableBuilder_ == null) {
+          pageable_ = builderForValue.build();
+          onChanged();
+        } else {
+          pageableBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       */
+      public Builder mergePageable(com.tickers.io.protobuf.GenericProtos.PageableResponse value) {
+        if (pageableBuilder_ == null) {
+          if (pageable_ != null) {
+            pageable_ =
+              com.tickers.io.protobuf.GenericProtos.PageableResponse.newBuilder(pageable_).mergeFrom(value).buildPartial();
+          } else {
+            pageable_ = value;
+          }
+          onChanged();
+        } else {
+          pageableBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       */
+      public Builder clearPageable() {
+        if (pageableBuilder_ == null) {
+          pageable_ = null;
+          onChanged();
+        } else {
+          pageable_ = null;
+          pageableBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       */
+      public com.tickers.io.protobuf.GenericProtos.PageableResponse.Builder getPageableBuilder() {
+        
+        onChanged();
+        return getPageableFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       */
+      public com.tickers.io.protobuf.GenericProtos.PageableResponseOrBuilder getPageableOrBuilder() {
+        if (pageableBuilder_ != null) {
+          return pageableBuilder_.getMessageOrBuilder();
+        } else {
+          return pageable_ == null ?
+              com.tickers.io.protobuf.GenericProtos.PageableResponse.getDefaultInstance() : pageable_;
+        }
+      }
+      /**
+       * <code>.model.PageableResponse pageable = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.tickers.io.protobuf.GenericProtos.PageableResponse, com.tickers.io.protobuf.GenericProtos.PageableResponse.Builder, com.tickers.io.protobuf.GenericProtos.PageableResponseOrBuilder> 
+          getPageableFieldBuilder() {
+        if (pageableBuilder_ == null) {
+          pageableBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.tickers.io.protobuf.GenericProtos.PageableResponse, com.tickers.io.protobuf.GenericProtos.PageableResponse.Builder, com.tickers.io.protobuf.GenericProtos.PageableResponseOrBuilder>(
+                  getPageable(),
+                  getParentForChildren(),
+                  isClean());
+          pageable_ = null;
+        }
+        return pageableBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.TickersResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.TickersResponse)
+    private static final com.tickers.io.protobuf.TickersProto.TickersResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.TickersProto.TickersResponse();
+    }
+
+    public static com.tickers.io.protobuf.TickersProto.TickersResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<TickersResponse>
+        PARSER = new com.google.protobuf.AbstractParser<TickersResponse>() {
+      @java.lang.Override
+      public TickersResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TickersResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<TickersResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TickersResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.TickersProto.TickersResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_model_TypeResponse_descriptor;
   private static final 
@@ -1526,6 +4586,21 @@ public final class TickersProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_model_TypesResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_TickerDetail_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_TickerDetail_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_TickerResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_TickerResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_TickersResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_TickersResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1535,15 +4610,23 @@ public final class TickersProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rTickers.proto\022\005model\",\n\014TypeResponse\022\r" +
-      "\n\005label\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"5\n\rTypesRes" +
-      "ponse\022$\n\007content\030\001 \003(\0132\023.model.TypeRespo" +
-      "nseB\'\n\027com.tickers.io.protobufB\014TickersP" +
-      "rotob\006proto3"
+      "\n\rTickers.proto\022\005model\032\rGeneric.proto\",\n" +
+      "\014TypeResponse\022\r\n\005label\030\001 \001(\t\022\r\n\005value\030\002 " +
+      "\001(\t\"5\n\rTypesResponse\022$\n\007content\030\001 \003(\0132\023." +
+      "model.TypeResponse\"m\n\014TickerDetail\022\n\n\002id" +
+      "\030\001 \001(\t\022\016\n\006ticker\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\014\n\004" +
+      "type\030\004 \001(\t\022\020\n\010currency\030\005 \001(\t\022\023\n\013lastUpda" +
+      "ted\030\006 \001(\t\"H\n\016TickerResponse\022\n\n\002id\030\001 \001(\t\022" +
+      "*\n\rtickerDetails\030\002 \001(\0132\023.model.TickerDet" +
+      "ail\"d\n\017TickersResponse\022&\n\007content\030\001 \003(\0132" +
+      "\025.model.TickerResponse\022)\n\010pageable\030\002 \001(\013" +
+      "2\027.model.PageableResponseB\'\n\027com.tickers" +
+      ".io.protobufB\014TickersProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.tickers.io.protobuf.GenericProtos.getDescriptor(),
         });
     internal_static_model_TypeResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -1557,6 +4640,25 @@ public final class TickersProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_model_TypesResponse_descriptor,
         new java.lang.String[] { "Content", });
+    internal_static_model_TickerDetail_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_model_TickerDetail_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_TickerDetail_descriptor,
+        new java.lang.String[] { "Id", "Ticker", "Name", "Type", "Currency", "LastUpdated", });
+    internal_static_model_TickerResponse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_model_TickerResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_TickerResponse_descriptor,
+        new java.lang.String[] { "Id", "TickerDetails", });
+    internal_static_model_TickersResponse_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_model_TickersResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_TickersResponse_descriptor,
+        new java.lang.String[] { "Content", "Pageable", });
+    com.tickers.io.protobuf.GenericProtos.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)
