@@ -23,7 +23,7 @@ public class TickerDetailsSpecification {
                     predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("sicDescription")), searchLikeExpression));
                 }
             }
-            return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
         };
     }
 }

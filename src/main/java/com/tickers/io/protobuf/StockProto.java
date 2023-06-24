@@ -3599,6 +3599,1430 @@ public final class StockProto {
 
   }
 
+  public interface StockAppendResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.StockAppendResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string ticker = 1;</code>
+     * @return The ticker.
+     */
+    java.lang.String getTicker();
+    /**
+     * <code>string ticker = 1;</code>
+     * @return The bytes for ticker.
+     */
+    com.google.protobuf.ByteString
+        getTickerBytes();
+
+    /**
+     * <code>float close = 2;</code>
+     * @return The close.
+     */
+    float getClose();
+  }
+  /**
+   * Protobuf type {@code model.StockAppendResponse}
+   */
+  public  static final class StockAppendResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.StockAppendResponse)
+      StockAppendResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use StockAppendResponse.newBuilder() to construct.
+    private StockAppendResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private StockAppendResponse() {
+      ticker_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new StockAppendResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private StockAppendResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              ticker_ = s;
+              break;
+            }
+            case 21: {
+
+              close_ = input.readFloat();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StockAppendResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StockAppendResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.StockProto.StockAppendResponse.class, com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder.class);
+    }
+
+    public static final int TICKER_FIELD_NUMBER = 1;
+    private volatile java.lang.Object ticker_;
+    /**
+     * <code>string ticker = 1;</code>
+     * @return The ticker.
+     */
+    public java.lang.String getTicker() {
+      java.lang.Object ref = ticker_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        ticker_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string ticker = 1;</code>
+     * @return The bytes for ticker.
+     */
+    public com.google.protobuf.ByteString
+        getTickerBytes() {
+      java.lang.Object ref = ticker_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        ticker_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CLOSE_FIELD_NUMBER = 2;
+    private float close_;
+    /**
+     * <code>float close = 2;</code>
+     * @return The close.
+     */
+    public float getClose() {
+      return close_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getTickerBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, ticker_);
+      }
+      if (close_ != 0F) {
+        output.writeFloat(2, close_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getTickerBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, ticker_);
+      }
+      if (close_ != 0F) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(2, close_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.StockProto.StockAppendResponse)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.StockProto.StockAppendResponse other = (com.tickers.io.protobuf.StockProto.StockAppendResponse) obj;
+
+      if (!getTicker()
+          .equals(other.getTicker())) return false;
+      if (java.lang.Float.floatToIntBits(getClose())
+          != java.lang.Float.floatToIntBits(
+              other.getClose())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TICKER_FIELD_NUMBER;
+      hash = (53 * hash) + getTicker().hashCode();
+      hash = (37 * hash) + CLOSE_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getClose());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.StockProto.StockAppendResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.StockAppendResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.StockAppendResponse)
+        com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockAppendResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockAppendResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.StockProto.StockAppendResponse.class, com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.StockProto.StockAppendResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        ticker_ = "";
+
+        close_ = 0F;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StockAppendResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockAppendResponse getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.StockProto.StockAppendResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockAppendResponse build() {
+        com.tickers.io.protobuf.StockProto.StockAppendResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StockAppendResponse buildPartial() {
+        com.tickers.io.protobuf.StockProto.StockAppendResponse result = new com.tickers.io.protobuf.StockProto.StockAppendResponse(this);
+        result.ticker_ = ticker_;
+        result.close_ = close_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.StockProto.StockAppendResponse) {
+          return mergeFrom((com.tickers.io.protobuf.StockProto.StockAppendResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.StockProto.StockAppendResponse other) {
+        if (other == com.tickers.io.protobuf.StockProto.StockAppendResponse.getDefaultInstance()) return this;
+        if (!other.getTicker().isEmpty()) {
+          ticker_ = other.ticker_;
+          onChanged();
+        }
+        if (other.getClose() != 0F) {
+          setClose(other.getClose());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.StockProto.StockAppendResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.StockProto.StockAppendResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object ticker_ = "";
+      /**
+       * <code>string ticker = 1;</code>
+       * @return The ticker.
+       */
+      public java.lang.String getTicker() {
+        java.lang.Object ref = ticker_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          ticker_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string ticker = 1;</code>
+       * @return The bytes for ticker.
+       */
+      public com.google.protobuf.ByteString
+          getTickerBytes() {
+        java.lang.Object ref = ticker_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          ticker_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string ticker = 1;</code>
+       * @param value The ticker to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTicker(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        ticker_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ticker = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTicker() {
+        
+        ticker_ = getDefaultInstance().getTicker();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string ticker = 1;</code>
+       * @param value The bytes for ticker to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTickerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        ticker_ = value;
+        onChanged();
+        return this;
+      }
+
+      private float close_ ;
+      /**
+       * <code>float close = 2;</code>
+       * @return The close.
+       */
+      public float getClose() {
+        return close_;
+      }
+      /**
+       * <code>float close = 2;</code>
+       * @param value The close to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClose(float value) {
+        
+        close_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float close = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClose() {
+        
+        close_ = 0F;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.StockAppendResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.StockAppendResponse)
+    private static final com.tickers.io.protobuf.StockProto.StockAppendResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.StockProto.StockAppendResponse();
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StockAppendResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<StockAppendResponse>
+        PARSER = new com.google.protobuf.AbstractParser<StockAppendResponse>() {
+      @java.lang.Override
+      public StockAppendResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new StockAppendResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<StockAppendResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<StockAppendResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.StockProto.StockAppendResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface StocksAppendResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.StocksAppendResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    java.util.List<com.tickers.io.protobuf.StockProto.StockAppendResponse> 
+        getContentList();
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    com.tickers.io.protobuf.StockProto.StockAppendResponse getContent(int index);
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    int getContentCount();
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    java.util.List<? extends com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder> 
+        getContentOrBuilderList();
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder getContentOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code model.StocksAppendResponse}
+   */
+  public  static final class StocksAppendResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.StocksAppendResponse)
+      StocksAppendResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use StocksAppendResponse.newBuilder() to construct.
+    private StocksAppendResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private StocksAppendResponse() {
+      content_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new StocksAppendResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private StocksAppendResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                content_ = new java.util.ArrayList<com.tickers.io.protobuf.StockProto.StockAppendResponse>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              content_.add(
+                  input.readMessage(com.tickers.io.protobuf.StockProto.StockAppendResponse.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          content_ = java.util.Collections.unmodifiableList(content_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StocksAppendResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.StockProto.internal_static_model_StocksAppendResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.StockProto.StocksAppendResponse.class, com.tickers.io.protobuf.StockProto.StocksAppendResponse.Builder.class);
+    }
+
+    public static final int CONTENT_FIELD_NUMBER = 1;
+    private java.util.List<com.tickers.io.protobuf.StockProto.StockAppendResponse> content_;
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    public java.util.List<com.tickers.io.protobuf.StockProto.StockAppendResponse> getContentList() {
+      return content_;
+    }
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    public java.util.List<? extends com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder> 
+        getContentOrBuilderList() {
+      return content_;
+    }
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    public int getContentCount() {
+      return content_.size();
+    }
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    public com.tickers.io.protobuf.StockProto.StockAppendResponse getContent(int index) {
+      return content_.get(index);
+    }
+    /**
+     * <code>repeated .model.StockAppendResponse content = 1;</code>
+     */
+    public com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder getContentOrBuilder(
+        int index) {
+      return content_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < content_.size(); i++) {
+        output.writeMessage(1, content_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < content_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, content_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.StockProto.StocksAppendResponse)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.StockProto.StocksAppendResponse other = (com.tickers.io.protobuf.StockProto.StocksAppendResponse) obj;
+
+      if (!getContentList()
+          .equals(other.getContentList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getContentCount() > 0) {
+        hash = (37 * hash) + CONTENT_FIELD_NUMBER;
+        hash = (53 * hash) + getContentList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.StockProto.StocksAppendResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.StocksAppendResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.StocksAppendResponse)
+        com.tickers.io.protobuf.StockProto.StocksAppendResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StocksAppendResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StocksAppendResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.StockProto.StocksAppendResponse.class, com.tickers.io.protobuf.StockProto.StocksAppendResponse.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.StockProto.StocksAppendResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getContentFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (contentBuilder_ == null) {
+          content_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          contentBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.StockProto.internal_static_model_StocksAppendResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StocksAppendResponse getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.StockProto.StocksAppendResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StocksAppendResponse build() {
+        com.tickers.io.protobuf.StockProto.StocksAppendResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.StockProto.StocksAppendResponse buildPartial() {
+        com.tickers.io.protobuf.StockProto.StocksAppendResponse result = new com.tickers.io.protobuf.StockProto.StocksAppendResponse(this);
+        int from_bitField0_ = bitField0_;
+        if (contentBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            content_ = java.util.Collections.unmodifiableList(content_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.content_ = content_;
+        } else {
+          result.content_ = contentBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.StockProto.StocksAppendResponse) {
+          return mergeFrom((com.tickers.io.protobuf.StockProto.StocksAppendResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.StockProto.StocksAppendResponse other) {
+        if (other == com.tickers.io.protobuf.StockProto.StocksAppendResponse.getDefaultInstance()) return this;
+        if (contentBuilder_ == null) {
+          if (!other.content_.isEmpty()) {
+            if (content_.isEmpty()) {
+              content_ = other.content_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureContentIsMutable();
+              content_.addAll(other.content_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.content_.isEmpty()) {
+            if (contentBuilder_.isEmpty()) {
+              contentBuilder_.dispose();
+              contentBuilder_ = null;
+              content_ = other.content_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              contentBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getContentFieldBuilder() : null;
+            } else {
+              contentBuilder_.addAllMessages(other.content_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.StockProto.StocksAppendResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.StockProto.StocksAppendResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.tickers.io.protobuf.StockProto.StockAppendResponse> content_ =
+        java.util.Collections.emptyList();
+      private void ensureContentIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          content_ = new java.util.ArrayList<com.tickers.io.protobuf.StockProto.StockAppendResponse>(content_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.tickers.io.protobuf.StockProto.StockAppendResponse, com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder, com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder> contentBuilder_;
+
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public java.util.List<com.tickers.io.protobuf.StockProto.StockAppendResponse> getContentList() {
+        if (contentBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(content_);
+        } else {
+          return contentBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public int getContentCount() {
+        if (contentBuilder_ == null) {
+          return content_.size();
+        } else {
+          return contentBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockAppendResponse getContent(int index) {
+        if (contentBuilder_ == null) {
+          return content_.get(index);
+        } else {
+          return contentBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder setContent(
+          int index, com.tickers.io.protobuf.StockProto.StockAppendResponse value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.set(index, value);
+          onChanged();
+        } else {
+          contentBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder setContent(
+          int index, com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder addContent(com.tickers.io.protobuf.StockProto.StockAppendResponse value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.add(value);
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder addContent(
+          int index, com.tickers.io.protobuf.StockProto.StockAppendResponse value) {
+        if (contentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureContentIsMutable();
+          content_.add(index, value);
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder addContent(
+          com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.add(builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder addContent(
+          int index, com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder builderForValue) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          contentBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder addAllContent(
+          java.lang.Iterable<? extends com.tickers.io.protobuf.StockProto.StockAppendResponse> values) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, content_);
+          onChanged();
+        } else {
+          contentBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder clearContent() {
+        if (contentBuilder_ == null) {
+          content_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          contentBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public Builder removeContent(int index) {
+        if (contentBuilder_ == null) {
+          ensureContentIsMutable();
+          content_.remove(index);
+          onChanged();
+        } else {
+          contentBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder getContentBuilder(
+          int index) {
+        return getContentFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder getContentOrBuilder(
+          int index) {
+        if (contentBuilder_ == null) {
+          return content_.get(index);  } else {
+          return contentBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public java.util.List<? extends com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder> 
+           getContentOrBuilderList() {
+        if (contentBuilder_ != null) {
+          return contentBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(content_);
+        }
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder addContentBuilder() {
+        return getContentFieldBuilder().addBuilder(
+            com.tickers.io.protobuf.StockProto.StockAppendResponse.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder addContentBuilder(
+          int index) {
+        return getContentFieldBuilder().addBuilder(
+            index, com.tickers.io.protobuf.StockProto.StockAppendResponse.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .model.StockAppendResponse content = 1;</code>
+       */
+      public java.util.List<com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder> 
+           getContentBuilderList() {
+        return getContentFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.tickers.io.protobuf.StockProto.StockAppendResponse, com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder, com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder> 
+          getContentFieldBuilder() {
+        if (contentBuilder_ == null) {
+          contentBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.tickers.io.protobuf.StockProto.StockAppendResponse, com.tickers.io.protobuf.StockProto.StockAppendResponse.Builder, com.tickers.io.protobuf.StockProto.StockAppendResponseOrBuilder>(
+                  content_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          content_ = null;
+        }
+        return contentBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.StocksAppendResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.StocksAppendResponse)
+    private static final com.tickers.io.protobuf.StockProto.StocksAppendResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.StockProto.StocksAppendResponse();
+    }
+
+    public static com.tickers.io.protobuf.StockProto.StocksAppendResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<StocksAppendResponse>
+        PARSER = new com.google.protobuf.AbstractParser<StocksAppendResponse>() {
+      @java.lang.Override
+      public StocksAppendResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new StocksAppendResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<StocksAppendResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<StocksAppendResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.StockProto.StocksAppendResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_model_StockResponse_descriptor;
   private static final 
@@ -3619,6 +5043,16 @@ public final class StockProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_model_StockDataResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_StockAppendResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_StockAppendResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_StocksAppendResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_StocksAppendResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3635,8 +5069,11 @@ public final class StockProto {
       "\001(\t\022\r\n\005close\030\003 \001(\t\022\014\n\004high\030\004 \001(\t\022\013\n\003low\030" +
       "\005 \001(\t\022\016\n\006volume\030\006 \001(\003\022\016\n\006higher\030\007 \001(\005\"6\n" +
       "\021StockDataResponse\022!\n\007content\030\001 \003(\0132\020.mo" +
-      "del.StockDataB%\n\027com.tickers.io.protobuf" +
-      "B\nStockProtob\006proto3"
+      "del.StockData\"4\n\023StockAppendResponse\022\016\n\006" +
+      "ticker\030\001 \001(\t\022\r\n\005close\030\002 \001(\002\"C\n\024StocksApp" +
+      "endResponse\022+\n\007content\030\001 \003(\0132\032.model.Sto" +
+      "ckAppendResponseB%\n\027com.tickers.io.proto" +
+      "bufB\nStockProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -3665,6 +5102,18 @@ public final class StockProto {
     internal_static_model_StockDataResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_model_StockDataResponse_descriptor,
+        new java.lang.String[] { "Content", });
+    internal_static_model_StockAppendResponse_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_model_StockAppendResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_StockAppendResponse_descriptor,
+        new java.lang.String[] { "Ticker", "Close", });
+    internal_static_model_StocksAppendResponse_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_model_StocksAppendResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_StocksAppendResponse_descriptor,
         new java.lang.String[] { "Content", });
   }
 

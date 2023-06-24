@@ -37,7 +37,6 @@ message TickersResponse {
 
 message SicResponse {
   string ticker = 1;
-  float close = 2;
 }
 
 message SicsResponse {

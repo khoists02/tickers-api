@@ -1,29 +1,27 @@
 package com.tickers.io.applicationapi.api.stocks;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.tickers.io.applicationapi.dto.OpenCloseDto;
 import com.tickers.io.applicationapi.dto.StockDto;
 import com.tickers.io.applicationapi.enums.TypeEnum;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
-import com.tickers.io.applicationapi.exceptions.BadRequestException;
 import com.tickers.io.applicationapi.exceptions.NotFoundException;
 import com.tickers.io.applicationapi.helpers.JsonHelper;
 import com.tickers.io.applicationapi.model.TickerStock;
 import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.repositories.TickersRepository;
 import com.tickers.io.applicationapi.repositories.TickersStockRepository;
+import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.applicationapi.services.RabbitMQSender;
 import com.tickers.io.protobuf.StockProto;
-import lombok.Getter;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/stocks")
@@ -41,6 +39,12 @@ public class StockController {
 
     @Autowired
     private RabbitMQSender sender;
+
+    @Autowired
+    private PolygonService polygonService;
+
+    @Autowired
+    private WebClient webClient;
 
     @GetMapping()
     public StockProto.StocksResponse getStocksByType(@RequestParam(name = "type") String type) {
@@ -107,5 +111,27 @@ public class StockController {
             logger.info("{}", e.getMessage());
             throw new ApplicationException();
         }
+    }
+
+    @GetMapping("/tickers")
+    public StockProto.StocksAppendResponse getStockDataByTickers(@RequestParam("tickers") String[] tickers) {
+        if (tickers.length == 0) throw new NotFoundException();
+
+        return StockProto.StocksAppendResponse.newBuilder().addAllContent(List.of(tickers).stream().map(t -> {
+            StockProto.StockAppendResponse.Builder builder = mapper.map(t, StockProto.StockAppendResponse.Builder.class);
+            builder.setTicker(t);
+            String urlPolygon = polygonService.polygonTickerOpenClose(t, "2023-06-08");
+            OpenCloseDto response = webClient
+                    .get()
+                    .uri(urlPolygon)
+                    .retrieve()
+                    .bodyToMono(OpenCloseDto.class)
+                    .block();
+            logger.info("{}", response);
+            if (response.getClose() != "" && response.getClose() != null) {
+                builder.setClose(Float.parseFloat(response.getClose()));
+            }
+            return  builder.build();
+        }).toList()).build();
     }
 }

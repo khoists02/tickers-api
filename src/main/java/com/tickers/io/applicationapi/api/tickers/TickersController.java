@@ -307,12 +307,10 @@ public class TickersController {
         tickerDetailsCriteria.setSics(sics);
 
         Page<TickerDetails> page = tickerDetailsRepository.findAll(TickerDetailsSpecification.tickerDetailsQuery(tickerDetailsCriteria), pageable);
-        return TickersProto.SicsResponse.newBuilder().addAllContent(page.stream().map(t -> {
-            TickersProto.SicResponse.Builder builder = mapper.map(t, TickersProto.SicResponse.Builder.class);
-            builder.setTicker(t.getTicker());
-            builder.setClose(1);
-            return builder.build();
-        }).toList()).build();
+        return TickersProto.SicsResponse.newBuilder().addAllContent(page.stream()
+                .map(t -> mapper.map(t, TickersProto.SicResponse.Builder.class).build())
+                .toList())
+                .build();
     }
 
     public static Map<String, String> splitQuery(URL url) throws UnsupportedEncodingException {

@@ -4808,12 +4808,6 @@ public final class TickersProto {
      */
     com.google.protobuf.ByteString
         getTickerBytes();
-
-    /**
-     * <code>float close = 2;</code>
-     * @return The close.
-     */
-    float getClose();
   }
   /**
    * Protobuf type {@code model.SicResponse}
@@ -4865,11 +4859,6 @@ public final class TickersProto {
               java.lang.String s = input.readStringRequireUtf8();
 
               ticker_ = s;
-              break;
-            }
-            case 21: {
-
-              close_ = input.readFloat();
               break;
             }
             default: {
@@ -4940,16 +4929,6 @@ public final class TickersProto {
       }
     }
 
-    public static final int CLOSE_FIELD_NUMBER = 2;
-    private float close_;
-    /**
-     * <code>float close = 2;</code>
-     * @return The close.
-     */
-    public float getClose() {
-      return close_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4967,9 +4946,6 @@ public final class TickersProto {
       if (!getTickerBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, ticker_);
       }
-      if (close_ != 0F) {
-        output.writeFloat(2, close_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -4981,10 +4957,6 @@ public final class TickersProto {
       size = 0;
       if (!getTickerBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, ticker_);
-      }
-      if (close_ != 0F) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, close_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5003,9 +4975,6 @@ public final class TickersProto {
 
       if (!getTicker()
           .equals(other.getTicker())) return false;
-      if (java.lang.Float.floatToIntBits(getClose())
-          != java.lang.Float.floatToIntBits(
-              other.getClose())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -5019,9 +4988,6 @@ public final class TickersProto {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TICKER_FIELD_NUMBER;
       hash = (53 * hash) + getTicker().hashCode();
-      hash = (37 * hash) + CLOSE_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getClose());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -5157,8 +5123,6 @@ public final class TickersProto {
         super.clear();
         ticker_ = "";
 
-        close_ = 0F;
-
         return this;
       }
 
@@ -5186,7 +5150,6 @@ public final class TickersProto {
       public com.tickers.io.protobuf.TickersProto.SicResponse buildPartial() {
         com.tickers.io.protobuf.TickersProto.SicResponse result = new com.tickers.io.protobuf.TickersProto.SicResponse(this);
         result.ticker_ = ticker_;
-        result.close_ = close_;
         onBuilt();
         return result;
       }
@@ -5238,9 +5201,6 @@ public final class TickersProto {
         if (!other.getTicker().isEmpty()) {
           ticker_ = other.ticker_;
           onChanged();
-        }
-        if (other.getClose() != 0F) {
-          setClose(other.getClose());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5343,36 +5303,6 @@ public final class TickersProto {
   checkByteStringIsUtf8(value);
         
         ticker_ = value;
-        onChanged();
-        return this;
-      }
-
-      private float close_ ;
-      /**
-       * <code>float close = 2;</code>
-       * @return The close.
-       */
-      public float getClose() {
-        return close_;
-      }
-      /**
-       * <code>float close = 2;</code>
-       * @param value The close to set.
-       * @return This builder for chaining.
-       */
-      public Builder setClose(float value) {
-        
-        close_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>float close = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearClose() {
-        
-        close_ = 0F;
         onChanged();
         return this;
       }
@@ -6272,11 +6202,11 @@ public final class TickersProto {
       " \001(\t\022*\n\rtickerDetails\030\002 \001(\0132\023.model.Tick" +
       "erDetail\"d\n\017TickersResponse\022&\n\007content\030\001" +
       " \003(\0132\025.model.TickerResponse\022)\n\010pageable\030" +
-      "\002 \001(\0132\027.model.PageableResponse\",\n\013SicRes" +
-      "ponse\022\016\n\006ticker\030\001 \001(\t\022\r\n\005close\030\002 \001(\002\"3\n\014" +
-      "SicsResponse\022#\n\007content\030\001 \003(\0132\022.model.Si" +
-      "cResponseB\'\n\027com.tickers.io.protobufB\014Ti" +
-      "ckersProtob\006proto3"
+      "\002 \001(\0132\027.model.PageableResponse\"\035\n\013SicRes" +
+      "ponse\022\016\n\006ticker\030\001 \001(\t\"3\n\014SicsResponse\022#\n" +
+      "\007content\030\001 \003(\0132\022.model.SicResponseB\'\n\027co" +
+      "m.tickers.io.protobufB\014TickersProtob\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6318,7 +6248,7 @@ public final class TickersProto {
     internal_static_model_SicResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_model_SicResponse_descriptor,
-        new java.lang.String[] { "Ticker", "Close", });
+        new java.lang.String[] { "Ticker", });
     internal_static_model_SicsResponse_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_model_SicsResponse_fieldAccessorTable = new

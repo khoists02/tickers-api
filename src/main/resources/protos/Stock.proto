@@ -25,3 +25,12 @@ message StockData {
 message StockDataResponse {
   repeated StockData content = 1;
 }
+
+message StockAppendResponse {
+  string ticker = 1;
+  float close = 2;
+}
+
+message StocksAppendResponse {
+  repeated StockAppendResponse content = 1;
+}
