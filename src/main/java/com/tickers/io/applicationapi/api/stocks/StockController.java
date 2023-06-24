@@ -72,10 +72,10 @@ public class StockController {
 
             if (stocksList.size() == 0)
                 throw new NotFoundException();
-            StockDto test = new StockDto();
-            test.setClose("1");
-            String jsonStockDto = new JsonHelper().convertObjectToJson(test);
-            sender.send(jsonStockDto);
+//            StockDto test = new StockDto();
+//            test.setClose("1");
+//            String jsonStockDto = new JsonHelper().convertObjectToJson(test);
+//            sender.send(jsonStockDto);
             return StockProto.StockDataResponse.newBuilder().addAllContent(stocksList.stream().map((x) -> {
                 Integer higher = 0;
                 Integer indexed = stocksList.stream().toList().indexOf(x);
