@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-public class UpdateStockTickerJson {
-    private String json;
-    private String type;
+@Getter
+@Setter
+public class StringJsonResponse {
+    private String response;
 }

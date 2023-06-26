@@ -27,6 +27,18 @@ public class TickerStock extends BaseEntity {
     @Column(name = "ticker_attributes_json")
     private String tickerAttributesJson;
 
+
+    @Getter
+    @Setter
+    @Column(name = "training_data")
+    private String trainingData;
+
+    @Getter
+    @Setter
+    @Column(name = "testing_data")
+    private String testingData;
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

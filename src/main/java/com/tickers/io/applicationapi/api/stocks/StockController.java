@@ -2,6 +2,7 @@ package com.tickers.io.applicationapi.api.stocks;
 
 import com.tickers.io.applicationapi.dto.OpenCloseDto;
 import com.tickers.io.applicationapi.dto.StockDto;
+import com.tickers.io.applicationapi.dto.StringJsonResponse;
 import com.tickers.io.applicationapi.dto.UpdateStockTickerJson;
 import com.tickers.io.applicationapi.enums.TypeEnum;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
@@ -19,9 +20,12 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -65,20 +69,33 @@ public class StockController {
     @GetMapping("/{ticker}")
     public StockProto.StockDataResponse getStockData(
             @PathVariable("ticker") String ticker,
-            @RequestParam("type") TypeEnum type) {
+            @RequestParam("type") TypeEnum type,
+            @RequestParam("start") Optional<LocalDateTime> start,
+            @RequestParam("end") Optional<LocalDateTime> end) {
         try {
 
-            TickerStock tickerStock = tickersStockRepository.findFirstByTickerNameAndType(ticker, type)
-                    .orElseThrow(NotFoundException::new);
-            if (tickerStock == null)
-                throw new NotFoundException();
+            if (type == TypeEnum.DATE_RANGE && start.isPresent() && end.isPresent()) {
+                return StockProto.StockDataResponse.newBuilder()
+                        .addAllContent(Arrays.asList())
+                        .setId(null)
+                        .build();
+            };
+
+            TickerStock tickerStock = tickersStockRepository.findFirstByTickerNameAndType(ticker, type);
+
+            if (tickerStock == null) {
+                return StockProto.StockDataResponse.newBuilder()
+                        .addAllContent(Arrays.asList())
+                        .setId(null)
+                        .build();
+            }
+
             StockDto[] response = new JsonHelper().convertStockJsonToObj(tickerStock.getTickerAttributesJson());
-            // test rabbitmq template
-
             List<StockDto> stocksList = List.of(response);
-
             if (stocksList.size() == 0)
                 throw new NotFoundException();
+
+            // Check Origin Value Value
             return StockProto.StockDataResponse.newBuilder()
                     .addAllContent(stocksList.stream().map((x) -> {
                         Integer higher = 0;
@@ -146,9 +163,31 @@ public class StockController {
 
     @PutMapping("/tickers/{id}")
     public void updateStockTickerJson(@PathVariable("id") @PathUUID String id, @RequestBody UpdateStockTickerJson body) {
+        if (body.getType() == "" || body.getType() == null) throw new NotFoundException();
         TickerStock tickerStock = tickersStockRepository.findById(UUID.fromString(id)).orElseThrow(NotFoundException::new);
-
-        tickerStock.setTickerAttributesJson(body.getJson());
+        if (body.getType().equals("train")) {
+            tickerStock.setTrainingData(body.getJson());
+        } else {
+            tickerStock.setTestingData(body.getJson());
+        }
         tickersStockRepository.save(tickerStock);
     }
+
+    @GetMapping(value = "/train/{id}")
+    @ResponseBody
+    public StringJsonResponse getTrainingData(@PathVariable("id") @PathUUID String id) {
+        StringJsonResponse response = new StringJsonResponse();
+        TickerStock tickerStock = tickersStockRepository.findById(UUID.fromString(id)).orElseThrow(NotFoundException::new);
+        response.setResponse(tickerStock.getTrainingData());
+        return response;
+    }
+    @GetMapping(value = "/test/{id}")
+    @ResponseBody
+    public StringJsonResponse getTestingData(@PathVariable("id") @PathUUID String id) {
+        StringJsonResponse response = new StringJsonResponse();
+        TickerStock tickerStock = tickersStockRepository.findById(UUID.fromString(id)).orElseThrow(NotFoundException::new);
+        response.setResponse(tickerStock.getTestingData());
+        return response;
+    }
 }
+

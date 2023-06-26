@@ -5,5 +5,6 @@ public enum TypeEnum {
     WEEKLY,
     MONTHLY,
     QUARTERLY,
-    YEARLY
+    YEARLY,
+    DATE_RANGE,
 }
