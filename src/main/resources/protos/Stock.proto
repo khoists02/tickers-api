@@ -24,6 +24,7 @@ message StockData {
 
 message StockDataResponse {
   repeated StockData content = 1;
+  string id = 2;
 }
 
 message StockAppendResponse {

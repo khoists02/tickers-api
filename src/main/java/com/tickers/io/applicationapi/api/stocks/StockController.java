@@ -2,10 +2,12 @@ package com.tickers.io.applicationapi.api.stocks;
 
 import com.tickers.io.applicationapi.dto.OpenCloseDto;
 import com.tickers.io.applicationapi.dto.StockDto;
+import com.tickers.io.applicationapi.dto.UpdateStockTickerJson;
 import com.tickers.io.applicationapi.enums.TypeEnum;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
 import com.tickers.io.applicationapi.exceptions.NotFoundException;
 import com.tickers.io.applicationapi.helpers.JsonHelper;
+import com.tickers.io.applicationapi.interfaces.PathUUID;
 import com.tickers.io.applicationapi.model.TickerStock;
 import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.repositories.TickersRepository;
@@ -22,6 +24,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/stocks")
@@ -76,36 +79,35 @@ public class StockController {
 
             if (stocksList.size() == 0)
                 throw new NotFoundException();
-//            StockDto test = new StockDto();
-//            test.setClose("1");
-//            String jsonStockDto = new JsonHelper().convertObjectToJson(test);
-//            sender.send(jsonStockDto);
-            return StockProto.StockDataResponse.newBuilder().addAllContent(stocksList.stream().map((x) -> {
-                Integer higher = 0;
-                Integer indexed = stocksList.stream().toList().indexOf(x);
-                if (indexed == 0) {
-                    higher = Float.parseFloat(stocksList.get(0).getClose()) < Float
-                            .parseFloat(stocksList.get(1).getClose()) ? 0 : 1;
-                } else if (indexed == stocksList.size()) {
-                    higher = 0;
-                } else if (indexed < stocksList.size() - 1) {
-                    if (Float.parseFloat(stocksList.get(indexed).getClose()) < Float
-                            .parseFloat(stocksList.get(indexed + 1).getClose())) {
-                        higher = 0;
-                    } else {
-                        higher = 1;
-                    }
-                }
-                return StockProto.StockData.newBuilder()
-                        .setVolume(Integer.parseInt(x.getVolume().replace(",", "")))
-                        .setHigher(higher)
-                        .setClose(x.getClose())
-                        .setDate(x.getDate())
-                        .setHigh(x.getHigh())
-                        .setLow(x.getLow())
-                        .setOpen(x.getOpen())
-                        .build();
-            }).toList()).build();
+            return StockProto.StockDataResponse.newBuilder()
+                    .addAllContent(stocksList.stream().map((x) -> {
+                        Integer higher = 0;
+                        Integer indexed = stocksList.stream().toList().indexOf(x);
+                        if (indexed == 0) {
+                            higher = Float.parseFloat(stocksList.get(0).getClose()) < Float
+                                    .parseFloat(stocksList.get(1).getClose()) ? 0 : 1;
+                        } else if (indexed == stocksList.size()) {
+                            higher = 0;
+                        } else if (indexed < stocksList.size() - 1) {
+                            if (Float.parseFloat(stocksList.get(indexed).getClose()) < Float
+                                    .parseFloat(stocksList.get(indexed + 1).getClose())) {
+                                higher = 0;
+                            } else {
+                                higher = 1;
+                            }
+                        }
+                        return StockProto.StockData.newBuilder()
+                                .setVolume(Integer.parseInt(x.getVolume().replace(",", "")))
+                                .setHigher(higher)
+                                .setClose(x.getClose())
+                                .setDate(x.getDate())
+                                .setHigh(x.getHigh())
+                                .setLow(x.getLow())
+                                .setOpen(x.getOpen())
+                                .build();
+                        }).toList())
+                    .setId(String.valueOf(tickerStock.getId()))
+                    .build();
 
         } catch (Exception e) {
             logger.info("{}", e.getMessage());
@@ -114,24 +116,39 @@ public class StockController {
     }
 
     @GetMapping("/tickers")
-    public StockProto.StocksAppendResponse getStockDataByTickers(@RequestParam("tickers") String[] tickers) {
+    public StockProto.StocksAppendResponse getStockDataByTickers(@RequestParam("tickers") String[] tickers, @RequestParam("date") String date) {
         if (tickers.length == 0) throw new NotFoundException();
 
         return StockProto.StocksAppendResponse.newBuilder().addAllContent(List.of(tickers).stream().map(t -> {
             StockProto.StockAppendResponse.Builder builder = mapper.map(t, StockProto.StockAppendResponse.Builder.class);
             builder.setTicker(t);
-            String urlPolygon = polygonService.polygonTickerOpenClose(t, "2023-06-08");
-            OpenCloseDto response = webClient
-                    .get()
-                    .uri(urlPolygon)
-                    .retrieve()
-                    .bodyToMono(OpenCloseDto.class)
-                    .block();
-            logger.info("{}", response);
-            if (response.getClose() != "" && response.getClose() != null) {
-                builder.setClose(Float.parseFloat(response.getClose()));
+            String urlPolygon = polygonService.polygonTickerOpenClose(t, date);
+            OpenCloseDto response = null;
+            try {
+                    response = webClient
+                        .get()
+                        .uri(urlPolygon)
+                        .retrieve()
+                        .bodyToMono(OpenCloseDto.class)
+                        .block();
+            } catch (Exception e) {
+                logger.info("{}", e.getMessage());
+            } finally {
+                if (response != null && response.getClose() != "" && response.getClose() != null) {
+                    builder.setClose(Float.parseFloat(response.getClose()));
+                } else {
+                    builder.setClose(0);
+                }
             }
             return  builder.build();
         }).toList()).build();
+    }
+
+    @PutMapping("/tickers/{id}")
+    public void updateStockTickerJson(@PathVariable("id") @PathUUID String id, @RequestBody UpdateStockTickerJson body) {
+        TickerStock tickerStock = tickersStockRepository.findById(UUID.fromString(id)).orElseThrow(NotFoundException::new);
+
+        tickerStock.setTickerAttributesJson(body.getJson());
+        tickersStockRepository.save(tickerStock);
     }
 }
