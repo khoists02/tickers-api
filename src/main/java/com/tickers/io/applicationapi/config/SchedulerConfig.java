@@ -1,25 +1,22 @@
 package com.tickers.io.applicationapi.config;
-
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
 import net.javacrumbs.shedlock.core.LockProvider;
 import net.javacrumbs.shedlock.provider.jdbctemplate.JdbcTemplateLockProvider;
 import net.javacrumbs.shedlock.spring.annotation.EnableSchedulerLock;
-
 import javax.sql.DataSource;
+
 
 @Configuration
 @EnableScheduling
 @EnableSchedulerLock(defaultLockAtMostFor = "10m")
 @EnableAsync
 @ConditionalOnProperty(name="scheduler.enabled", matchIfMissing = true)
-public class SchedulerConfig {
-
+public class SchedulerConfig  {
     @Bean
     public LockProvider lockProvider(DataSource dataSource) {
         return new JdbcTemplateLockProvider(
@@ -29,5 +26,4 @@ public class SchedulerConfig {
                         .build()
         );
     }
-
 }

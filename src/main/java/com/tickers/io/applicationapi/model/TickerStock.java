@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.checkerframework.common.aliasing.qual.Unique;
+
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "tickers_stock")
@@ -43,6 +46,22 @@ public class TickerStock extends BaseEntity {
     @Column(name = "extend_cols")
     private String extendCols;
 
+    @Setter
+    @Getter
+    @Unique
+    @Column(name = "start_date")
+    public ZonedDateTime startDate;
+
+    @Setter
+    @Getter
+    @Unique
+    @Column(name = "end_date")
+    public ZonedDateTime endDate;
+
+
+    @Getter
+    @Setter
+    private String fileName;
 
     @Override
     public boolean equals(Object o) {
@@ -51,9 +70,6 @@ public class TickerStock extends BaseEntity {
         return super.equals(o);
     }
 
-    @Getter
-    @Setter
-    private String fileName;
 
     @Override
     public int hashCode() {
