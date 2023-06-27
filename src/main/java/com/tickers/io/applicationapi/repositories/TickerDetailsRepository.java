@@ -1,7 +1,6 @@
 package com.tickers.io.applicationapi.repositories;
 
 import com.tickers.io.applicationapi.model.TickerDetails;
-import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.support.BaseEntityRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,15 +1,12 @@
 package com.tickers.io.applicationapi.api.specifications;
 
 import com.tickers.io.applicationapi.api.criteria.TickerDetailsCriteria;
-import com.tickers.io.applicationapi.api.criteria.TickersSearchCriteria;
 import com.tickers.io.applicationapi.model.TickerDetails;
-import com.tickers.io.applicationapi.model.Tickers;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TickerDetailsSpecification {

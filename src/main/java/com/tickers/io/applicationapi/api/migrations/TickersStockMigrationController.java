@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tickers.io.applicationapi.dto.MigrationStockRequest;
 import com.tickers.io.applicationapi.dto.OpenCloseDto;
 import com.tickers.io.applicationapi.dto.StockDto;
-import com.tickers.io.applicationapi.enums.TypeEnum;
 import com.tickers.io.applicationapi.helpers.JsonHelper;
 import com.tickers.io.applicationapi.model.TickerStock;
 import com.tickers.io.applicationapi.repositories.TickersStockRepository;

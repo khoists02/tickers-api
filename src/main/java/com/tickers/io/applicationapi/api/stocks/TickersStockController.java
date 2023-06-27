@@ -23,9 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.time.DayOfWeek;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoField;
 import java.util.*;
 
 @RestController

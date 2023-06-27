@@ -3,7 +3,6 @@ package com.tickers.io.applicationapi.api.specifications;
 import com.tickers.io.applicationapi.api.criteria.TickersSearchCriteria;
 import com.tickers.io.applicationapi.model.Tickers;
 import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 

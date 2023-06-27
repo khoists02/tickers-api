@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.checkerframework.common.aliasing.qual.Unique;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.ZonedDateTime;
 
