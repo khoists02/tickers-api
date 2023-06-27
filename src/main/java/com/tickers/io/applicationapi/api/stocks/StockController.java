@@ -24,11 +24,16 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.lang.reflect.Type;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
+import java.util.*;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @RestController
 @RequestMapping("/stocks")
@@ -66,31 +71,21 @@ public class StockController {
                 .build();
     }
 
+    public static boolean isWeekend(final ZonedDateTime ld)
+    {
+        DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
+        return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
+    }
+
     @GetMapping("/{ticker}")
     public StockProto.StockDataResponse getStockData(
             @PathVariable("ticker") String ticker,
-            @RequestParam("type") TypeEnum type,
-            @RequestParam("start") Optional<LocalDateTime> start,
-            @RequestParam("end") Optional<LocalDateTime> end) {
+            @RequestParam("type") TypeEnum type
+          ) {
         try {
+            TickerStock tickerStock = tickersStockRepository.findFirstByTickerNameAndType(ticker, type).orElseThrow(NotFoundException::new);
 
-            if (type == TypeEnum.DATE_RANGE && start.isPresent() && end.isPresent()) {
-                return StockProto.StockDataResponse.newBuilder()
-                        .addAllContent(Arrays.asList())
-                        .setId(null)
-                        .build();
-            };
-
-            TickerStock tickerStock = tickersStockRepository.findFirstByTickerNameAndType(ticker, type);
-
-            if (tickerStock == null) {
-                return StockProto.StockDataResponse.newBuilder()
-                        .addAllContent(Arrays.asList())
-                        .setId(null)
-                        .build();
-            }
-
-            StockDto[] response = new JsonHelper().convertStockJsonToObj(tickerStock.getTickerAttributesJson());
+            StockDto[] response = new JsonHelper().convertStockJsonToObj(tickerStock.getInitData());
             List<StockDto> stocksList = List.of(response);
             if (stocksList.size() == 0)
                 throw new NotFoundException();
@@ -114,7 +109,7 @@ public class StockController {
                             }
                         }
                         return StockProto.StockData.newBuilder()
-                                .setVolume(Integer.parseInt(x.getVolume().replace(",", "")))
+                                .setVolume(x.getVolume())
                                 .setHigher(higher)
                                 .setClose(x.getClose())
                                 .setDate(x.getDate())

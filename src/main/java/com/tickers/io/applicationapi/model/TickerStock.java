@@ -24,8 +24,8 @@ public class TickerStock extends BaseEntity {
 
     @Getter
     @Setter
-    @Column(name = "ticker_attributes_json")
-    private String tickerAttributesJson;
+    @Column(name = "init_data")
+    private String initData;
 
 
     @Getter
@@ -37,6 +37,11 @@ public class TickerStock extends BaseEntity {
     @Setter
     @Column(name = "testing_data")
     private String testingData;
+
+    @Getter
+    @Setter
+    @Column(name = "extend_cols")
+    private String extendCols;
 
 
     @Override

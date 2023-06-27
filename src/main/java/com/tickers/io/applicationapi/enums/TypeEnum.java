@@ -7,4 +7,5 @@ public enum TypeEnum {
     QUARTERLY,
     YEARLY,
     DATE_RANGE,
+    DYNAMIC,
 }

@@ -1581,10 +1581,16 @@ public final class StockProto {
         getLowBytes();
 
     /**
-     * <code>int64 volume = 6;</code>
+     * <code>string volume = 6;</code>
      * @return The volume.
      */
-    long getVolume();
+    java.lang.String getVolume();
+    /**
+     * <code>string volume = 6;</code>
+     * @return The bytes for volume.
+     */
+    com.google.protobuf.ByteString
+        getVolumeBytes();
 
     /**
      * <code>int32 higher = 7;</code>
@@ -1610,6 +1616,7 @@ public final class StockProto {
       close_ = "";
       high_ = "";
       low_ = "";
+      volume_ = "";
     }
 
     @java.lang.Override
@@ -1672,9 +1679,10 @@ public final class StockProto {
               low_ = s;
               break;
             }
-            case 48: {
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
 
-              volume_ = input.readInt64();
+              volume_ = s;
               break;
             }
             case 56: {
@@ -1895,13 +1903,39 @@ public final class StockProto {
     }
 
     public static final int VOLUME_FIELD_NUMBER = 6;
-    private long volume_;
+    private volatile java.lang.Object volume_;
     /**
-     * <code>int64 volume = 6;</code>
+     * <code>string volume = 6;</code>
      * @return The volume.
      */
-    public long getVolume() {
-      return volume_;
+    public java.lang.String getVolume() {
+      java.lang.Object ref = volume_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        volume_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string volume = 6;</code>
+     * @return The bytes for volume.
+     */
+    public com.google.protobuf.ByteString
+        getVolumeBytes() {
+      java.lang.Object ref = volume_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        volume_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     public static final int HIGHER_FIELD_NUMBER = 7;
@@ -1943,8 +1977,8 @@ public final class StockProto {
       if (!getLowBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 5, low_);
       }
-      if (volume_ != 0L) {
-        output.writeInt64(6, volume_);
+      if (!getVolumeBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, volume_);
       }
       if (higher_ != 0) {
         output.writeInt32(7, higher_);
@@ -1973,9 +2007,8 @@ public final class StockProto {
       if (!getLowBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, low_);
       }
-      if (volume_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, volume_);
+      if (!getVolumeBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, volume_);
       }
       if (higher_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -2006,8 +2039,8 @@ public final class StockProto {
           .equals(other.getHigh())) return false;
       if (!getLow()
           .equals(other.getLow())) return false;
-      if (getVolume()
-          != other.getVolume()) return false;
+      if (!getVolume()
+          .equals(other.getVolume())) return false;
       if (getHigher()
           != other.getHigher()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -2032,8 +2065,7 @@ public final class StockProto {
       hash = (37 * hash) + LOW_FIELD_NUMBER;
       hash = (53 * hash) + getLow().hashCode();
       hash = (37 * hash) + VOLUME_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getVolume());
+      hash = (53 * hash) + getVolume().hashCode();
       hash = (37 * hash) + HIGHER_FIELD_NUMBER;
       hash = (53 * hash) + getHigher();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -2179,7 +2211,7 @@ public final class StockProto {
 
         low_ = "";
 
-        volume_ = 0L;
+        volume_ = "";
 
         higher_ = 0;
 
@@ -2284,8 +2316,9 @@ public final class StockProto {
           low_ = other.low_;
           onChanged();
         }
-        if (other.getVolume() != 0L) {
-          setVolume(other.getVolume());
+        if (!other.getVolume().isEmpty()) {
+          volume_ = other.volume_;
+          onChanged();
         }
         if (other.getHigher() != 0) {
           setHigher(other.getHigher());
@@ -2699,32 +2732,78 @@ public final class StockProto {
         return this;
       }
 
-      private long volume_ ;
+      private java.lang.Object volume_ = "";
       /**
-       * <code>int64 volume = 6;</code>
+       * <code>string volume = 6;</code>
        * @return The volume.
        */
-      public long getVolume() {
-        return volume_;
+      public java.lang.String getVolume() {
+        java.lang.Object ref = volume_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          volume_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
       }
       /**
-       * <code>int64 volume = 6;</code>
+       * <code>string volume = 6;</code>
+       * @return The bytes for volume.
+       */
+      public com.google.protobuf.ByteString
+          getVolumeBytes() {
+        java.lang.Object ref = volume_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          volume_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string volume = 6;</code>
        * @param value The volume to set.
        * @return This builder for chaining.
        */
-      public Builder setVolume(long value) {
-        
+      public Builder setVolume(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
         volume_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int64 volume = 6;</code>
+       * <code>string volume = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearVolume() {
         
-        volume_ = 0L;
+        volume_ = getDefaultInstance().getVolume();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string volume = 6;</code>
+       * @param value The bytes for volume to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVolumeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        volume_ = value;
         onChanged();
         return this;
       }
@@ -5215,7 +5294,7 @@ public final class StockProto {
       "nse\022%\n\007tickers\030\001 \003(\0132\024.model.StockRespon" +
       "se\"q\n\tStockData\022\014\n\004date\030\001 \001(\t\022\014\n\004open\030\002 " +
       "\001(\t\022\r\n\005close\030\003 \001(\t\022\014\n\004high\030\004 \001(\t\022\013\n\003low\030" +
-      "\005 \001(\t\022\016\n\006volume\030\006 \001(\003\022\016\n\006higher\030\007 \001(\005\"B\n" +
+      "\005 \001(\t\022\016\n\006volume\030\006 \001(\t\022\016\n\006higher\030\007 \001(\005\"B\n" +
       "\021StockDataResponse\022!\n\007content\030\001 \003(\0132\020.mo" +
       "del.StockData\022\n\n\002id\030\002 \001(\t\"4\n\023StockAppend" +
       "Response\022\016\n\006ticker\030\001 \001(\t\022\r\n\005close\030\002 \001(\002\"" +
