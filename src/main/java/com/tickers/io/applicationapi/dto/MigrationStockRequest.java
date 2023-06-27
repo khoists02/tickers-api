@@ -16,5 +16,4 @@ public class MigrationStockRequest {
     private String ticker;
     private Optional<String> start;
     private Optional<String> end;
-    private List<String> extendCols;
 }

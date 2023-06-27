@@ -20,24 +20,17 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.lang.reflect.Type;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.*;
 
-import static java.time.temporal.ChronoUnit.DAYS;
-
 @RestController
 @RequestMapping("/stocks")
-public class StockController {
+public class TickersStockController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -165,6 +158,7 @@ public class StockController {
         } else {
             tickerStock.setTestingData(body.getJson());
         }
+        tickerStock.setExtendCols(body.getExtendCols().toString());
         tickersStockRepository.save(tickerStock);
     }
 
@@ -174,6 +168,7 @@ public class StockController {
         StringJsonResponse response = new StringJsonResponse();
         TickerStock tickerStock = tickersStockRepository.findById(UUID.fromString(id)).orElseThrow(NotFoundException::new);
         response.setResponse(tickerStock.getTrainingData());
+        response.setExtendCols(tickerStock.getExtendCols());
         return response;
     }
     @GetMapping(value = "/test/{id}")
@@ -182,6 +177,7 @@ public class StockController {
         StringJsonResponse response = new StringJsonResponse();
         TickerStock tickerStock = tickersStockRepository.findById(UUID.fromString(id)).orElseThrow(NotFoundException::new);
         response.setResponse(tickerStock.getTestingData());
+        response.setExtendCols(tickerStock.getExtendCols());
         return response;
     }
 }

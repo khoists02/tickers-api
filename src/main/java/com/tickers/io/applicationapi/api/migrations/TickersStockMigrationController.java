@@ -47,7 +47,7 @@ public class TickersStockMigrationController {
     private TickersStockRepository tickersStockRepository;
 
     @PostMapping()
-    public StockProto.StockDataResponse importDataJson(@RequestBody MigrationStockRequest requestBody) throws JsonProcessingException {
+    public StockProto.StockDataResponse importDataTickerFromPolygon(@RequestBody MigrationStockRequest requestBody) throws JsonProcessingException {
         ZonedDateTime startDate = ZonedDateTime.parse(requestBody.getStart().orElse(""));
         ZonedDateTime endDate = ZonedDateTime.parse(requestBody.getEnd().orElse(""));
         ZonedDateTime filterDate = null;
@@ -97,7 +97,6 @@ public class TickersStockMigrationController {
         updated.setTickerName(requestBody.getTicker());
         updated.setType(requestBody.getType());
         updated.setInitData(new JsonHelper().convertObjectToJson(data));
-        updated.setExtendCols(requestBody.getExtendCols().toString());
         TickerStock newData = tickersStockRepository.save(updated);
         StockDto[] objectJson = new JsonHelper().convertStockJsonToObj(newData.getInitData());
         List<StockDto> converted = List.of(objectJson);

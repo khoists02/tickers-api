@@ -9,4 +9,5 @@ import lombok.Setter;
 @Setter
 public class StringJsonResponse {
     private String response;
+    private String extendCols;
 }
