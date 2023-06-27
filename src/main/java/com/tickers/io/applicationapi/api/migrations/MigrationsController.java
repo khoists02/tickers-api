@@ -28,8 +28,8 @@ public class MigrationsController {
         Migrations migrations = new Migrations();
         migrations.setName(request.getName());
         migrations.setTickerName(request.getTickerName());
-        migrations.setStart(ZonedDateTime.parse(request.getStartDate()));
-        migrations.setEnd(ZonedDateTime.parse(request.getEndDate()));
+        migrations.setStartDate(ZonedDateTime.parse(request.getStartDate()));
+        migrations.setEndDate(ZonedDateTime.parse(request.getEndDate()));
         migrations.setActive(request.getActive());
 
         migrationsJobRepository.save(migrations);

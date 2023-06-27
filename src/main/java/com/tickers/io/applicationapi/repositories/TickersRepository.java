@@ -25,4 +25,9 @@ public interface TickersRepository extends BaseEntityRepository<Tickers, UUID> {
 
     @Query("SELECT tk from Tickers tk where tk.type = :type and tk.migrated = false")
     List<Tickers> getTickersByTypeAndNotMigrated(String type);
+
+    @Query("SELECT COUNT(tk) from Tickers tk where tk.type = :type and tk.migrated = false")
+    int countTickerNotMigrated(String type);
+
+    void deleteByTicker(String ticker);
 }

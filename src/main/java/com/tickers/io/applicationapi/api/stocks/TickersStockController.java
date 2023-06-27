@@ -64,12 +64,6 @@ public class TickersStockController {
                 .build();
     }
 
-    public static boolean isWeekend(final ZonedDateTime ld)
-    {
-        DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
-        return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
-    }
-
     @GetMapping("/{ticker}")
     public StockProto.StockDataResponse getStockData(
             @PathVariable("ticker") String ticker,

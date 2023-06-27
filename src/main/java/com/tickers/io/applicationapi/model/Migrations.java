@@ -1,5 +1,6 @@
 package com.tickers.io.applicationapi.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -10,10 +11,11 @@ import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.ZonedDateTime;
 
-@Entity
-@Table(name = "migrations")
 @Getter
 @Setter
+@Entity
+@Table(name = "migrations")
+
 public class Migrations extends BaseEntity {
     @Setter
     @Getter
@@ -24,19 +26,22 @@ public class Migrations extends BaseEntity {
     @Getter
     @Setter
     @NotNull
+    @Column(name = "ticker_name")
     public String tickerName;
 
     @Setter
     @Getter
     @Unique
     @NotNull
-    public ZonedDateTime start;
+    @Column(name = "start_date")
+    public ZonedDateTime startDate;
 
     @Setter
     @Getter
     @Unique
     @NotNull
-    public ZonedDateTime end;
+    @Column(name = "end_date")
+    public ZonedDateTime endDate;
 
     @Setter
     @Getter

@@ -14,6 +14,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.DayOfWeek;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
 import java.util.List;
 
 @Service
@@ -46,25 +49,31 @@ public class MigrationsJob {
         String jobName = getTickerNotMigrated();
         logger.info("Check ticker {}", jobName);
 
+        if (jobName == null) return;
+
         String urlPolygon = polygonService.polygonTickerDetailsEndpoint("/v3/reference/tickers/" + jobName);
-        TickerDetailsResponseDto response = webClient
-                .get()
-                .uri(urlPolygon)
-                .retrieve()
-                .bodyToMono(TickerDetailsResponseDto.class)
-                .block();
-        if (response.getResults() != null) {
-            try {
+        Integer count = tickersRepository.countTickerNotMigrated("CS");
+        try {
+            TickerDetailsResponseDto response = webClient
+                    .get()
+                    .uri(urlPolygon)
+                    .retrieve()
+                    .bodyToMono(TickerDetailsResponseDto.class)
+                    .block();
+            if (response.getResults() != null) {
                 boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(response.getResults().getTicker());
                 if (exitsTicker) {
                     logger.info("Ticker already exists {}", response.getResults().getTicker());
                     return;
                 }
                 importDataDetailsServices.importDataForTickerDetails(response.getResults());
-                logger.info("Import Success {}", jobName);
-            } catch (Exception e) {
-                logger.info("Import Fail {}", e.getMessage());
+                logger.info("Import Success {} and count", jobName, count);
+                return;
             }
+        }  catch (Exception e) {
+            logger.info("Import Fail {}", e.getMessage());
+            tickersRepository.deleteByTicker(jobName);
+            return;
         }
     }
 
@@ -72,5 +81,11 @@ public class MigrationsJob {
     @Async
     public void importOpenCloseData() {
         logger.info("importOpenCloseData");
+    }
+
+    public static boolean isWeekend(final ZonedDateTime ld)
+    {
+        DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
+        return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
     }
 }
