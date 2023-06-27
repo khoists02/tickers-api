@@ -40,6 +40,7 @@ public class MigrationsController {
         migrations.setName(request.getName());
         migrations.setTickerName(request.getTickerName());
         migrations.setStartDate(ZonedDateTime.parse(request.getStartDate()));
+        migrations.setCurrentDate(ZonedDateTime.parse(request.getStartDate()));
         migrations.setEndDate(ZonedDateTime.parse(request.getEndDate()));
         migrations.setActive(request.getActive());
 

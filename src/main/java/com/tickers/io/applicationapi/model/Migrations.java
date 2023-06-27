@@ -30,17 +30,21 @@ public class Migrations extends BaseEntity {
 
     @Setter
     @Getter
-    @Unique
     @NotNull
     @Column(name = "start_date")
     public ZonedDateTime startDate;
 
     @Setter
     @Getter
-    @Unique
     @NotNull
     @Column(name = "end_date")
     public ZonedDateTime endDate;
+
+
+    @Setter
+    @Getter
+    @Column(name = "current_date")
+    public ZonedDateTime currentDate;
 
     @Setter
     @Getter
