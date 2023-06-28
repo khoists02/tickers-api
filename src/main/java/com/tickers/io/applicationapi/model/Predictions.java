@@ -1,6 +1,7 @@
 package com.tickers.io.applicationapi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,12 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "predictions")
 public class Predictions extends BaseEntity {
+    @Getter
+    @Setter
+    @NotNull
+    @Column(name = "name")
+    private String name;
+
     @Getter
     @Setter
     @Nullable

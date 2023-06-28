@@ -4,7 +4,8 @@ option java_package = "com.tickers.io.protobuf";
 option java_outer_classname = "PredictionsProto";
 
 message PredictionsRequest {
-  string trainFilter = 1;
-  string testFilter = 2;
-  string ticker_details_id = 3;
+  string name = 1;
+  string trainFilter = 2;
+  string testFilter = 3;
+  string ticker_details_id = 4;
 }

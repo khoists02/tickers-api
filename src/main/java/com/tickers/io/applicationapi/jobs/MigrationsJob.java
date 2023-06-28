@@ -95,8 +95,8 @@ public class MigrationsJob {
         }
     }
 
-//    @Scheduled(cron = "0,15,30,45 * 17-23 * * *") // run 0AM - 6AM every day, 0,15,30,45 in seconds
-    @Scheduled(cron = "0/12 * * * * *")
+    @Scheduled(cron = "0,15,30,45 * 17-23 * * *") // run 0AM - 6AM every day, 0,15,30,45 in seconds
+//    @Scheduled(cron = "0/12 * * * * *")
     @Async
     public void importOpenCloseData() {
         Migrations migrations = migrationsJobRepository.findFirstByTickerNameAndActiveTrue("BLND").orElseThrow(NotFoundException::new);
