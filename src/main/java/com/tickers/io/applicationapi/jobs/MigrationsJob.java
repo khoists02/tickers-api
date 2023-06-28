@@ -2,7 +2,6 @@ package com.tickers.io.applicationapi.jobs;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tickers.io.applicationapi.dto.OpenCloseDto;
-import com.tickers.io.applicationapi.dto.StockDto;
 import com.tickers.io.applicationapi.dto.TickerDetailsResponseDto;
 import com.tickers.io.applicationapi.exceptions.NotFoundException;
 import com.tickers.io.applicationapi.model.Migrations;
@@ -27,10 +26,7 @@ import java.time.DayOfWeek;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
-import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class MigrationsJob {
