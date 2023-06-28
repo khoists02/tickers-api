@@ -6,13 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import org.checkerframework.common.aliasing.qual.Unique;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "stocks")
-public class Stocks extends BaseEntity {
+public class Stocks extends BaseEntity implements Serializable {
     @Getter
     @Setter
     @NotNull
@@ -50,8 +52,16 @@ public class Stocks extends BaseEntity {
     private String volume;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "ticker_details_id")
     private TickerDetails tickerDetails;
+
+    public Stocks(TickerDetails tickerDetails) {
+        this.tickerDetails = tickerDetails;
+    }
+
+    public Stocks() {
+
+    }
 
     @Override
     public boolean equals(Object o) {

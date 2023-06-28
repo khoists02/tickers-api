@@ -7,6 +7,7 @@ import com.tickers.io.applicationapi.dto.TickerDetailsResponseDto;
 import com.tickers.io.applicationapi.exceptions.NotFoundException;
 import com.tickers.io.applicationapi.model.Migrations;
 import com.tickers.io.applicationapi.model.Stocks;
+import com.tickers.io.applicationapi.model.TickerDetails;
 import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.repositories.MigrationsJobRepository;
 import com.tickers.io.applicationapi.repositories.StocksRepository;
@@ -61,7 +62,7 @@ public class MigrationsJob {
         return tickersList.get(0).getTicker();
     }
 
-    @Scheduled(cron = "0,15,30,45 * 12-17 * * *") // run 19h - 24h every day
+    @Scheduled(cron = "0,15,30,45 * 12-16 * * *") // run 7PM - 1PM every day
     @Async
     public void importTickerDetailsJob() throws JsonProcessingException {
         String jobName = getTickerNotMigrated();
@@ -98,59 +99,66 @@ public class MigrationsJob {
         }
     }
 
-    @Scheduled(cron = "0,15,30,45 * 17-23 * * *") // run 19h - 24h every day
+//    @Scheduled(cron = "0,15,30,45 * 17-23 * * *") // run 0AM - 6AM every day, 0,15,30,45 in seconds
+    @Scheduled(cron = "0/12 * * * * *")
     @Async
-    public void importOpenCloseData() throws JsonProcessingException {
+    public void importOpenCloseData() {
         Migrations migrations = migrationsJobRepository.findFirstByTickerNameAndActiveTrue("BLND").orElseThrow(NotFoundException::new);
+        ZonedDateTime currentDate = migrations.getCurrentDateExecute();
+        ZonedDateTime newDate = currentDate.plusDays(1);
+        logger.info("{}", newDate);
 
-        // get 5 days to run job
+        if (newDate.isAfter(migrations.getEndDate())) {
+            logger.info("Import All records Success !!!");
+            return;
+        }
 
-
-        ZonedDateTime start = migrations.getStartDate();
-        ZonedDateTime end = migrations.getEndDate();
-
-        ZonedDateTime filterDate = null;
-
-        // Import Daily Open close data for ticker, maximum record 10
-        long daysBetween = DAYS.between(start, end);
-
-        logger.info("{}", daysBetween);
-        List<StockDto> data = new ArrayList<StockDto>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        for (int i = 0; i <= daysBetween; i++) {
-            filterDate = start.plusDays(i);
-            if (!isWeekend(filterDate)) {
-                String dateFilter = filterDate.format(formatter);
-                logger.info("{}", dateFilter);
+        if (!isWeekend(currentDate)) {
+            String dateFilter = currentDate.format(formatter);
+            logger.info("{}", dateFilter);
 
-                String urlPolygon = polygonService.polygonTickerOpenClose(migrations.getTickerName(), dateFilter);
-                OpenCloseDto filterResponse = new OpenCloseDto();
+            String urlPolygon = polygonService.polygonTickerOpenClose(migrations.getTickerName(), dateFilter);
+            OpenCloseDto filterResponse = new OpenCloseDto();
 
-                try {
-                    filterResponse = webClient
-                            .get()
-                            .uri(urlPolygon)
-                            .retrieve()
-                            .bodyToMono(OpenCloseDto.class)
-                            .block();
-                } catch (Exception e) {
-                    logger.info("{}", e.getMessage());
-                } finally {
-                    if (filterResponse != null) {
-                        Stocks updated = new Stocks();
-                        updated.setTicker(migrations.getTickerName());
-                        updated.setDate(filterDate);
-                        updated.setClose(Float.parseFloat(filterResponse.getClose()));
-                        updated.setOpen(Float.parseFloat(filterResponse.getOpen()));
-                        updated.setHigh(Float.parseFloat(filterResponse.getHigh()));
-                        updated.setLow(Float.parseFloat(filterResponse.getLow()));
-                        updated.setVolume(filterResponse.getVolume());
-                        updated.setTickerDetails(tickerDetailsRepository.findFirstByTicker(migrations.getTickerName()).orElseThrow(NotFoundException::new));
-                        stocksRepository.save(updated);
-                    }
+            try {
+                filterResponse = webClient
+                        .get()
+                        .uri(urlPolygon)
+                        .retrieve()
+                        .bodyToMono(OpenCloseDto.class)
+                        .block();
+            } catch (Exception e) {
+                logger.info("{}", e.getMessage());
+            } finally {
+                if (filterResponse != null && filterResponse.getClose() != null &&  !filterResponse.getClose().isEmpty()) {
+                    TickerDetails tickerDetails = tickerDetailsRepository.findFirstByTicker(migrations.getTickerName()).orElseThrow(NotFoundException::new);
+                    Stocks updated = new Stocks();
+                    updated.setTicker(migrations.getTickerName());
+                    updated.setDate(currentDate);
+                    updated.setClose(Float.parseFloat(filterResponse.getClose()));
+                    updated.setOpen(Float.parseFloat(filterResponse.getOpen()));
+                    updated.setHigh(Float.parseFloat(filterResponse.getHigh()));
+                    updated.setLow(Float.parseFloat(filterResponse.getLow()));
+                    updated.setVolume(filterResponse.getVolume());
+                    updated.setTickerDetails(tickerDetails);
+                    stocksRepository.save(updated);
+
+                    // add one day for current date filter
+                    migrations.setCurrentDateExecute(newDate);
+                    migrationsJobRepository.save(migrations);
+                    return;
+                } else {
+                    migrations.setCurrentDateExecute(newDate);
+                    migrationsJobRepository.save(migrations);
                 }
             }
+        } else {
+            // add one day for current date filter
+            migrations.setCurrentDateExecute(newDate);
+            migrationsJobRepository.save(migrations);
         }
+        return;
     }
 
     public static boolean isWeekend(final ZonedDateTime ld)

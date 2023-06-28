@@ -43,8 +43,8 @@ public class Migrations extends BaseEntity {
 
     @Setter
     @Getter
-    @Column(name = "current_date")
-    public ZonedDateTime currentDate;
+    @Column(name = "current_date_execute")
+    public ZonedDateTime currentDateExecute;
 
     @Setter
     @Getter
