@@ -48,8 +48,8 @@ public class TickersStockController {
     @Autowired
     private WebClient webClient;
 
-    @GetMapping()
-    public StockProto.StocksResponse getStocksByType(@RequestParam(name = "type") String type) {
+    @GetMapping("/tickers")
+    public StockProto.StocksResponse getStocksByTypeAndNotMigrated(@RequestParam(name = "type") String type) {
         List<Tickers> tickersList = tickersRepository.getTickersByTypeAndNotMigrated(type);
         return StockProto.StocksResponse.newBuilder()
                 .addAllTickers(
@@ -61,8 +61,8 @@ public class TickersStockController {
                 .build();
     }
 
-    @GetMapping("/{ticker}")
-    public StockProto.StockDataResponse getStockData(
+    @GetMapping("/tickers/{ticker}")
+    public StockProto.StockDataResponse getStockDataAndCalcHigher(
             @PathVariable("ticker") String ticker,
             @RequestParam("type") TypeEnum type
           ) {
@@ -111,7 +111,7 @@ public class TickersStockController {
         }
     }
 
-    @GetMapping("/tickers")
+    @GetMapping("/tickers/polygon")
     public StockProto.StocksAppendResponse getStockDataByTickers(@RequestParam("tickers") String[] tickers, @RequestParam("date") String date) {
         if (tickers.length == 0) throw new NotFoundException();
 
@@ -153,7 +153,7 @@ public class TickersStockController {
         tickersStockRepository.save(tickerStock);
     }
 
-    @GetMapping(value = "/train/{id}")
+    @GetMapping(value = "/tickers/train/{id}")
     @ResponseBody
     public StringJsonResponse getTrainingData(@PathVariable("id") @PathUUID String id) {
         StringJsonResponse response = new StringJsonResponse();
@@ -162,7 +162,7 @@ public class TickersStockController {
         response.setExtendCols(tickerStock.getExtendCols());
         return response;
     }
-    @GetMapping(value = "/test/{id}")
+    @GetMapping(value = "/tickers/test/{id}")
     @ResponseBody
     public StringJsonResponse getTestingData(@PathVariable("id") @PathUUID String id) {
         StringJsonResponse response = new StringJsonResponse();

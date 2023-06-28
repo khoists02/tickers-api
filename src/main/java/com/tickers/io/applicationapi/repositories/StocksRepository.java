@@ -12,5 +12,5 @@ import java.util.UUID;
 @Repository
 public interface StocksRepository extends BaseEntityRepository<Stocks, UUID> {
     @Query("SELECT st from Stocks st where st.ticker_details_id = :tickerId")
-    List<Stocks> getStocksByTickerDetailsId(String tickerId);
+    List<Stocks> getStocksByTickerDetailsId(UUID tickerId);
 }
