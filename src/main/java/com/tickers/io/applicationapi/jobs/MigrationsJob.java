@@ -95,67 +95,67 @@ public class MigrationsJob {
         }
     }
 
-    @Scheduled(cron = "0,15,30,45 * 17-23 * * *") // run 0AM - 6AM every day, 0,15,30,45 in seconds
+//    @Scheduled(cron = "0,15,30,45 * 17-23 * * *") // run 0AM - 6AM every day, 0,15,30,45 in seconds
 //    @Scheduled(cron = "0/12 * * * * *")
-    @Async
-    public void importOpenCloseData() {
-        Migrations migrations = migrationsJobRepository.findFirstByTickerNameAndActiveTrue("BLND").orElseThrow(NotFoundException::new);
-        ZonedDateTime currentDate = migrations.getCurrentDateExecute();
-        ZonedDateTime newDate = currentDate.plusDays(1);
-        logger.info("{}", newDate);
-
-        if (newDate.isAfter(migrations.getEndDate())) {
-            logger.info("Import All records Success !!!");
-            return;
-        }
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        if (!isWeekend(currentDate)) {
-            String dateFilter = currentDate.format(formatter);
-            logger.info("{}", dateFilter);
-
-            String urlPolygon = polygonService.polygonTickerOpenClose(migrations.getTickerName(), dateFilter);
-            OpenCloseDto filterResponse = new OpenCloseDto();
-
-            try {
-                filterResponse = webClient
-                        .get()
-                        .uri(urlPolygon)
-                        .retrieve()
-                        .bodyToMono(OpenCloseDto.class)
-                        .block();
-            } catch (Exception e) {
-                logger.info("{}", e.getMessage());
-            } finally {
-                if (filterResponse != null && filterResponse.getClose() != null &&  !filterResponse.getClose().isEmpty()) {
-                    TickerDetails tickerDetails = tickerDetailsRepository.findFirstByTicker(migrations.getTickerName()).orElseThrow(NotFoundException::new);
-                    Stocks updated = new Stocks();
-                    updated.setTicker(migrations.getTickerName());
-                    updated.setDate(currentDate);
-                    updated.setClose(Float.parseFloat(filterResponse.getClose()));
-                    updated.setOpen(Float.parseFloat(filterResponse.getOpen()));
-                    updated.setHigh(Float.parseFloat(filterResponse.getHigh()));
-                    updated.setLow(Float.parseFloat(filterResponse.getLow()));
-                    updated.setVolume(filterResponse.getVolume());
-                    updated.setTickerDetails(tickerDetails);
-                    stocksRepository.save(updated);
-
-                    // add one day for current date filter
-                    migrations.setCurrentDateExecute(newDate);
-                    migrationsJobRepository.save(migrations);
-                    return;
-                } else {
-                    migrations.setCurrentDateExecute(newDate);
-                    migrationsJobRepository.save(migrations);
-                }
-            }
-        } else {
-            // add one day for current date filter
-            migrations.setCurrentDateExecute(newDate);
-            migrationsJobRepository.save(migrations);
-        }
-        return;
-    }
+//    @Async
+//    public void importOpenCloseData() {
+//        Migrations migrations = migrationsJobRepository.findFirstByTickerNameAndActiveTrue("BLND").orElseThrow(NotFoundException::new);
+//        ZonedDateTime currentDate = migrations.getCurrentDateExecute();
+//        ZonedDateTime newDate = currentDate.plusDays(1);
+//        logger.info("{}", newDate);
+//
+//        if (newDate.isAfter(migrations.getEndDate())) {
+//            logger.info("Import All records Success !!!");
+//            return;
+//        }
+//
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        if (!isWeekend(currentDate)) {
+//            String dateFilter = currentDate.format(formatter);
+//            logger.info("{}", dateFilter);
+//
+//            String urlPolygon = polygonService.polygonTickerOpenClose(migrations.getTickerName(), dateFilter);
+//            OpenCloseDto filterResponse = new OpenCloseDto();
+//
+//            try {
+//                filterResponse = webClient
+//                        .get()
+//                        .uri(urlPolygon)
+//                        .retrieve()
+//                        .bodyToMono(OpenCloseDto.class)
+//                        .block();
+//            } catch (Exception e) {
+//                logger.info("{}", e.getMessage());
+//            } finally {
+//                if (filterResponse != null && filterResponse.getClose() != null &&  !filterResponse.getClose().isEmpty()) {
+//                    TickerDetails tickerDetails = tickerDetailsRepository.findFirstByTicker(migrations.getTickerName()).orElseThrow(NotFoundException::new);
+//                    Stocks updated = new Stocks();
+//                    updated.setTicker(migrations.getTickerName());
+//                    updated.setDate(currentDate);
+//                    updated.setClose(Float.parseFloat(filterResponse.getClose()));
+//                    updated.setOpen(Float.parseFloat(filterResponse.getOpen()));
+//                    updated.setHigh(Float.parseFloat(filterResponse.getHigh()));
+//                    updated.setLow(Float.parseFloat(filterResponse.getLow()));
+//                    updated.setVolume(filterResponse.getVolume());
+//                    updated.setTickerDetails(tickerDetails);
+//                    stocksRepository.save(updated);
+//
+//                    // add one day for current date filter
+//                    migrations.setCurrentDateExecute(newDate);
+//                    migrationsJobRepository.save(migrations);
+//                    return;
+//                } else {
+//                    migrations.setCurrentDateExecute(newDate);
+//                    migrationsJobRepository.save(migrations);
+//                }
+//            }
+//        } else {
+//            // add one day for current date filter
+//            migrations.setCurrentDateExecute(newDate);
+//            migrationsJobRepository.save(migrations);
+//        }
+//        return;
+//    }
 
     public static boolean isWeekend(final ZonedDateTime ld)
     {
