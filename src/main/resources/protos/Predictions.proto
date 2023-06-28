@@ -1,0 +1,10 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "PredictionsProto";
+
+message PredictionsRequest {
+  string trainFilter = 1;
+  string testFilter = 2;
+  string ticker_details_id = 3;
+}

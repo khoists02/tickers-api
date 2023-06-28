@@ -1,8 +1,6 @@
 package com.tickers.io.applicationapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +11,24 @@ import java.io.Serializable;
 @Entity
 @Table(name = "ticker_details_predictions")
 public class TickerDetailsPredictions extends BaseEntity implements Serializable {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "predictions_id")
+    private Predictions predictions;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ticker_details_id")
+    private TickerDetails tickerDetails;
+
+    public TickerDetailsPredictions(Predictions predictions, TickerDetails tickerDetails) {
+        this.predictions = predictions;
+        this.tickerDetails = tickerDetails;
+    }
+
+    public TickerDetailsPredictions() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
