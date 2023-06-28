@@ -7,9 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 @Repository
 public interface TickersRepository extends BaseEntityRepository<Tickers, UUID> {
@@ -24,4 +22,9 @@ public interface TickersRepository extends BaseEntityRepository<Tickers, UUID> {
 
     @Query("SELECT tk from Tickers tk where tk.type = :type and tk.migrated = false")
     List<Tickers> getTickersByTypeAndNotMigrated(String type);
+
+    @Query("SELECT COUNT(tk) from Tickers tk where tk.type = :type and tk.migrated = false")
+    int countTickerNotMigrated(String type);
+
+    void deleteByTicker(String ticker);
 }

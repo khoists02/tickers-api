@@ -27,3 +27,11 @@ message ImportDataResponse {
   string message = 2;
   string cursor = 3;
 }
+
+message PageableResponse {
+  int32 size = 1;
+  int32 number = 2;
+  int32 totalPages = 3;
+  int32 totalElements = 4;
+  int32 numberOfElements = 5;
+}

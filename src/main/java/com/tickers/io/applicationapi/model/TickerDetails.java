@@ -1,17 +1,19 @@
 package com.tickers.io.applicationapi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.checkerframework.common.aliasing.qual.Unique;
 
-@Entity
-@Table(name = "ticker_details")
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
+@Entity
+@Table(name = "ticker_details")
 public class TickerDetails extends BaseEntity{
     @Setter
     @Getter
@@ -110,6 +112,26 @@ public class TickerDetails extends BaseEntity{
     @Setter
     @Column(name = "round_lot")
     private Integer roundLot;
+
+    @OneToMany(
+            mappedBy = "tickerDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Stocks> stocks = new HashSet<>();
+
+    public void setStocks(Set<Stocks> stocks) {
+        this.stocks.retainAll(stocks.stream().map(p -> new Stocks(this)).collect(Collectors.toSet()));
+        this.addStocks(stocks);
+    }
+
+    public void addStocks(Set<Stocks> stocks) {
+        this.stocks.addAll(stocks.stream().map(permission ->new Stocks(this)).collect(Collectors.toSet()));
+    }
+
+    public Set<TickerDetails> getStocks() {
+        return this.stocks.stream().map(Stocks::getTickerDetails).collect(Collectors.toSet());
+    }
 
     @Override
     public boolean equals(Object o) {

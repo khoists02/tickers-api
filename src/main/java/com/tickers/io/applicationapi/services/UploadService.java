@@ -24,7 +24,7 @@ public class UploadService {
                 tickerStock.setTickerName(ticker);
                 tickerStock.setType(type);
                 tickerStock.setFileName(fileName);
-                tickerStock.setTickerAttributesJson(json);
+                tickerStock.setInitData(json);
                 tickersStockRepository.save(tickerStock);
             }
         }

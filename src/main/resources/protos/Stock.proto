@@ -18,10 +18,20 @@ message StockData {
   string close = 3;
   string high = 4;
   string low = 5;
-  int64 volume = 6;
+  string volume = 6;
   int32 higher = 7;
 }
 
 message StockDataResponse {
   repeated StockData content = 1;
+  string id = 2;
+}
+
+message StockAppendResponse {
+  string ticker = 1;
+  float close = 2;
+}
+
+message StocksAppendResponse {
+  repeated StockAppendResponse content = 1;
 }

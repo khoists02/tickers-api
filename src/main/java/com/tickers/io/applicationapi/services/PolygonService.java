@@ -70,6 +70,15 @@ public class PolygonService {
         return uriComponentsBuilder.build().toString();
     }
 
+    public String polygonTickerOpenClose(String ticker, String date) {
+        String host = polygonUrl + "/v1/open-close/" + ticker + "/" + date;
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host(host)
+                .queryParam("apiKey", polygonKey);
+        return uriComponentsBuilder.build().toString();
+    }
+
     public String polygonTickerDetailsEndpoint(String path) {
         String host = polygonUrl + path;
 

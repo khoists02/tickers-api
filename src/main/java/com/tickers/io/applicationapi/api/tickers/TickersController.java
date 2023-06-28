@@ -1,22 +1,34 @@
 package com.tickers.io.applicationapi.api.tickers;
 
+import com.tickers.io.applicationapi.api.criteria.TickerDetailsCriteria;
+import com.tickers.io.applicationapi.api.criteria.TickersSearchCriteria;
+import com.tickers.io.applicationapi.api.specifications.TickerDetailsSpecification;
+import com.tickers.io.applicationapi.api.specifications.TickersSpecification;
 import com.tickers.io.applicationapi.enums.TickerTypesEnum;
 import com.tickers.io.applicationapi.exceptions.BadRequestException;
 import com.tickers.io.applicationapi.dto.*;
 import com.tickers.io.applicationapi.exceptions.ApplicationException;
+import com.tickers.io.applicationapi.exceptions.NotFoundException;
+import com.tickers.io.applicationapi.model.TickerDetails;
+import com.tickers.io.applicationapi.model.Tickers;
 import com.tickers.io.applicationapi.repositories.TickerDetailsRepository;
+import com.tickers.io.applicationapi.repositories.TickersRepository;
 import com.tickers.io.applicationapi.services.ImportDataDetailsServices;
 import com.tickers.io.applicationapi.services.ImportDataService;
 import com.tickers.io.applicationapi.services.PolygonService;
 import com.tickers.io.protobuf.GenericProtos;
 import com.tickers.io.protobuf.TickerTypeProto;
 import com.tickers.io.protobuf.TickersProto;
+import jakarta.persistence.EntityGraph;
 import jakarta.transaction.Transactional;
 import jakarta.websocket.server.PathParam;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -46,12 +58,44 @@ public class TickersController {
     private ImportDataService importDataService;
 
     @Autowired
-    private ImportDataDetailsServices importDataDetaisServices;
+    private ImportDataDetailsServices importDataDetailsServices;
 
     @Autowired
     private TickerDetailsRepository tickerDetailsRepository;
 
+    @Autowired
+    private TickersRepository tickersRepository;
+
     @GetMapping()
+    public TickersProto.TickersResponse getTickersListing(
+            @RequestParam("search") Optional<String> search,
+            @RequestParam("type") Optional<String> type,
+            @RequestParam("ticker") Optional<String> ticker,
+            @PageableDefault Pageable pageable) {
+        TickersSearchCriteria searchCriteria = new TickersSearchCriteria();
+        searchCriteria.setSearch(search.orElse(null));
+        searchCriteria.setType(type.orElse(null));
+        searchCriteria.setTicker(ticker.orElse(null));
+
+        EntityGraph entityGraph = tickersRepository.createEntityGraph();
+        entityGraph.addAttributeNodes("tickerDetails");
+
+        Page<Tickers> page = tickersRepository.findAll(TickersSpecification.tickersQuery(searchCriteria), pageable, entityGraph);
+        return TickersProto.TickersResponse.newBuilder()
+                .addAllContent(page.stream().map(t -> {
+                    TickersProto.TickerResponse.Builder builder = mapper.map(t, TickersProto.TickerResponse.Builder.class);
+                    builder.setLastUpdated(t.getLastUpdatedUtc().toString());
+                    if (t.getTickerDetails() != null) {
+                        builder.setTickerDetails(mapper.map(t.getTickerDetails(), TickersProto.TickerDetail.Builder.class).build());
+                    }
+                    return builder.build();
+                }).toList())
+                .setPageable(mapper.map(page, GenericProtos.PageableResponse.Builder.class).build())
+                .build();
+
+    }
+
+    @PostMapping()
     @Transactional
     public GenericProtos.ImportDataResponse getTickers(
             @RequestParam("search") Optional<String> search,
@@ -101,6 +145,15 @@ public class TickersController {
         throw new BadRequestException("polygon_exception");
     }
 
+    @GetMapping("/{id}")
+    public TickersProto.TickerDetail getTickerById(@PathVariable(name = "id") String id) {
+        Optional<TickerDetails> tickerDetails = tickerDetailsRepository.findById(UUID.fromString(id));
+        return mapper.map(
+                        tickerDetails.orElseThrow(NotFoundException::new),
+                TickersProto.TickerDetail.Builder.class)
+                .build();
+    }
+
     @PostMapping("/{ticker}")
     public String getTickerDetails(@PathVariable("ticker") String ticker) {
         String urlPolygon = polygonService.polygonTickerDetailsEndpoint("/v3/reference/tickers/" + ticker);
@@ -121,7 +174,7 @@ public class TickersController {
                     logger.info("Ticker already exists {}", response.getResults().getTicker());
                     return String.format("Ticker already exists %s", response.getResults().getTicker());
                 }
-                TickerDetailsDto data = importDataDetaisServices.importDataForTickerDetails(response.getResults());
+                TickerDetailsDto data = importDataDetailsServices.importDataForTickerDetails(response.getResults());
                 return data.getName();
             } catch (Exception e) {
                 logger.info("{}", e.getMessage());
@@ -245,6 +298,19 @@ public class TickersController {
 
         }
         throw new BadRequestException("polygon_exception");
+    }
+
+
+    @GetMapping("/sics")
+    public TickersProto.SicsResponse getSics(@RequestParam("sics") String[] sics, @PageableDefault Pageable pageable) {
+        TickerDetailsCriteria tickerDetailsCriteria = new TickerDetailsCriteria();
+        tickerDetailsCriteria.setSics(sics);
+
+        Page<TickerDetails> page = tickerDetailsRepository.findAll(TickerDetailsSpecification.tickerDetailsQuery(tickerDetailsCriteria), pageable);
+        return TickersProto.SicsResponse.newBuilder().addAllContent(page.stream()
+                .map(t -> mapper.map(t, TickersProto.SicResponse.Builder.class).build())
+                .toList())
+                .build();
     }
 
     public static Map<String, String> splitQuery(URL url) throws UnsupportedEncodingException {
