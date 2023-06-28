@@ -1,25 +1,26 @@
 package com.tickers.io.applicationapi.api.stocks;
 
+import com.tickers.io.applicationapi.interfaces.PathUUID;
 import com.tickers.io.applicationapi.model.Stocks;
-import com.tickers.io.applicationapi.model.TickerDetails;
 import com.tickers.io.applicationapi.repositories.StocksRepository;
-import com.tickers.io.applicationapi.repositories.TickersRepository;
 import com.tickers.io.protobuf.StockProto;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.DayOfWeek;
 import java.time.ZonedDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.temporal.ChronoField;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/stocks")
 public class StocksController {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private ModelMapper mapper;
 
@@ -55,11 +56,37 @@ public class StocksController {
                 .build();
     }
 
+    @GetMapping("/checkAndSetRetryToMigrations/{tickerId}")
+    public List<String> checkMissMatchDayInWeekAndSetRetry(@PathVariable("tickerId") @PathUUID String tickerId) {
+        List<Stocks> stocks = stocksRepository.getStocksByTickerDetailsId(UUID.fromString(tickerId));
+        List<Stocks> stocksSort = stocks.stream()
+                .sorted(Comparator.comparing(Stocks::getDate))
+                .filter(f -> !isWeekend(f.getDate()))
+                .collect(Collectors.toList());
+        logger.info("{}", stocksSort);
+
+        ZonedDateTime start;
+        ZonedDateTime end;
+
+        if (stocksSort.size() > 2) {
+            start = stocksSort.get(0).getDate();
+            end = stocksSort.get(stocksSort.size() - 1).getDate();
+        }
+
+        return Arrays.asList();
+    }
+
     public boolean isAfterOrIsEqual(final ZonedDateTime date, final ZonedDateTime dateCompare) {
         return  date.isAfter(dateCompare) || date.isEqual(dateCompare);
     }
 
     public boolean isBeforeOrIsEqual(final ZonedDateTime date, final ZonedDateTime dateCompare) {
         return  date.isBefore(dateCompare) || date.isEqual(dateCompare);
+    }
+
+    public static boolean isWeekend(final ZonedDateTime ld)
+    {
+        DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
+        return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
     }
 }

@@ -33,6 +33,10 @@ public class Predictions extends BaseEntity {
     @Column(name = "test_filter")
     private String testFilter;
 
+    @Getter
+    @Setter
+    @NotNull
+    private Float accuracy;
 
     @OneToMany(
             mappedBy = "predictions",
