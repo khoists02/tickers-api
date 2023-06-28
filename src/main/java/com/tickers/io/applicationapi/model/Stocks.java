@@ -51,6 +51,11 @@ public class Stocks extends BaseEntity implements Serializable {
     @NotNull
     private String volume;
 
+    @Getter
+    @Setter
+    @Column(insertable=false, updatable=false)
+    private UUID ticker_details_id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticker_details_id")
     private TickerDetails tickerDetails;
