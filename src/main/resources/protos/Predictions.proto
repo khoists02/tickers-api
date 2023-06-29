@@ -2,10 +2,22 @@ syntax = "proto3";
 package model;
 option java_package = "com.tickers.io.protobuf";
 option java_outer_classname = "PredictionsProto";
+import "Generic.proto";
 
 message PredictionsRequest {
   string name = 1;
   string trainFilter = 2;
   string testFilter = 3;
-  string ticker_details_id = 4;
+}
+
+message PredictionResponse {
+  string id = 1;
+  string name = 2;
+  string trainFilter = 3;
+  string testFilter = 4;
+}
+
+message PredictionsResponse {
+  repeated PredictionResponse content = 1;
+  PageableResponse pageable = 2;
 }

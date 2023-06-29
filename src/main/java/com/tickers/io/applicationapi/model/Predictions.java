@@ -37,7 +37,6 @@ public class Predictions extends BaseEntity {
 
     @Getter
     @Setter
-    @NotNull
     private Float accuracy;
 
     @OneToMany(
