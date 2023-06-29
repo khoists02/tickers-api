@@ -1,0 +1,12 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "RegistrationProto";
+
+message RegistrationRequest {
+  string name = 1;
+  string userName = 2;
+  string email = 3;
+  string password = 4;
+  string confirmPassword = 5;
+}
