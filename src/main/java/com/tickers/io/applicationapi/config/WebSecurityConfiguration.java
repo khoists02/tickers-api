@@ -36,7 +36,7 @@ public class WebSecurityConfiguration {
     }
 
     public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**", "/tickers/**", "/upload/**",
-            "/stocks/**", "/rabbitmq/**", "/migrations/**");
+            "/stocks/**", "/rabbitmq/**", "/migrations/**", "/predictions/**");
 
     @Bean
     public CorsFilter corsFilter() {
