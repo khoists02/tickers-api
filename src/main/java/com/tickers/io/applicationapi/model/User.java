@@ -29,4 +29,6 @@ public class User extends BaseEntity {
     @Setter
     @NotNull
     private String password;
+
+    private Boolean blocked;
 }

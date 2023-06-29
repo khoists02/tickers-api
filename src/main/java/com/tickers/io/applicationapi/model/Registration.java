@@ -34,4 +34,8 @@ public class Registration extends BaseEntity {
     @Setter
     @NotNull
     private String password;
+
+    private Boolean activated;
+
+    private Boolean blocked;
 }

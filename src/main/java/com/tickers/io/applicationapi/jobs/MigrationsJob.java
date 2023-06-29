@@ -3,14 +3,8 @@ package com.tickers.io.applicationapi.jobs;
 import com.tickers.io.applicationapi.dto.OpenCloseDto;
 import com.tickers.io.applicationapi.enums.StockTypeEnum;
 import com.tickers.io.applicationapi.exceptions.NotFoundException;
-import com.tickers.io.applicationapi.model.Migrations;
-import com.tickers.io.applicationapi.model.Stocks;
-import com.tickers.io.applicationapi.model.TickerDetails;
-import com.tickers.io.applicationapi.model.Tickers;
-import com.tickers.io.applicationapi.repositories.MigrationsJobRepository;
-import com.tickers.io.applicationapi.repositories.StocksRepository;
-import com.tickers.io.applicationapi.repositories.TickerDetailsRepository;
-import com.tickers.io.applicationapi.repositories.TickersRepository;
+import com.tickers.io.applicationapi.model.*;
+import com.tickers.io.applicationapi.repositories.*;
 import com.tickers.io.applicationapi.services.ImportDataDetailsServices;
 import com.tickers.io.applicationapi.services.PolygonService;
 import org.slf4j.Logger;
@@ -54,6 +48,12 @@ public class MigrationsJob {
     @Autowired
     private StocksRepository stocksRepository;
 
+    @Autowired
+    private RegistrationRepository registrationRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     private String getTickerNotMigrated() {
         List<Tickers> tickersList = tickersRepository.getTickersByTypeAndNotMigrated("CS");
         return tickersList.get(0).getTicker();
@@ -95,6 +95,29 @@ public class MigrationsJob {
 //            }
 //        }
 //    }
+
+//    @Scheduled(cron = "0,15,30,45 * 18-19 * * *") // run 01AM - 02AM every day
+    @Scheduled(cron = "0/12 * * * * *")
+    @Async
+    public void importUser() {
+        List<Registration> registrations = registrationRepository.findAllByActivatedAccount(true);
+
+        if (registrations.size() == 0) {
+          return;
+        }
+
+        for (int i = 0; i < registrations.size(); i++) {
+            User user = new User();
+            user.setUserName(registrations.get(i).getUserName());
+            user.setEmail(registrations.get(i).getEmail());
+            user.setPassword(registrations.get(i).getPassword());
+
+            userRepository.save(user);
+            // remove registration record
+            registrationRepository.deleteById(registrations.get(i).getId());
+        }
+    }
+
     @Scheduled(cron = "0,15,30,45 * 17-22 * * *") // run 00AM - 5AM every day
 //    @Scheduled(cron = "0/12 * * * * *")
     @Async

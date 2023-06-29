@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 @RestController
 public class RegistrationController {
@@ -39,11 +39,21 @@ public class RegistrationController {
     @Autowired
     private TransactionHandler transactionHandler;
 
-    @PostMapping("/register")
-    public UUID register(@RequestBody @Valid RegistrationProto.RegistrationRequest request) {
-        boolean exits = userRepository.checkExitsUser(request.getUserName(), request.getEmail());
+    private final String regex = "^(.+)@(\\S+)$";
 
-        if (exits) throw RegistrationException.USERNAME_AND_EMAIL_ALREADY_EXITS;
+    @PostMapping("/register")
+    public String register(@RequestBody @Valid RegistrationProto.RegistrationRequest request) {
+        boolean emailMatch = Pattern.compile(regex)
+                .matcher(request.getEmail())
+                .matches();
+
+        if (!emailMatch) throw RegistrationException.EMAIL_WRONG_FORMAT;
+
+        boolean userExits = userRepository.checkExitsUser(request.getUserName(), request.getEmail());
+
+        if (userExits) throw RegistrationException.USERNAME_AND_EMAIL_ALREADY_EXITS;
+
+        if (!request.getConfirmPassword().equals(request.getPassword())) throw RegistrationException.CONFIRM_PASSWORD_NOT_THE_SAME;
 
         Registration registration = mapper.map(request, Registration.class);
 
@@ -51,15 +61,17 @@ public class RegistrationController {
 
         try {
             Registration result = transactionHandler.runInTransaction((Supplier<Registration>) () -> registrationRepository.save(registration));
+            return String.valueOf(result.getId());
         } catch (DataIntegrityViolationException e) {
+            logger.info("{}", e.getMessage());
             if (e.getMessage() != null && e.getMessage().contains("registration_email_un")) {
                 throw RegistrationException.EMAIL_MUST_BE_UNIQUE;
+            } else if (e.getMessage().contains("registration_name_username_email_un")) {
+                throw RegistrationException.USERNAME_AND_EMAIL_ALREADY_EXITS;
             }
             throw RegistrationException.CANNOT_REGISTER_EXCEPTION;
         } catch (Exception e) {
             throw RegistrationException.CANNOT_REGISTER_EXCEPTION;
         }
-
-        return null;
     }
 }
