@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -57,6 +59,11 @@ public class Predictions extends BaseEntity {
     public Set<TickerDetails> getTickerDetailsPredictions() {
         return this.tickerDetailsPredictions.stream().map(TickerDetailsPredictions::getTickerDetails).collect(Collectors.toSet());
     }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Override
     public boolean equals(Object o) {

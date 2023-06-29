@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/stocks")
@@ -63,7 +66,7 @@ public class StocksController {
                 .sorted(Comparator.comparing(Stocks::getDate))
                 .filter(f -> !isWeekend(f.getDate()))
                 .collect(Collectors.toList());
-        logger.info("{}", stocksSort);
+//        logger.info("{}", stocksSort);
 
         ZonedDateTime start;
         ZonedDateTime end;
@@ -71,6 +74,23 @@ public class StocksController {
         if (stocksSort.size() > 2) {
             start = stocksSort.get(0).getDate();
             end = stocksSort.get(stocksSort.size() - 1).getDate();
+
+            List<ZonedDateTime> listStocks = stocksSort.stream().map(x -> x.getDate()).collect(Collectors.toList());
+
+            long numOfDaysBetween = ChronoUnit.DAYS.between(start, end);
+
+            List<ZonedDateTime> listDates =  IntStream.iterate(0, i -> i + 1)
+                    .limit(numOfDaysBetween)
+                    .mapToObj(i -> start.plusDays(i))
+                    .collect(Collectors.toList());
+
+            List<ZonedDateTime> result = listDates.stream()
+                    .filter(ld -> !isWeekend(ld))
+                    .filter(x -> listStocks.stream().noneMatch(l-> l.isEqual(x)))
+                    .collect(Collectors.toList());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//            logger.info("{}", result);
+            return result.stream().map(x-> String.format("%s - %s", x.format(formatter), DayOfWeek.of(x.get(ChronoField.DAY_OF_WEEK)))).collect(Collectors.toList());
         }
 
         return Arrays.asList();
