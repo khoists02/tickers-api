@@ -2,30 +2,25 @@ package com.tickers.io.applicationapi.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import io.netty.channel.ChannelOption;
-import io.netty.handler.timeout.ReadTimeoutHandler;
-import io.netty.handler.timeout.WriteTimeoutHandler;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.protobuf.ProtobufModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.google.protobuf.util.JsonFormat;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.client.reactive.ClientHttpConnector;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.http.converter.BufferedImageHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.protobuf.ProtobufJsonFormatHttpMessageConverter;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.netty.http.client.HttpClient;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Configuration
 public class GenericBeans {
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper mapper = new ModelMapper();
