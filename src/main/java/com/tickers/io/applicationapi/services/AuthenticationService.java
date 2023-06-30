@@ -18,6 +18,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Builder;
 import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,8 +27,10 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AuthenticationService {
@@ -58,6 +62,7 @@ public class AuthenticationService {
 
     private JwtParser jwtParser;
 
+    private Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
     @PostConstruct
     protected void init() {
@@ -173,5 +178,36 @@ public class AuthenticationService {
                 .signWith(signingKey.getKey())
                 .compressWith(CompressionCodecs.GZIP)
                 .compact();
+    }
+
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+        if (request.getCookies() == null || (request.getCookies() != null &&
+                Arrays.stream(request.getCookies())
+                        .filter(c -> c.getName().contains("tickers.token") || c.getName().contains("tickers.refresh"))
+                        .findFirst().isEmpty())) {
+            throw UnauthenticatedException.UNAUTHENTICATED;
+        }
+
+        Cookie refreshTokenCookie = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals("tickers.refresh"))
+                .findFirst().orElseThrow(() -> UnauthenticatedException.UNAUTHENTICATED);
+        if (refreshTokenCookie.getValue().isBlank())
+            throw UnauthenticatedException.UNAUTHENTICATED;
+
+        this.injectAuthenticationTokenCookie(response,  "");
+        this.injectRefreshTokenCookie(response, "");
+
+        Jws<Claims> refreshTokenParsed;
+        try {
+            refreshTokenParsed = this.jwtParser.parseClaimsJws(refreshTokenCookie.getValue());
+            if (!Optional.ofNullable(refreshTokenParsed.getBody().get("typ", String.class)).orElseThrow(() -> new JwtException("Missing required claim: typ")).equals("refresh")) {
+                throw new JwtException("Invalid value for claim: typ");
+            }
+            UUID sessionId = UUID.fromString(Optional.ofNullable(refreshTokenParsed.getBody().get("ses", String.class)).orElseThrow(() -> new JwtException("Missing required claim: ses")));
+            this.userSessionRepository.deleteById(sessionId);
+            logger.info("Logged out session: {}", sessionId);
+        } catch (JwtException e) {
+            logger.error("There was an exception parsing the refresh token during logout. The user will be logged out but there session will not be removed", e);
+            return;
+        }
     }
 }

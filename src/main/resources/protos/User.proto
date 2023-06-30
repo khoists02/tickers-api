@@ -1,0 +1,20 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "UserProto";
+
+message AuthenticatedUserResponse {
+  message Localisation {
+    string locale = 1;
+    string dateFormat = 2;
+    string timeFormat = 3;
+    string dateTimeFormat = 4;
+  }
+  string id = 1;
+  string name = 2;
+  string username = 3;
+  string email = 4;
+  repeated string permissions = 5;
+  string sessionId = 6;
+  string tenantId = 7;
+}
