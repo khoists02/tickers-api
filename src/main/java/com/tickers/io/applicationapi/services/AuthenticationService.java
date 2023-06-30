@@ -8,6 +8,7 @@ import com.tickers.io.applicationapi.model.User;
 import com.tickers.io.applicationapi.model.UserSession;
 import com.tickers.io.applicationapi.repositories.UserRepository;
 import com.tickers.io.applicationapi.repositories.UserSessionsRepository;
+import com.tickers.io.applicationapi.support.TenantContext;
 import com.tickers.io.applicationapi.utils.RequestUtils;
 import io.jsonwebtoken.*;
 import com.tickers.io.applicationapi.utils.TransactionHandler;
@@ -29,6 +30,9 @@ import java.util.Optional;
 
 @Service
 public class AuthenticationService {
+    @Autowired
+    private TenantContext tenantContext;
+
     @Autowired
     private SigningKeyResolver signingKeyResolver;
 
@@ -137,7 +141,7 @@ public class AuthenticationService {
         KeyWithId signingKey = jwtKeyProvider.getSigningKey("api.mlservice.local");
         return Jwts.builder()
                 .setSubject(user.getId().toString())
-                .claim("tn", "")
+                .claim("tn", tenantContext.getTenantId())
                 .claim("ses", session.getId()) //Session ID - this can be revoked by the user to "kill" this session off or when the user logs out
                 .claim("typ", "access")
                 .claim("un", user.getUserName())
@@ -156,6 +160,8 @@ public class AuthenticationService {
         KeyWithId signingKey = jwtKeyProvider.getSigningKey("api.mlservice.local");
         return Jwts.builder()
                 .claim("typ", "refresh")
+                .claim("tn", tenantContext.getTenantId())
+
                 .setSubject(user.getId().toString())
                 .claim("ses", session.getId()) //Session ID - this can be revoked by the user to "kill" this session off or when the user logs out
                 .setAudience("api.tickers.local")
