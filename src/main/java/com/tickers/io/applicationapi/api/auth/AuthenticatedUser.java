@@ -20,11 +20,11 @@ public class AuthenticatedUser implements Authentication {
     public AuthenticatedUser(Jws<Claims> parsedJwt)
     {
         this.parsedJwt = parsedJwt;
-        this.tenantId = UUID.fromString(parsedJwt.getBody().get("tn", String.class));
+//        this.tenantId = UUID.fromString(parsedJwt.getBody().get("tn", String.class));
         this.userId = UUID.fromString(parsedJwt.getBody().get("sub", String.class));
         this.username = parsedJwt.getBody().get("un", String.class);
         this.sessionId = UUID.fromString(parsedJwt.getBody().get("ses", String.class));
-        this.organisationId = Optional.of(parsedJwt.getBody().get("org", String.class)).filter(s -> !s.isBlank()).map(UUID::fromString).orElse(null);
+//        this.organisationId = Optional.of(parsedJwt.getBody().get("org", String.class)).filter(s -> !s.isBlank()).map(UUID::fromString).orElse(null);
     }
 
     public String getAllowedOrigin()
@@ -63,11 +63,6 @@ public class AuthenticatedUser implements Authentication {
     public UUID getUserId()
     {
         return this.userId;
-    }
-
-    public UUID getTenantId()
-    {
-        return this.tenantId;
     }
 
     @Override

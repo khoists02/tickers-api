@@ -97,6 +97,10 @@ public class WebExceptionHandler {
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<GenericProtos.ErrorResponse> handleGenericError(Throwable throwable) {
         logger.error("Unhandled exception", throwable);
+
+        if (throwable.getMessage().contains("Full authentication is required to access this resource")) {
+            return this.handle(UnauthenticatedException.UNAUTHENTICATED);
+        }
         //We don't want to throw anything non-specific as it could leak information to the user
         ApplicationException exception = new ApplicationException();
         return this.handle(exception);

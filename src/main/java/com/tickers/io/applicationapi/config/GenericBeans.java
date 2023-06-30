@@ -2,6 +2,7 @@ package com.tickers.io.applicationapi.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import io.jsonwebtoken.SigningKeyResolver;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.modelmapper.protobuf.ProtobufModule;

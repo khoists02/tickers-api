@@ -97,26 +97,26 @@ public class MigrationsJob {
 //    }
 
 //    @Scheduled(cron = "0,15,30,45 * 18-19 * * *") // run 01AM - 02AM every day
-    @Scheduled(cron = "0/12 * * * * *")
-    @Async
-    public void importUser() {
-        List<Registration> registrations = registrationRepository.findAllByActivatedAccount(true);
-
-        if (registrations.size() == 0) {
-          return;
-        }
-
-        for (int i = 0; i < registrations.size(); i++) {
-            User user = new User();
-            user.setUserName(registrations.get(i).getUserName());
-            user.setEmail(registrations.get(i).getEmail());
-            user.setPassword(registrations.get(i).getPassword());
-
-            userRepository.save(user);
-            // remove registration record
-            registrationRepository.deleteById(registrations.get(i).getId());
-        }
-    }
+//    @Scheduled(cron = "0/12 * * * * *")
+//    @Async
+//    public void importUser() {
+//        List<Registration> registrations = registrationRepository.findAllByActivatedAccount(true);
+//
+//        if (registrations.size() == 0) {
+//          return;
+//        }
+//
+//        for (int i = 0; i < registrations.size(); i++) {
+//            User user = new User();
+//            user.setUserName(registrations.get(i).getUserName());
+//            user.setEmail(registrations.get(i).getEmail());
+//            user.setPassword(registrations.get(i).getPassword());
+//
+//            userRepository.save(user);
+//            // remove registration record
+//            registrationRepository.deleteById(registrations.get(i).getId());
+//        }
+//    }
 
     @Scheduled(cron = "0,15,30,45 * 17-22 * * *") // run 00AM - 5AM every day
 //    @Scheduled(cron = "0/12 * * * * *")

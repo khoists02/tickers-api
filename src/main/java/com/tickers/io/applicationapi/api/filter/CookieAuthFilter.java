@@ -4,7 +4,7 @@ import com.tickers.io.applicationapi.api.auth.AuthenticatedUser;
 import com.tickers.io.applicationapi.config.WebSecurityConfiguration;
 import com.tickers.io.applicationapi.exceptions.UnauthenticatedException;
 import com.tickers.io.applicationapi.services.AuthenticationService;
-import com.tickers.io.applicationapi.support.TenantContext;
+//import com.tickers.io.applicationapi.support.TenantContext;
 import com.tickers.io.applicationapi.utils.OriginUtils;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.SignatureException;
@@ -28,8 +28,8 @@ public class CookieAuthFilter extends OncePerRequestFilter {
 
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
-    @Autowired
-    private TenantContext tenantContext;
+//    @Autowired
+//    private TenantContext tenantContext;
 
     @Autowired
     private AuthenticationService authenticationService;
@@ -47,7 +47,7 @@ public class CookieAuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        String subdomain = OriginUtils.getSubdomain();
+        String subdomain = "tickers";
         logger.trace("Checking for authentication cookies for subdomain: {}", subdomain);
 
         //See if there is a Cookie for this origin
@@ -75,12 +75,12 @@ public class CookieAuthFilter extends OncePerRequestFilter {
 
         try {
             SecurityContextHolder.getContext().setAuthentication(new AuthenticatedUser(parsedJwt));
-            tenantContext.setTenantId(((AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()).getTenantId());
+//            tenantContext.setTenantId(((AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()).getTenantId());
             // Optional.ofNullable(httpServletRequest.getHeader("X-TZ")).map(TimeZone::getTimeZone).ifPresent(tz -> requestContext.setTimeZone(tz));
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         } finally {
             SecurityContextHolder.clearContext();
-            tenantContext.clear();
+//            tenantContext.clear();
         }
 
     }
@@ -90,8 +90,10 @@ public class CookieAuthFilter extends OncePerRequestFilter {
             return Optional.empty();
         }
         for (Cookie cookie : request.getCookies()) {
-            logger.trace("Found authentication cookie for subdomain: {}", subdomain);
-            return Optional.of(cookie);
+            if (cookie.getName().contains(subdomain + ".token")) {
+                logger.trace("Found authentication cookie for subdomain: {}", subdomain);
+                return Optional.of(cookie);
+            }
         }
         return Optional.empty();
     }

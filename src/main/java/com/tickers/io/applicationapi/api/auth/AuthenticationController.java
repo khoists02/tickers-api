@@ -7,7 +7,7 @@ import com.tickers.io.applicationapi.model.UserSession;
 import com.tickers.io.applicationapi.repositories.UserRepository;
 import com.tickers.io.applicationapi.repositories.UserSessionsRepository;
 import com.tickers.io.applicationapi.services.AuthenticationService;
-import com.tickers.io.applicationapi.support.TenantContext;
+//import com.tickers.io.applicationapi.support.TenantContext;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
@@ -34,8 +34,8 @@ import java.util.UUID;
 public class AuthenticationController {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    private TenantContext tenantContext;
+//    @Autowired
+//    private TenantContext tenantContext;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -109,11 +109,11 @@ public class AuthenticationController {
             throw UnauthenticatedException.UNAUTHENTICATED;
         }
 
-        UUID tenantIdFromToken = UUID.fromString(refreshTokenParsed.getBody().get("tn", String.class));
-        if (!tenantContext.getTenantId().equals(tenantIdFromToken)) {
-            logger.error("Customer ID in Refresh Token: {} doesn't match Customer ID: {}", tenantIdFromToken, tenantContext.getTenantId());
-            throw UnauthenticatedException.UNAUTHENTICATED;
-        }
+//        UUID tenantIdFromToken = UUID.fromString(refreshTokenParsed.getBody().get("tn", String.class));
+//        if (!tenantContext.getTenantId().equals(tenantIdFromToken)) {
+//            logger.error("Customer ID in Refresh Token: {} doesn't match Customer ID: {}", tenantIdFromToken, tenantContext.getTenantId());
+//            throw UnauthenticatedException.UNAUTHENTICATED;
+//        }
 
         //Check that this is a refresh token
         if (!Optional.ofNullable(refreshTokenParsed.getBody().get("typ", String.class)).orElseThrow(() -> UnauthenticatedException.UNAUTHENTICATED).equals("refresh")) {

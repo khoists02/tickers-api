@@ -8,22 +8,28 @@ import com.tickers.io.applicationapi.model.User;
 import com.tickers.io.applicationapi.model.UserSession;
 import com.tickers.io.applicationapi.repositories.UserRepository;
 import com.tickers.io.applicationapi.repositories.UserSessionsRepository;
-import com.tickers.io.applicationapi.support.TenantContext;
+//import com.tickers.io.applicationapi.support.TenantContext;
 import com.tickers.io.applicationapi.utils.RequestUtils;
 import io.jsonwebtoken.*;
 import com.tickers.io.applicationapi.utils.TransactionHandler;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.Builder;
 import lombok.Getter;
+import org.checkerframework.checker.units.qual.K;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
@@ -34,17 +40,6 @@ import java.util.UUID;
 
 @Service
 public class AuthenticationService {
-    @Autowired
-    private TenantContext tenantContext;
-
-    @Autowired
-    private SigningKeyResolver signingKeyResolver;
-
-    @Autowired
-    private KeyProvider jwtKeyProvider;
-
-    @Autowired
-    private HttpServletRequest request;
     @Autowired
     private HttpServletResponse response;
 
@@ -64,12 +59,32 @@ public class AuthenticationService {
 
     private Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
+    private String secret = "Rdg0gZsfsubWzajsbT8xPVnmd1BASyXojy9/PAV5+VrE5OVq+e/7xA==";
+
     @PostConstruct
     protected void init() {
+//        SigningKeyResolver x509SigningKeyResolver = new X509SigningKeyResolver();
+        SigningKeyResolver key = new SigningKeyResolverAdapter(); // TODO: refactor here
         this.jwtParser = Jwts.parserBuilder()
                 .requireAudience("api.tickers.local")
                 .requireIssuer("api.mlservice.local")
-                .setSigningKeyResolver(signingKeyResolver)
+                .setSigningKeyResolver(new SigningKeyResolverAdapter() {
+                    @Override
+                    public byte[] resolveSigningKeyBytes(JwsHeader header, Claims claims) {
+                        final String identity = claims.getSubject();
+
+                        // Get the key based on the key id in the claims
+                        final Integer keyId = claims.get("kid", Integer.class);
+                        byte[] keyBytes = Decoders.BASE64.decode("Rdg0gZsfsubWzajsbT8xPVnmd1BASyXojy9/PAV5+VrE5OVq+e/7xA==");
+                        final Key key = Keys.hmacShaKeyFor(keyBytes);
+
+                        // Ensure we were able to find a key that was previously issued by this key service for this user
+                        if (key == null) {
+                            throw new UnsupportedJwtException("Unable to determine signing key for " + identity + " [kid: " + keyId + "]");
+                        }
+                        return key.getEncoded();
+                    }
+                })
                 .build();
     }
 
@@ -81,12 +96,10 @@ public class AuthenticationService {
     }
 
     public void authenticate(AuthenticationContext context) {
-        User user = userRepository.findOneByUsername(context.getUsername()).orElseThrow(NotFoundException::new);
+        User user = userRepository.findOneByUserName(context.getUsername()).orElseThrow(NotFoundException::new);
 
         if (user.getBlocked()) throw new BadRequestException();
-
-
-
+//        tenantContext.setTenantId(UUID.fromString("7d8d66ab-e025-420b-bc63-2845b6319b99"));
 
         transactionHandler.runInNewTransaction(() -> {
             // Check the credentials, if not a SAML auth request
@@ -103,6 +116,14 @@ public class AuthenticationService {
             this.injectAuthenticationTokenCookie(response, accessToken);
             this.injectRefreshTokenCookie(response, refreshToken);
         });
+    }
+
+    public String resolveToken(HttpServletRequest httpServletRequest) {
+        String bearerToken = httpServletRequest.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 
     public Jws<Claims> parseJwt(String token) {
@@ -143,39 +164,44 @@ public class AuthenticationService {
     }
 
     public String generateAccessToken(AuthenticationContext context, User user, UserSession session) {
-        KeyWithId signingKey = jwtKeyProvider.getSigningKey("api.mlservice.local");
+//        KeyWithId signingKey = jwtKeyProvider.getSigningKey("api.mlservice.local");
         return Jwts.builder()
                 .setSubject(user.getId().toString())
-                .claim("tn", tenantContext.getTenantId())
+//                .claim("tn", tenantContext.getTenantId())
                 .claim("ses", session.getId()) //Session ID - this can be revoked by the user to "kill" this session off or when the user logs out
                 .claim("typ", "access")
                 .claim("un", user.getUserName())
                 .setAudience("api.tickers.local")
                 .setIssuer("api.mlservice.local")
                 .setIssuedAt(new Date())
-                .setNotBefore(Optional.ofNullable(signingKey.getNotBefore()).map(zdt -> Date.from(zdt.toInstant())).orElse(null))
+                .setNotBefore(Optional.ofNullable(this.getSigningKey().getNotBefore()).map(zdt -> Date.from(zdt.toInstant())).orElse(null))
                 .setExpiration(Date.from(Instant.now().plus(10, ChronoUnit.MINUTES)))
-                .setHeaderParam("kid", signingKey.getKid())
-                .signWith(signingKey.getKey())
+                .setHeaderParam("kid", this.getSigningKey().getKid())
+                .signWith(this.getSigningKey().getKey())
                 .compressWith(CompressionCodecs.GZIP)
                 .compact();
     }
 
+    private KeyWithId getSigningKey() {
+        byte[] keyBytes = Decoders.BASE64.decode(this.secret);
+        KeyWithId key = new KeyWithId("api.mlservice.local", Keys.hmacShaKeyFor(keyBytes), null);
+        return key;
+    }
+
     public String generateRefreshToken(AuthenticationContext context, User user, UserSession session) {
-        KeyWithId signingKey = jwtKeyProvider.getSigningKey("api.mlservice.local");
+//        KeyWithId signingKey = jwtKeyProvider.getSigningKey("api.mlservice.local");
         return Jwts.builder()
                 .claim("typ", "refresh")
-                .claim("tn", tenantContext.getTenantId())
-
+//                .claim("tn", tenantContext.getTenantId())
                 .setSubject(user.getId().toString())
                 .claim("ses", session.getId()) //Session ID - this can be revoked by the user to "kill" this session off or when the user logs out
                 .setAudience("api.tickers.local")
                 .setIssuer("api.mlservice.local")
                 .setIssuedAt(new Date())
-                .setNotBefore(Optional.ofNullable(signingKey.getNotBefore()).map(zdt -> Date.from(zdt.toInstant())).orElse(null))
+                .setNotBefore(Optional.ofNullable(this.getSigningKey().getNotBefore()).map(zdt -> Date.from(zdt.toInstant())).orElse(null))
                 .setExpiration(Date.from(session.getExpiresAt().toInstant()))
-                .setHeaderParam("kid", signingKey.getKid())
-                .signWith(signingKey.getKey())
+                .setHeaderParam("kid", this.getSigningKey().getKid())
+                .signWith(this.getSigningKey().getKey())
                 .compressWith(CompressionCodecs.GZIP)
                 .compact();
     }
