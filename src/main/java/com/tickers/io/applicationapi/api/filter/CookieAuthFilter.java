@@ -3,6 +3,7 @@ package com.tickers.io.applicationapi.api.filter;
 import com.tickers.io.applicationapi.api.auth.AuthenticatedUser;
 import com.tickers.io.applicationapi.config.WebSecurityConfiguration;
 import com.tickers.io.applicationapi.exceptions.UnauthenticatedException;
+import com.tickers.io.applicationapi.exceptions.UnauthorizedException;
 import com.tickers.io.applicationapi.services.AuthenticationService;
 //import com.tickers.io.applicationapi.support.TenantContext;
 import com.tickers.io.applicationapi.utils.OriginUtils;
@@ -16,20 +17,27 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.server.ServletServerHttpRequest;
+import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class CookieAuthFilter extends OncePerRequestFilter {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();
+    @Autowired
+    @Qualifier("handlerExceptionResolver")
+    private HandlerExceptionResolver exceptionHandlerResolver;
 
-//    @Autowired
-//    private TenantContext tenantContext;
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Autowired
     private AuthenticationService authenticationService;
@@ -51,22 +59,13 @@ public class CookieAuthFilter extends OncePerRequestFilter {
         logger.trace("Checking for authentication cookies for subdomain: {}", subdomain);
 
         //See if there is a Cookie for this origin
-        Optional<Cookie> authCookie = resolveAuthenticationCookieForSubdomain(httpServletRequest, subdomain);
+        Optional<Cookie> authCookie = resolveAuthenticationCookieForSubdomain(httpServletRequest, httpServletResponse , subdomain);
         if (authCookie.isEmpty() || authCookie.get().getValue().isBlank()) {
             filterChain.doFilter(httpServletRequest, httpServletResponse);
             return;
         }
 
-        Jws<Claims> parsedJwt;
-        try {
-            parsedJwt = authenticationService.parseJwt(authCookie.get().getValue());
-        } catch (UnsupportedJwtException | MalformedJwtException | CompressionException | IllegalArgumentException e) {
-            throw UnauthenticatedException.MALFORMED_TOKEN;
-        } catch (ExpiredJwtException e) {
-            throw UnauthenticatedException.EXPIRED_TOKEN;
-        } catch (SignatureException e) {
-            throw UnauthenticatedException.INVALID_TOKEN;
-        }
+        Jws<Claims> parsedJwt = authenticationService.parseCookieFilterJwt(authCookie.get().getValue());
 
         String tokenType = Optional.ofNullable(parsedJwt.getBody().get("typ", String.class))
                 .orElseThrow(() -> UnauthenticatedException.INVALID_TOKEN);
@@ -75,26 +74,45 @@ public class CookieAuthFilter extends OncePerRequestFilter {
 
         try {
             SecurityContextHolder.getContext().setAuthentication(new AuthenticatedUser(parsedJwt));
-//            tenantContext.setTenantId(((AuthenticatedUser) SecurityContextHolder.getContext().getAuthentication()).getTenantId());
-            // Optional.ofNullable(httpServletRequest.getHeader("X-TZ")).map(TimeZone::getTimeZone).ifPresent(tz -> requestContext.setTimeZone(tz));
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         } finally {
             SecurityContextHolder.clearContext();
-//            tenantContext.clear();
         }
-
     }
 
-    private Optional<Cookie> resolveAuthenticationCookieForSubdomain(HttpServletRequest request, String subdomain) {
+    private Optional<Cookie> resolveAuthenticationCookieForSubdomain(HttpServletRequest request, HttpServletResponse httpServletResponse, String subdomain) {
         if (request.getCookies() == null) {
             return Optional.empty();
         }
+        List<Cookie> cookieList = List.of(request.getCookies());
+        List<Cookie> filtered = cookieList.stream().filter(x-> x.getName().contains("tickers.token")).collect(Collectors.toList());
+        int size = filtered.size();
+
+        Cookie tokenCookie = null;
+
+        if (size == 2) {
+            tokenCookie = filtered.get(1);
+
+            Cookie deleteCookie = filtered.get(0);
+            deleteCookie.setMaxAge(0);
+            deleteCookie.setPath("/");
+            deleteCookie.setDomain("mylocal.tickers.local");
+            httpServletResponse.addCookie(deleteCookie);
+        } else if (size == 1) {
+            // always true
+            tokenCookie = filtered.get(0);
+        }
+
         for (Cookie cookie : request.getCookies()) {
             if (cookie.getName().contains(subdomain + ".token")) {
                 logger.trace("Found authentication cookie for subdomain: {}", subdomain);
-                return Optional.of(cookie);
+                return Optional.of(tokenCookie);
             }
         }
         return Optional.empty();
+    }
+
+    protected void rejectRequest(ServletServerHttpRequest request, ServletServerHttpResponse response, UnauthenticatedException exception) {
+        exceptionHandlerResolver.resolveException(request.getServletRequest(), response.getServletResponse(), null, exception);
     }
 }

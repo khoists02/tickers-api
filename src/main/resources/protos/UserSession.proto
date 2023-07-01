@@ -1,0 +1,18 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "UserSessionProtos";
+import "Generic.proto";
+
+message UserSessionResponse {
+  string id = 1;
+  string user_agent = 2;
+  string ip = 3;
+  string expires_at = 4;
+  string created_at = 5;
+}
+
+message UserSessionsResponse {
+  repeated UserSessionResponse content = 1;
+  PageableResponse pageable = 2;
+}

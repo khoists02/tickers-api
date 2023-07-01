@@ -54,7 +54,7 @@ public class AuthenticationController {
         try {
             authenticationService.authenticate(
                     AuthenticationService.AuthenticationContext.builder()
-                            .username(authenticationRequest.getUserName())
+                            .username(authenticationRequest.getUsername())
                             .password(authenticationRequest.getPassword())
                             .build()
             );
@@ -91,9 +91,7 @@ public class AuthenticationController {
     @Transactional
     @PostMapping("/refresh")
     public void refresh(HttpServletRequest request, HttpServletResponse response) {
-        String subdomain = "tickers";
-
-        Cookie refreshTokenCookie = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals(subdomain + ".refresh"))
+        Cookie refreshTokenCookie = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals("tickers.refresh"))
                 .findFirst().orElseThrow(() -> UnauthenticatedException.UNAUTHENTICATED);
 
         if (Optional.ofNullable(refreshTokenCookie.getValue()).orElse("").isBlank())
@@ -108,13 +106,6 @@ public class AuthenticationController {
             logger.error("JWT Exception", e);
             throw UnauthenticatedException.UNAUTHENTICATED;
         }
-
-//        UUID tenantIdFromToken = UUID.fromString(refreshTokenParsed.getBody().get("tn", String.class));
-//        if (!tenantContext.getTenantId().equals(tenantIdFromToken)) {
-//            logger.error("Customer ID in Refresh Token: {} doesn't match Customer ID: {}", tenantIdFromToken, tenantContext.getTenantId());
-//            throw UnauthenticatedException.UNAUTHENTICATED;
-//        }
-
         //Check that this is a refresh token
         if (!Optional.ofNullable(refreshTokenParsed.getBody().get("typ", String.class)).orElseThrow(() -> UnauthenticatedException.UNAUTHENTICATED).equals("refresh")) {
             logger.error("Token claim: typ is not refresh so can not be used to issue a new Access Token");
@@ -137,10 +128,24 @@ public class AuthenticationController {
         String accessToken = authenticationService.generateAccessToken(AuthenticationService.AuthenticationContext.builder().build(), user, session);
         String refreshToken = authenticationService.generateRefreshToken(AuthenticationService.AuthenticationContext.builder().build(), user, session);
 
+        // delete cookies
+        authenticationService.removeAllCookieHaveDomain(request, response);
+
         //Set Cookies
         authenticationService.injectAuthenticationTokenCookie(response,  accessToken);
         authenticationService.injectRefreshTokenCookie(response, refreshToken);
 
     }
 
+    @DeleteMapping("/deleteAll")
+    public void deleteCookiesFromDomain(HttpServletRequest request, HttpServletResponse response) {
+        if (request.getCookies() != null) {
+            Arrays.stream(request.getCookies()).forEach(cookie -> {
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            });
+        }
+
+    }
 }

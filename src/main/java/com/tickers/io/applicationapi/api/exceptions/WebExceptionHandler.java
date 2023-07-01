@@ -4,11 +4,14 @@ import com.google.protobuf.Message;
 import com.tickers.io.applicationapi.exceptions.*;
 import com.tickers.io.applicationapi.interfaces.PathUUID;
 import com.tickers.io.protobuf.GenericProtos;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.csrf.CsrfException;
 import org.springframework.security.web.csrf.InvalidCsrfTokenException;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -94,13 +98,24 @@ public class WebExceptionHandler {
                 422);
     }
 
+//    @ExceptionHandler(IOException.class)
+//    public ResponseEntity<GenericProtos.ErrorResponse> exceptionHandler(IOException e) {
+//        if (StringUtils.containsIgnoreCase(ExceptionUtils.getMessage(e), "Broken pipe")) {
+//            logger.warn("Client closed connection");
+//            return null;
+//        }
+//        return this.handle(new ApplicationException());
+//    }
+
+    @ExceptionHandler(InsufficientAuthenticationException.class)
+    public ResponseEntity<GenericProtos.ErrorResponse> handleInsufficientAuthenticationException(InsufficientAuthenticationException insufficientAuthenticationException) {
+        UnauthenticatedException exception = UnauthenticatedException.UNAUTHENTICATED;
+        return this.handle(exception);
+    }
+
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<GenericProtos.ErrorResponse> handleGenericError(Throwable throwable) {
         logger.error("Unhandled exception", throwable);
-
-        if (throwable.getMessage().contains("Full authentication is required to access this resource")) {
-            return this.handle(UnauthenticatedException.UNAUTHENTICATED);
-        }
         //We don't want to throw anything non-specific as it could leak information to the user
         ApplicationException exception = new ApplicationException();
         return this.handle(exception);
