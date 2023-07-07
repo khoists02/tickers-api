@@ -50,6 +50,10 @@ public class Migrations extends BaseEntity {
     @Getter
     private boolean active;
 
+    @Getter
+    @Setter
+    private boolean migrated;
+
     @OneToOne(fetch = FetchType.LAZY)
     @LazyToOne(LazyToOneOption.NO_PROXY)
     @JoinColumn(name = "user_id")

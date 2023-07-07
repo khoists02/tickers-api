@@ -17,6 +17,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.text.DecimalFormat;
 import java.time.DayOfWeek;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -118,7 +119,7 @@ public class MigrationsJob {
 //        }
 //    }
 
-    @Scheduled(cron = "0,15,30,45 * 17-22 * * *") // run 00AM - 5AM every day
+    @Scheduled(cron = "0,15,30,45 * 13-17 * * *") // run 00AM - 5AM every day
 //    @Scheduled(cron = "0/12 * * * * *")
     @Async
     public void importOpenCloseData() {
@@ -127,8 +128,10 @@ public class MigrationsJob {
         ZonedDateTime newDate = currentDate.plusDays(1);
         logger.info("{}", newDate);
 
-        if (newDate.isAfter(migrations.getEndDate())) {
+        if (newDate.isAfter(migrations.getEndDate()) && migrations.isMigrated()) {
             logger.info("Import All records Success !!!");
+            migrations.setMigrated(true);
+            migrationsJobRepository.save(migrations); // set migrated
             return;
         }
 
@@ -155,13 +158,13 @@ public class MigrationsJob {
                     Stocks updated = new Stocks();
                     updated.setTicker(migrations.getTickerName());
                     updated.setDate(currentDate);
-                    updated.setClose(Float.parseFloat(filterResponse.getClose()));
-                    updated.setOpen(Float.parseFloat(filterResponse.getOpen()));
-                    updated.setHigh(Float.parseFloat(filterResponse.getHigh()));
-                    updated.setLow(Float.parseFloat(filterResponse.getLow()));
+                    updated.setClose(Float.parseFloat(decimalFormat(filterResponse.getClose())));
+                    updated.setOpen(Float.parseFloat(decimalFormat(filterResponse.getOpen())));
+                    updated.setHigh(Float.parseFloat(decimalFormat(filterResponse.getHigh())));
+                    updated.setLow(Float.parseFloat(decimalFormat(filterResponse.getLow())));
                     updated.setVolume(filterResponse.getVolume());
                     updated.setTickerDetails(tickerDetails);
-                    updated.setType(String.valueOf(StockTypeEnum.DAY));
+                    updated.setType(StockTypeEnum.DAY);
                     stocksRepository.save(updated);
 
                     // add one day for current date filter
@@ -191,5 +194,12 @@ public class MigrationsJob {
         MathContext m = new MathContext(3);
         BigDecimal bg = new BigDecimal(decimalStr, m);
         return bg.toPlainString();
+    }
+
+    public String decimalFormat(String value) {
+        Float litersOfPetrol=Float.parseFloat(value);
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setMaximumFractionDigits(2);
+        return df.format(litersOfPetrol);
     }
 }

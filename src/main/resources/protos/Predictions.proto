@@ -5,9 +5,10 @@ option java_outer_classname = "PredictionsProto";
 import "Generic.proto";
 
 message PredictionsRequest {
-  string name = 1;
-  string trainFilter = 2;
-  string testFilter = 3;
+  string id = 1;
+  string name = 2;
+  string trainFilter = 3;
+  string testFilter = 4;
 }
 
 message PredictionResponse {

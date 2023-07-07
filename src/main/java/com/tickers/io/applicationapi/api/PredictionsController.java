@@ -198,14 +198,20 @@ public class PredictionsController {
     @GetMapping()
     public PredictionsProto.PredictionsResponse getTickersListing(
             @RequestParam("name") Optional<String> name,
+            @RequestParam("mode") Optional<String> mode,
             @PageableDefault Pageable pageable) {
         PredictionsCriteria searchCriteria = new PredictionsCriteria();
         searchCriteria.setName(name.orElse(null));
-
-//        EntityGraph entityGraph = predictionsRepository.createEntityGraph();
-//        entityGraph.addAttributeNodes("tickerDetails");
-
         Page<Predictions> page = predictionsRepository.findAll(PredictionsSpecification.predictionsQuery(searchCriteria), pageable);
+        if (mode.isPresent() && mode.orElse("").equals("dropdown")) {
+            return PredictionsProto.PredictionsResponse.newBuilder()
+                    .addAllContent(page.stream().map(t -> {
+                        PredictionsProto.PredictionResponse.Builder builder = mapper.map(t, PredictionsProto.PredictionResponse.Builder.class);
+                        return builder.build();
+                    }).toList())
+                    .build();
+        }
+
         return PredictionsProto.PredictionsResponse.newBuilder()
                 .addAllContent(page.stream().map(t -> {
                     PredictionsProto.PredictionResponse.Builder builder = mapper.map(t, PredictionsProto.PredictionResponse.Builder.class);

@@ -55,7 +55,8 @@ public class Stocks extends BaseEntity implements Serializable {
 
     @Getter
     @Setter
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private StockTypeEnum type;
 
     @Getter
     @Setter

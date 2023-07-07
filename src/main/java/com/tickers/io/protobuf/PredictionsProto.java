@@ -19,36 +19,48 @@ public final class PredictionsProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string name = 1;</code>
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    java.lang.String getId();
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>string name = 2;</code>
      * @return The name.
      */
     java.lang.String getName();
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 2;</code>
      * @return The bytes for name.
      */
     com.google.protobuf.ByteString
         getNameBytes();
 
     /**
-     * <code>string trainFilter = 2;</code>
+     * <code>string trainFilter = 3;</code>
      * @return The trainFilter.
      */
     java.lang.String getTrainFilter();
     /**
-     * <code>string trainFilter = 2;</code>
+     * <code>string trainFilter = 3;</code>
      * @return The bytes for trainFilter.
      */
     com.google.protobuf.ByteString
         getTrainFilterBytes();
 
     /**
-     * <code>string testFilter = 3;</code>
+     * <code>string testFilter = 4;</code>
      * @return The testFilter.
      */
     java.lang.String getTestFilter();
     /**
-     * <code>string testFilter = 3;</code>
+     * <code>string testFilter = 4;</code>
      * @return The bytes for testFilter.
      */
     com.google.protobuf.ByteString
@@ -67,6 +79,7 @@ public final class PredictionsProto {
       super(builder);
     }
     private PredictionsRequest() {
+      id_ = "";
       name_ = "";
       trainFilter_ = "";
       testFilter_ = "";
@@ -105,16 +118,22 @@ public final class PredictionsProto {
             case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              name_ = s;
+              id_ = s;
               break;
             }
             case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              trainFilter_ = s;
+              name_ = s;
               break;
             }
             case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              trainFilter_ = s;
+              break;
+            }
+            case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
               testFilter_ = s;
@@ -152,10 +171,46 @@ public final class PredictionsProto {
               com.tickers.io.protobuf.PredictionsProto.PredictionsRequest.class, com.tickers.io.protobuf.PredictionsProto.PredictionsRequest.Builder.class);
     }
 
-    public static final int NAME_FIELD_NUMBER = 1;
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
     private volatile java.lang.Object name_;
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 2;</code>
      * @return The name.
      */
     public java.lang.String getName() {
@@ -171,7 +226,7 @@ public final class PredictionsProto {
       }
     }
     /**
-     * <code>string name = 1;</code>
+     * <code>string name = 2;</code>
      * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
@@ -188,10 +243,10 @@ public final class PredictionsProto {
       }
     }
 
-    public static final int TRAINFILTER_FIELD_NUMBER = 2;
+    public static final int TRAINFILTER_FIELD_NUMBER = 3;
     private volatile java.lang.Object trainFilter_;
     /**
-     * <code>string trainFilter = 2;</code>
+     * <code>string trainFilter = 3;</code>
      * @return The trainFilter.
      */
     public java.lang.String getTrainFilter() {
@@ -207,7 +262,7 @@ public final class PredictionsProto {
       }
     }
     /**
-     * <code>string trainFilter = 2;</code>
+     * <code>string trainFilter = 3;</code>
      * @return The bytes for trainFilter.
      */
     public com.google.protobuf.ByteString
@@ -224,10 +279,10 @@ public final class PredictionsProto {
       }
     }
 
-    public static final int TESTFILTER_FIELD_NUMBER = 3;
+    public static final int TESTFILTER_FIELD_NUMBER = 4;
     private volatile java.lang.Object testFilter_;
     /**
-     * <code>string testFilter = 3;</code>
+     * <code>string testFilter = 4;</code>
      * @return The testFilter.
      */
     public java.lang.String getTestFilter() {
@@ -243,7 +298,7 @@ public final class PredictionsProto {
       }
     }
     /**
-     * <code>string testFilter = 3;</code>
+     * <code>string testFilter = 4;</code>
      * @return The bytes for testFilter.
      */
     public com.google.protobuf.ByteString
@@ -274,14 +329,17 @@ public final class PredictionsProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      }
       if (!getNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
       if (!getTrainFilterBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, trainFilter_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, trainFilter_);
       }
       if (!getTestFilterBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, testFilter_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, testFilter_);
       }
       unknownFields.writeTo(output);
     }
@@ -292,14 +350,17 @@ public final class PredictionsProto {
       if (size != -1) return size;
 
       size = 0;
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
       if (!getNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
       }
       if (!getTrainFilterBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, trainFilter_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, trainFilter_);
       }
       if (!getTestFilterBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, testFilter_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, testFilter_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -316,6 +377,8 @@ public final class PredictionsProto {
       }
       com.tickers.io.protobuf.PredictionsProto.PredictionsRequest other = (com.tickers.io.protobuf.PredictionsProto.PredictionsRequest) obj;
 
+      if (!getId()
+          .equals(other.getId())) return false;
       if (!getName()
           .equals(other.getName())) return false;
       if (!getTrainFilter()
@@ -333,6 +396,8 @@ public final class PredictionsProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + TRAINFILTER_FIELD_NUMBER;
@@ -472,6 +537,8 @@ public final class PredictionsProto {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        id_ = "";
+
         name_ = "";
 
         trainFilter_ = "";
@@ -504,6 +571,7 @@ public final class PredictionsProto {
       @java.lang.Override
       public com.tickers.io.protobuf.PredictionsProto.PredictionsRequest buildPartial() {
         com.tickers.io.protobuf.PredictionsProto.PredictionsRequest result = new com.tickers.io.protobuf.PredictionsProto.PredictionsRequest(this);
+        result.id_ = id_;
         result.name_ = name_;
         result.trainFilter_ = trainFilter_;
         result.testFilter_ = testFilter_;
@@ -555,6 +623,10 @@ public final class PredictionsProto {
 
       public Builder mergeFrom(com.tickers.io.protobuf.PredictionsProto.PredictionsRequest other) {
         if (other == com.tickers.io.protobuf.PredictionsProto.PredictionsRequest.getDefaultInstance()) return this;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
           onChanged();
@@ -596,9 +668,85 @@ public final class PredictionsProto {
         return this;
       }
 
+      private java.lang.Object id_ = "";
+      /**
+       * <code>string id = 1;</code>
+       * @return The id.
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return The bytes for id.
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
       private java.lang.Object name_ = "";
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @return The name.
        */
       public java.lang.String getName() {
@@ -614,7 +762,7 @@ public final class PredictionsProto {
         }
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @return The bytes for name.
        */
       public com.google.protobuf.ByteString
@@ -631,7 +779,7 @@ public final class PredictionsProto {
         }
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @param value The name to set.
        * @return This builder for chaining.
        */
@@ -646,7 +794,7 @@ public final class PredictionsProto {
         return this;
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearName() {
@@ -656,7 +804,7 @@ public final class PredictionsProto {
         return this;
       }
       /**
-       * <code>string name = 1;</code>
+       * <code>string name = 2;</code>
        * @param value The bytes for name to set.
        * @return This builder for chaining.
        */
@@ -674,7 +822,7 @@ public final class PredictionsProto {
 
       private java.lang.Object trainFilter_ = "";
       /**
-       * <code>string trainFilter = 2;</code>
+       * <code>string trainFilter = 3;</code>
        * @return The trainFilter.
        */
       public java.lang.String getTrainFilter() {
@@ -690,7 +838,7 @@ public final class PredictionsProto {
         }
       }
       /**
-       * <code>string trainFilter = 2;</code>
+       * <code>string trainFilter = 3;</code>
        * @return The bytes for trainFilter.
        */
       public com.google.protobuf.ByteString
@@ -707,7 +855,7 @@ public final class PredictionsProto {
         }
       }
       /**
-       * <code>string trainFilter = 2;</code>
+       * <code>string trainFilter = 3;</code>
        * @param value The trainFilter to set.
        * @return This builder for chaining.
        */
@@ -722,7 +870,7 @@ public final class PredictionsProto {
         return this;
       }
       /**
-       * <code>string trainFilter = 2;</code>
+       * <code>string trainFilter = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearTrainFilter() {
@@ -732,7 +880,7 @@ public final class PredictionsProto {
         return this;
       }
       /**
-       * <code>string trainFilter = 2;</code>
+       * <code>string trainFilter = 3;</code>
        * @param value The bytes for trainFilter to set.
        * @return This builder for chaining.
        */
@@ -750,7 +898,7 @@ public final class PredictionsProto {
 
       private java.lang.Object testFilter_ = "";
       /**
-       * <code>string testFilter = 3;</code>
+       * <code>string testFilter = 4;</code>
        * @return The testFilter.
        */
       public java.lang.String getTestFilter() {
@@ -766,7 +914,7 @@ public final class PredictionsProto {
         }
       }
       /**
-       * <code>string testFilter = 3;</code>
+       * <code>string testFilter = 4;</code>
        * @return The bytes for testFilter.
        */
       public com.google.protobuf.ByteString
@@ -783,7 +931,7 @@ public final class PredictionsProto {
         }
       }
       /**
-       * <code>string testFilter = 3;</code>
+       * <code>string testFilter = 4;</code>
        * @param value The testFilter to set.
        * @return This builder for chaining.
        */
@@ -798,7 +946,7 @@ public final class PredictionsProto {
         return this;
       }
       /**
-       * <code>string testFilter = 3;</code>
+       * <code>string testFilter = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearTestFilter() {
@@ -808,7 +956,7 @@ public final class PredictionsProto {
         return this;
       }
       /**
-       * <code>string testFilter = 3;</code>
+       * <code>string testFilter = 4;</code>
        * @param value The bytes for testFilter to set.
        * @return This builder for chaining.
        */
@@ -2899,15 +3047,15 @@ public final class PredictionsProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\021Predictions.proto\022\005model\032\rGeneric.prot" +
-      "o\"K\n\022PredictionsRequest\022\014\n\004name\030\001 \001(\t\022\023\n" +
-      "\013trainFilter\030\002 \001(\t\022\022\n\ntestFilter\030\003 \001(\t\"W" +
-      "\n\022PredictionResponse\022\n\n\002id\030\001 \001(\t\022\014\n\004name" +
-      "\030\002 \001(\t\022\023\n\013trainFilter\030\003 \001(\t\022\022\n\ntestFilte" +
-      "r\030\004 \001(\t\"l\n\023PredictionsResponse\022*\n\007conten" +
-      "t\030\001 \003(\0132\031.model.PredictionResponse\022)\n\010pa" +
-      "geable\030\002 \001(\0132\027.model.PageableResponseB+\n" +
-      "\027com.tickers.io.protobufB\020PredictionsPro" +
-      "tob\006proto3"
+      "o\"W\n\022PredictionsRequest\022\n\n\002id\030\001 \001(\t\022\014\n\004n" +
+      "ame\030\002 \001(\t\022\023\n\013trainFilter\030\003 \001(\t\022\022\n\ntestFi" +
+      "lter\030\004 \001(\t\"W\n\022PredictionResponse\022\n\n\002id\030\001" +
+      " \001(\t\022\014\n\004name\030\002 \001(\t\022\023\n\013trainFilter\030\003 \001(\t\022" +
+      "\022\n\ntestFilter\030\004 \001(\t\"l\n\023PredictionsRespon" +
+      "se\022*\n\007content\030\001 \003(\0132\031.model.PredictionRe" +
+      "sponse\022)\n\010pageable\030\002 \001(\0132\027.model.Pageabl" +
+      "eResponseB+\n\027com.tickers.io.protobufB\020Pr" +
+      "edictionsProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2919,7 +3067,7 @@ public final class PredictionsProto {
     internal_static_model_PredictionsRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_model_PredictionsRequest_descriptor,
-        new java.lang.String[] { "Name", "TrainFilter", "TestFilter", });
+        new java.lang.String[] { "Id", "Name", "TrainFilter", "TestFilter", });
     internal_static_model_PredictionResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_model_PredictionResponse_fieldAccessorTable = new

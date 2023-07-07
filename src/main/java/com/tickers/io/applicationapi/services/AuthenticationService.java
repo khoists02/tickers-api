@@ -171,7 +171,7 @@ public class AuthenticationService {
 
     public void extendUserSession(UserSession session) {
         if (session.getPermitExtension())
-            session.setExpiresAt(ZonedDateTime.now().plus(30, ChronoUnit.MINUTES));
+            session.setExpiresAt(ZonedDateTime.now().plus(45, ChronoUnit.MINUTES));
         session.setIp(RequestUtils.getClientIpAddress());
         session.setUserAgent(RequestUtils.getHeader("User-Agent", ""));
     }
@@ -186,7 +186,7 @@ public class AuthenticationService {
                 .setIssuer(this.ISSUER)
                 .setIssuedAt(new Date())
                 .setNotBefore(Optional.ofNullable(this.getSigningKey().getNotBefore()).map(zdt -> Date.from(zdt.toInstant())).orElse(null))
-                .setExpiration(Date.from(Instant.now().plus(10, ChronoUnit.MINUTES)))
+                .setExpiration(Date.from(Instant.now().plus(30, ChronoUnit.MINUTES)))
                 .setHeaderParam("kid", this.getSigningKey().getKid())
                 .signWith(this.getSigningKey().getKey())
                 .compressWith(CompressionCodecs.GZIP)
