@@ -63,6 +63,30 @@ public class Filter extends BaseUserEntity {
     @JoinColumn(name = "ticker_id")
     private TickerDetails tickerDetails;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @NotNull
+    private User user;
+
+
+    public Filter(TickerDetails tickerDetails) {
+        this.tickerDetails = tickerDetails;
+    }
+
+    public Filter(User user) {
+        this.user = user;
+    }
+
+    public Filter(TickerDetails tickerDetails, User user) {
+        this.user = user;
+        this.tickerDetails = tickerDetails;
+    }
+
+    public Filter() {
+
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

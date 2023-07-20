@@ -51,4 +51,18 @@ public class PredictionsHistory extends BaseEntity{
     @JoinColumn(name = "filter_id")
     @NotNull
     private Filter filter;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @NotNull
+    private User user;
+
+    public PredictionsHistory() {
+
+    }
+
+    public PredictionsHistory(Filter filter) {
+        this.filter = filter;
+    }
+
 }
