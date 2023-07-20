@@ -24,5 +24,5 @@ public enum TickerTypesEnum {
     NYRS,
     AGEN,
     EQLK,
-    ETS
+    ETS;
 }
