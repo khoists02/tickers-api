@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "filters")
-public class Filter extends BaseEntity {
+public class Filter extends BaseUserEntity {
     @Getter
     @Setter
     @NotNull
