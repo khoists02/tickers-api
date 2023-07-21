@@ -61,8 +61,24 @@ public class PredictionsHistory extends BaseEntity{
 
     }
 
+    public PredictionsHistory(User user) {
+        this.user = user;
+    }
+
     public PredictionsHistory(Filter filter) {
         this.filter = filter;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PredictionsHistory)) return false;
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
 }

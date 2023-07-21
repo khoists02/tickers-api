@@ -4,10 +4,28 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "filters")
 public class Filter extends BaseUserEntity {
+    @Getter
+    @Setter
+    @NotNull
+    private String name;
+
+    @Getter
+    @Setter
+    @Column(name = "start_date")
+    private ZonedDateTime startDate;
+
+    @Getter
+    @Setter
+    @Column(name = "end_date")
+    private ZonedDateTime endDate;
+
     @Getter
     @Setter
     @NotNull
