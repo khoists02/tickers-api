@@ -7,6 +7,7 @@ import com.tickers.io.applicationapi.api.filter.ActuatorAuthenticationFilter;
 import com.tickers.io.applicationapi.api.filter.CookieAuthFilter;
 import com.tickers.io.applicationapi.api.filter.CorsFilter;
 import com.tickers.io.applicationapi.api.filter.OrganisationResolvingFilter;
+//import com.tickers.io.applicationapi.support.TenantContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -35,8 +36,7 @@ public class WebSecurityConfiguration {
         return new CookieCsrfTokenRepository();
     }
 
-    public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**", "/tickers/**", "/upload/**",
-            "/stocks/**", "/rabbitmq/**", "/migrations/**");
+    public static final List<String> PUBLIC_URL_PATTERNS = List.of("/csrf", "/auth/**", "/register/**");
 
     @Bean
     public CorsFilter corsFilter() {
@@ -52,10 +52,8 @@ public class WebSecurityConfiguration {
         http.csrf().ignoringRequestMatchers("/csrf")
                 .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler())
                 .csrfTokenRepository(csrfTokenRepository());
-        http.authorizeHttpRequests().requestMatchers(PUBLIC_URL_PATTERNS.toArray(String[]::new)).permitAll()
-                .anyRequest().authenticated();
-        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler)
-                .accessDeniedHandler(unauthorisedHandler);
+        http.authorizeHttpRequests().requestMatchers(PUBLIC_URL_PATTERNS.toArray(String[]::new)).permitAll().anyRequest().authenticated();
+        http.exceptionHandling().authenticationEntryPoint(unauthenticatedHandler).accessDeniedHandler(unauthorisedHandler);
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         return http.build();
     }

@@ -1,12 +1,12 @@
 package com.tickers.io.applicationapi.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.checkerframework.common.aliasing.qual.Unique;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 
 import java.time.ZonedDateTime;
 
@@ -49,4 +49,13 @@ public class Migrations extends BaseEntity {
     @Setter
     @Getter
     private boolean active;
+
+    @Getter
+    @Setter
+    private boolean migrated;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }

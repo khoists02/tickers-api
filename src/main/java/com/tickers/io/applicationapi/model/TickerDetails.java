@@ -133,6 +133,28 @@ public class TickerDetails extends BaseEntity{
         return this.stocks.stream().map(Stocks::getTickerDetails).collect(Collectors.toSet());
     }
 
+
+    @OneToMany(
+            mappedBy = "tickerDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<TickerDetailsPredictions> tickerDetailsPredictions = new HashSet<>();
+
+    public void setTickerDetailsPredictions(Set<TickerDetailsPredictions> tickerDetailsPredictions) {
+        this.tickerDetailsPredictions.retainAll(tickerDetailsPredictions.stream().map(p -> new TickerDetailsPredictions()).collect(Collectors.toSet()));
+        this.addTickerDetailsPredictions(tickerDetailsPredictions);
+    }
+
+    public void addTickerDetailsPredictions(Set<TickerDetailsPredictions> TickerDetailsPredictions) {
+        this.tickerDetailsPredictions.addAll(tickerDetailsPredictions.stream().map(permission ->new TickerDetailsPredictions()).collect(Collectors.toSet()));
+    }
+
+    public Set<TickerDetails> getTickerDetailsPredictions() {
+        return this.tickerDetailsPredictions.stream().map(TickerDetailsPredictions::getTickerDetails).collect(Collectors.toSet());
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

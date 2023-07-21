@@ -1,10 +1,12 @@
 package com.tickers.io.applicationapi.model;
 
+import com.tickers.io.applicationapi.enums.StockTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.checkerframework.common.aliasing.qual.Unique;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
@@ -50,6 +52,16 @@ public class Stocks extends BaseEntity implements Serializable {
     @Setter
     @NotNull
     private String volume;
+
+    @Getter
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private StockTypeEnum type;
+
+    @Getter
+    @Setter
+    @Column(insertable=false, updatable=false)
+    private UUID ticker_details_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticker_details_id")

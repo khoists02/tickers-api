@@ -1,18 +1,10 @@
 package com.tickers.io.applicationapi.jobs;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tickers.io.applicationapi.dto.OpenCloseDto;
-import com.tickers.io.applicationapi.dto.StockDto;
-import com.tickers.io.applicationapi.dto.TickerDetailsResponseDto;
+import com.tickers.io.applicationapi.enums.StockTypeEnum;
 import com.tickers.io.applicationapi.exceptions.NotFoundException;
-import com.tickers.io.applicationapi.model.Migrations;
-import com.tickers.io.applicationapi.model.Stocks;
-import com.tickers.io.applicationapi.model.TickerDetails;
-import com.tickers.io.applicationapi.model.Tickers;
-import com.tickers.io.applicationapi.repositories.MigrationsJobRepository;
-import com.tickers.io.applicationapi.repositories.StocksRepository;
-import com.tickers.io.applicationapi.repositories.TickerDetailsRepository;
-import com.tickers.io.applicationapi.repositories.TickersRepository;
+import com.tickers.io.applicationapi.model.*;
+import com.tickers.io.applicationapi.repositories.*;
 import com.tickers.io.applicationapi.services.ImportDataDetailsServices;
 import com.tickers.io.applicationapi.services.PolygonService;
 import org.slf4j.Logger;
@@ -23,14 +15,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.text.DecimalFormat;
 import java.time.DayOfWeek;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
-import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class MigrationsJob {
@@ -57,50 +49,78 @@ public class MigrationsJob {
     @Autowired
     private StocksRepository stocksRepository;
 
+    @Autowired
+    private RegistrationRepository registrationRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     private String getTickerNotMigrated() {
         List<Tickers> tickersList = tickersRepository.getTickersByTypeAndNotMigrated("CS");
         return tickersList.get(0).getTicker();
     }
 
-    @Scheduled(cron = "0,15,30,45 * 12-16 * * *") // run 7PM - 1PM every day
-    @Async
-    public void importTickerDetailsJob() throws JsonProcessingException {
-        String jobName = getTickerNotMigrated();
-        logger.info("Check ticker {}", jobName);
+//    @Scheduled(cron = "0,15,30,45 * 12-16 * * *") // run 7PM - 1PM every day
+//    @Async
+//    public void importTickerDetailsJob() throws JsonProcessingException {
+//        String jobName = getTickerNotMigrated();
+//        logger.info("Check ticker {}", jobName);
+//
+//        if (jobName == null) return;
+//
+//        String urlPolygon = polygonService.polygonTickerDetailsEndpoint("/v3/reference/tickers/" + jobName);
+//        Integer count = tickersRepository.countTickerNotMigrated("CS");
+//
+//        if (count == 0) return;
+//
+//        TickerDetailsResponseDto response = new TickerDetailsResponseDto();
+//
+//        try {
+//            response = webClient
+//                    .get()
+//                    .uri(urlPolygon)
+//                    .retrieve()
+//                    .bodyToMono(TickerDetailsResponseDto.class)
+//                    .block();
+//        }  catch (Exception e) {
+//            logger.info("Import Fail {}", e.getMessage());
+//        } finally {
+//            if (response != null && response.getResults() != null) {
+//                boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(response.getResults().getTicker());
+//                if (exitsTicker) {
+//                    logger.info("Ticker already exists {}", response.getResults().getTicker());
+//                    return;
+//                }
+//                importDataDetailsServices.importDataForTickerDetails(response.getResults());
+//                logger.info("Import Success {} and count {}", jobName, count - 1);
+//            }
+//        }
+//    }
 
-        if (jobName == null) return;
+//    @Scheduled(cron = "0,15,30,45 * 18-19 * * *") // run 01AM - 02AM every day
+//    @Scheduled(cron = "0/12 * * * * *")
+//    @Async
+//    public void importUser() {
+//        List<Registration> registrations = registrationRepository.findAllByActivatedAccount(true);
+//
+//        if (registrations.size() == 0) {
+//          return;
+//        }
+//
+//        for (int i = 0; i < registrations.size(); i++) {
+//            User user = new User();
+//            user.setUserName(registrations.get(i).getUserName());
+//            user.setEmail(registrations.get(i).getEmail());
+//            user.setPassword(registrations.get(i).getPassword());
+//
+//            userRepository.save(user);
+//            // remove registration record
+//            registrationRepository.deleteById(registrations.get(i).getId());
+//        }
+//    }
 
-        String urlPolygon = polygonService.polygonTickerDetailsEndpoint("/v3/reference/tickers/" + jobName);
-        Integer count = tickersRepository.countTickerNotMigrated("CS");
-
-        if (count == 0) return;
-
-        TickerDetailsResponseDto response = new TickerDetailsResponseDto();
-
-        try {
-            response = webClient
-                    .get()
-                    .uri(urlPolygon)
-                    .retrieve()
-                    .bodyToMono(TickerDetailsResponseDto.class)
-                    .block();
-        }  catch (Exception e) {
-            logger.info("Import Fail {}", e.getMessage());
-        } finally {
-            if (response != null && response.getResults() != null) {
-                boolean exitsTicker = tickerDetailsRepository.checkExitsTicker(response.getResults().getTicker());
-                if (exitsTicker) {
-                    logger.info("Ticker already exists {}", response.getResults().getTicker());
-                    return;
-                }
-                importDataDetailsServices.importDataForTickerDetails(response.getResults());
-                logger.info("Import Success {} and count {}", jobName, count - 1);
-            }
-        }
-    }
-
-//    @Scheduled(cron = "0,15,30,45 * 17-23 * * *") // run 0AM - 6AM every day, 0,15,30,45 in seconds
-    @Scheduled(cron = "0/12 * * * * *")
+    @Scheduled(cron = "0,15,30,45 * 13-17 * * *") // run 00AM - 5AM every day
+//    @Scheduled(cron = "0/12 * * * * *")
     @Async
     public void importOpenCloseData() {
         Migrations migrations = migrationsJobRepository.findFirstByTickerNameAndActiveTrue("BLND").orElseThrow(NotFoundException::new);
@@ -108,8 +128,10 @@ public class MigrationsJob {
         ZonedDateTime newDate = currentDate.plusDays(1);
         logger.info("{}", newDate);
 
-        if (newDate.isAfter(migrations.getEndDate())) {
+        if (newDate.isAfter(migrations.getEndDate()) && migrations.isMigrated()) {
             logger.info("Import All records Success !!!");
+            migrations.setMigrated(true);
+            migrationsJobRepository.save(migrations); // set migrated
             return;
         }
 
@@ -136,12 +158,13 @@ public class MigrationsJob {
                     Stocks updated = new Stocks();
                     updated.setTicker(migrations.getTickerName());
                     updated.setDate(currentDate);
-                    updated.setClose(Float.parseFloat(filterResponse.getClose()));
-                    updated.setOpen(Float.parseFloat(filterResponse.getOpen()));
-                    updated.setHigh(Float.parseFloat(filterResponse.getHigh()));
-                    updated.setLow(Float.parseFloat(filterResponse.getLow()));
+                    updated.setClose(Float.parseFloat(decimalFormat(filterResponse.getClose())));
+                    updated.setOpen(Float.parseFloat(decimalFormat(filterResponse.getOpen())));
+                    updated.setHigh(Float.parseFloat(decimalFormat(filterResponse.getHigh())));
+                    updated.setLow(Float.parseFloat(decimalFormat(filterResponse.getLow())));
                     updated.setVolume(filterResponse.getVolume());
                     updated.setTickerDetails(tickerDetails);
+                    updated.setType(StockTypeEnum.DAY);
                     stocksRepository.save(updated);
 
                     // add one day for current date filter
@@ -165,5 +188,18 @@ public class MigrationsJob {
     {
         DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
         return day == DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
+    }
+
+    public String convertBigDecimalVolumeToStr(final String decimalStr) {
+        MathContext m = new MathContext(3);
+        BigDecimal bg = new BigDecimal(decimalStr, m);
+        return bg.toPlainString();
+    }
+
+    public String decimalFormat(String value) {
+        Float litersOfPetrol=Float.parseFloat(value);
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setMaximumFractionDigits(2);
+        return df.format(litersOfPetrol);
     }
 }
