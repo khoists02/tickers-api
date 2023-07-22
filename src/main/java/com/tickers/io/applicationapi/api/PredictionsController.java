@@ -134,7 +134,6 @@ public class PredictionsController {
             predictions.setTrainFilter(request.getTrainFilter());
             predictions.setTestFilter(request.getTestFilter());
             predictions.setName(request.getName());
-            predictions.setUser(userRepository.findById(UUID.fromString("c7476b56-afe2-42e6-878f-ddd9e858a14d")).orElseThrow(NotFoundException::new));
             predictionsRepository.save(predictions);
         } catch (DataIntegrityViolationException e) {
             if (e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {
@@ -176,7 +175,6 @@ public class PredictionsController {
             predictions.setTrainFilter(request.getTrainFilter());
             predictions.setTestFilter(request.getTestFilter());
             predictions.setName(request.getName());
-            predictions.setUser(userRepository.findById(UUID.fromString("c7476b56-afe2-42e6-878f-ddd9e858a14d")).orElseThrow(NotFoundException::new));
             predictionsRepository.save(predictions);
         } catch (DataIntegrityViolationException e) {
             if (e.getCause() instanceof org.hibernate.exception.ConstraintViolationException) {

@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "filters")
-public class Filter extends BaseUserEntity {
+public class Filter extends UserScoped {
     @Getter
     @Setter
     @NotNull
@@ -82,22 +82,17 @@ public class Filter extends BaseUserEntity {
     @JoinColumn(name = "ticker_id")
     private TickerDetails tickerDetails;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @NotNull
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    @NotNull
+//    private User user;
 
 
     public Filter(TickerDetails tickerDetails) {
         this.tickerDetails = tickerDetails;
     }
 
-    public Filter(User user) {
-        this.user = user;
-    }
-
     public Filter(TickerDetails tickerDetails, User user) {
-        this.user = user;
         this.tickerDetails = tickerDetails;
     }
 
