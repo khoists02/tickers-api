@@ -75,6 +75,8 @@ public class Filter extends BaseUserEntity {
     @Setter
     private Integer units;
 
+    @Getter
+    @Setter
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticker_id")

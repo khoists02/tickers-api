@@ -2012,6 +2012,2049 @@ public final class FiltersProto {
 
   }
 
+  public interface FilterDetailsResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:model.FilterDetailsResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    java.lang.String getId();
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    com.google.protobuf.ByteString
+        getIdBytes();
+
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    java.lang.String getName();
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    /**
+     * <code>string startDate = 3;</code>
+     * @return The startDate.
+     */
+    java.lang.String getStartDate();
+    /**
+     * <code>string startDate = 3;</code>
+     * @return The bytes for startDate.
+     */
+    com.google.protobuf.ByteString
+        getStartDateBytes();
+
+    /**
+     * <code>string endDate = 4;</code>
+     * @return The endDate.
+     */
+    java.lang.String getEndDate();
+    /**
+     * <code>string endDate = 4;</code>
+     * @return The bytes for endDate.
+     */
+    com.google.protobuf.ByteString
+        getEndDateBytes();
+
+    /**
+     * <code>int32 steps = 5;</code>
+     * @return The steps.
+     */
+    int getSteps();
+
+    /**
+     * <code>bool scale = 6;</code>
+     * @return The scale.
+     */
+    boolean getScale();
+
+    /**
+     * <code>bool splitByDate = 7;</code>
+     * @return The splitByDate.
+     */
+    boolean getSplitByDate();
+
+    /**
+     * <code>string cols = 8;</code>
+     * @return The cols.
+     */
+    java.lang.String getCols();
+    /**
+     * <code>string cols = 8;</code>
+     * @return The bytes for cols.
+     */
+    com.google.protobuf.ByteString
+        getColsBytes();
+
+    /**
+     * <code>double testSize = 9;</code>
+     * @return The testSize.
+     */
+    double getTestSize();
+
+    /**
+     * <code>bool shuffle = 10;</code>
+     * @return The shuffle.
+     */
+    boolean getShuffle();
+
+    /**
+     * <code>int32 lookStep = 11;</code>
+     * @return The lookStep.
+     */
+    int getLookStep();
+
+    /**
+     * <code>int32 nSteps = 12;</code>
+     * @return The nSteps.
+     */
+    int getNSteps();
+
+    /**
+     * <code>int32 epochs = 13;</code>
+     * @return The epochs.
+     */
+    int getEpochs();
+
+    /**
+     * <code>int32 batchSize = 14;</code>
+     * @return The batchSize.
+     */
+    int getBatchSize();
+
+    /**
+     * <code>int32 units = 15;</code>
+     * @return The units.
+     */
+    int getUnits();
+
+    /**
+     * <code>.model.TickerDetail ticker = 16;</code>
+     * @return Whether the ticker field is set.
+     */
+    boolean hasTicker();
+    /**
+     * <code>.model.TickerDetail ticker = 16;</code>
+     * @return The ticker.
+     */
+    com.tickers.io.protobuf.TickersProto.TickerDetail getTicker();
+    /**
+     * <code>.model.TickerDetail ticker = 16;</code>
+     */
+    com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder getTickerOrBuilder();
+  }
+  /**
+   * Protobuf type {@code model.FilterDetailsResponse}
+   */
+  public  static final class FilterDetailsResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:model.FilterDetailsResponse)
+      FilterDetailsResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use FilterDetailsResponse.newBuilder() to construct.
+    private FilterDetailsResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private FilterDetailsResponse() {
+      id_ = "";
+      name_ = "";
+      startDate_ = "";
+      endDate_ = "";
+      cols_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new FilterDetailsResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private FilterDetailsResponse(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              id_ = s;
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              name_ = s;
+              break;
+            }
+            case 26: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              startDate_ = s;
+              break;
+            }
+            case 34: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              endDate_ = s;
+              break;
+            }
+            case 40: {
+
+              steps_ = input.readInt32();
+              break;
+            }
+            case 48: {
+
+              scale_ = input.readBool();
+              break;
+            }
+            case 56: {
+
+              splitByDate_ = input.readBool();
+              break;
+            }
+            case 66: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              cols_ = s;
+              break;
+            }
+            case 73: {
+
+              testSize_ = input.readDouble();
+              break;
+            }
+            case 80: {
+
+              shuffle_ = input.readBool();
+              break;
+            }
+            case 88: {
+
+              lookStep_ = input.readInt32();
+              break;
+            }
+            case 96: {
+
+              nSteps_ = input.readInt32();
+              break;
+            }
+            case 104: {
+
+              epochs_ = input.readInt32();
+              break;
+            }
+            case 112: {
+
+              batchSize_ = input.readInt32();
+              break;
+            }
+            case 120: {
+
+              units_ = input.readInt32();
+              break;
+            }
+            case 130: {
+              com.tickers.io.protobuf.TickersProto.TickerDetail.Builder subBuilder = null;
+              if (ticker_ != null) {
+                subBuilder = ticker_.toBuilder();
+              }
+              ticker_ = input.readMessage(com.tickers.io.protobuf.TickersProto.TickerDetail.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(ticker_);
+                ticker_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.tickers.io.protobuf.FiltersProto.internal_static_model_FilterDetailsResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.tickers.io.protobuf.FiltersProto.internal_static_model_FilterDetailsResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.class, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object id_;
+    /**
+     * <code>string id = 1;</code>
+     * @return The id.
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string id = 1;</code>
+     * @return The bytes for id.
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object name_;
+    /**
+     * <code>string name = 2;</code>
+     * @return The name.
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        name_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string name = 2;</code>
+     * @return The bytes for name.
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STARTDATE_FIELD_NUMBER = 3;
+    private volatile java.lang.Object startDate_;
+    /**
+     * <code>string startDate = 3;</code>
+     * @return The startDate.
+     */
+    public java.lang.String getStartDate() {
+      java.lang.Object ref = startDate_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        startDate_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string startDate = 3;</code>
+     * @return The bytes for startDate.
+     */
+    public com.google.protobuf.ByteString
+        getStartDateBytes() {
+      java.lang.Object ref = startDate_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        startDate_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ENDDATE_FIELD_NUMBER = 4;
+    private volatile java.lang.Object endDate_;
+    /**
+     * <code>string endDate = 4;</code>
+     * @return The endDate.
+     */
+    public java.lang.String getEndDate() {
+      java.lang.Object ref = endDate_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        endDate_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string endDate = 4;</code>
+     * @return The bytes for endDate.
+     */
+    public com.google.protobuf.ByteString
+        getEndDateBytes() {
+      java.lang.Object ref = endDate_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        endDate_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int STEPS_FIELD_NUMBER = 5;
+    private int steps_;
+    /**
+     * <code>int32 steps = 5;</code>
+     * @return The steps.
+     */
+    public int getSteps() {
+      return steps_;
+    }
+
+    public static final int SCALE_FIELD_NUMBER = 6;
+    private boolean scale_;
+    /**
+     * <code>bool scale = 6;</code>
+     * @return The scale.
+     */
+    public boolean getScale() {
+      return scale_;
+    }
+
+    public static final int SPLITBYDATE_FIELD_NUMBER = 7;
+    private boolean splitByDate_;
+    /**
+     * <code>bool splitByDate = 7;</code>
+     * @return The splitByDate.
+     */
+    public boolean getSplitByDate() {
+      return splitByDate_;
+    }
+
+    public static final int COLS_FIELD_NUMBER = 8;
+    private volatile java.lang.Object cols_;
+    /**
+     * <code>string cols = 8;</code>
+     * @return The cols.
+     */
+    public java.lang.String getCols() {
+      java.lang.Object ref = cols_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        cols_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string cols = 8;</code>
+     * @return The bytes for cols.
+     */
+    public com.google.protobuf.ByteString
+        getColsBytes() {
+      java.lang.Object ref = cols_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        cols_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int TESTSIZE_FIELD_NUMBER = 9;
+    private double testSize_;
+    /**
+     * <code>double testSize = 9;</code>
+     * @return The testSize.
+     */
+    public double getTestSize() {
+      return testSize_;
+    }
+
+    public static final int SHUFFLE_FIELD_NUMBER = 10;
+    private boolean shuffle_;
+    /**
+     * <code>bool shuffle = 10;</code>
+     * @return The shuffle.
+     */
+    public boolean getShuffle() {
+      return shuffle_;
+    }
+
+    public static final int LOOKSTEP_FIELD_NUMBER = 11;
+    private int lookStep_;
+    /**
+     * <code>int32 lookStep = 11;</code>
+     * @return The lookStep.
+     */
+    public int getLookStep() {
+      return lookStep_;
+    }
+
+    public static final int NSTEPS_FIELD_NUMBER = 12;
+    private int nSteps_;
+    /**
+     * <code>int32 nSteps = 12;</code>
+     * @return The nSteps.
+     */
+    public int getNSteps() {
+      return nSteps_;
+    }
+
+    public static final int EPOCHS_FIELD_NUMBER = 13;
+    private int epochs_;
+    /**
+     * <code>int32 epochs = 13;</code>
+     * @return The epochs.
+     */
+    public int getEpochs() {
+      return epochs_;
+    }
+
+    public static final int BATCHSIZE_FIELD_NUMBER = 14;
+    private int batchSize_;
+    /**
+     * <code>int32 batchSize = 14;</code>
+     * @return The batchSize.
+     */
+    public int getBatchSize() {
+      return batchSize_;
+    }
+
+    public static final int UNITS_FIELD_NUMBER = 15;
+    private int units_;
+    /**
+     * <code>int32 units = 15;</code>
+     * @return The units.
+     */
+    public int getUnits() {
+      return units_;
+    }
+
+    public static final int TICKER_FIELD_NUMBER = 16;
+    private com.tickers.io.protobuf.TickersProto.TickerDetail ticker_;
+    /**
+     * <code>.model.TickerDetail ticker = 16;</code>
+     * @return Whether the ticker field is set.
+     */
+    public boolean hasTicker() {
+      return ticker_ != null;
+    }
+    /**
+     * <code>.model.TickerDetail ticker = 16;</code>
+     * @return The ticker.
+     */
+    public com.tickers.io.protobuf.TickersProto.TickerDetail getTicker() {
+      return ticker_ == null ? com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance() : ticker_;
+    }
+    /**
+     * <code>.model.TickerDetail ticker = 16;</code>
+     */
+    public com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder getTickerOrBuilder() {
+      return getTicker();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!getIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
+      }
+      if (!getStartDateBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, startDate_);
+      }
+      if (!getEndDateBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, endDate_);
+      }
+      if (steps_ != 0) {
+        output.writeInt32(5, steps_);
+      }
+      if (scale_ != false) {
+        output.writeBool(6, scale_);
+      }
+      if (splitByDate_ != false) {
+        output.writeBool(7, splitByDate_);
+      }
+      if (!getColsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 8, cols_);
+      }
+      if (testSize_ != 0D) {
+        output.writeDouble(9, testSize_);
+      }
+      if (shuffle_ != false) {
+        output.writeBool(10, shuffle_);
+      }
+      if (lookStep_ != 0) {
+        output.writeInt32(11, lookStep_);
+      }
+      if (nSteps_ != 0) {
+        output.writeInt32(12, nSteps_);
+      }
+      if (epochs_ != 0) {
+        output.writeInt32(13, epochs_);
+      }
+      if (batchSize_ != 0) {
+        output.writeInt32(14, batchSize_);
+      }
+      if (units_ != 0) {
+        output.writeInt32(15, units_);
+      }
+      if (ticker_ != null) {
+        output.writeMessage(16, getTicker());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!getIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
+      }
+      if (!getNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (!getStartDateBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, startDate_);
+      }
+      if (!getEndDateBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, endDate_);
+      }
+      if (steps_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, steps_);
+      }
+      if (scale_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, scale_);
+      }
+      if (splitByDate_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, splitByDate_);
+      }
+      if (!getColsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, cols_);
+      }
+      if (testSize_ != 0D) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(9, testSize_);
+      }
+      if (shuffle_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(10, shuffle_);
+      }
+      if (lookStep_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(11, lookStep_);
+      }
+      if (nSteps_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(12, nSteps_);
+      }
+      if (epochs_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(13, epochs_);
+      }
+      if (batchSize_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(14, batchSize_);
+      }
+      if (units_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(15, units_);
+      }
+      if (ticker_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, getTicker());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse)) {
+        return super.equals(obj);
+      }
+      com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse other = (com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse) obj;
+
+      if (!getId()
+          .equals(other.getId())) return false;
+      if (!getName()
+          .equals(other.getName())) return false;
+      if (!getStartDate()
+          .equals(other.getStartDate())) return false;
+      if (!getEndDate()
+          .equals(other.getEndDate())) return false;
+      if (getSteps()
+          != other.getSteps()) return false;
+      if (getScale()
+          != other.getScale()) return false;
+      if (getSplitByDate()
+          != other.getSplitByDate()) return false;
+      if (!getCols()
+          .equals(other.getCols())) return false;
+      if (java.lang.Double.doubleToLongBits(getTestSize())
+          != java.lang.Double.doubleToLongBits(
+              other.getTestSize())) return false;
+      if (getShuffle()
+          != other.getShuffle()) return false;
+      if (getLookStep()
+          != other.getLookStep()) return false;
+      if (getNSteps()
+          != other.getNSteps()) return false;
+      if (getEpochs()
+          != other.getEpochs()) return false;
+      if (getBatchSize()
+          != other.getBatchSize()) return false;
+      if (getUnits()
+          != other.getUnits()) return false;
+      if (hasTicker() != other.hasTicker()) return false;
+      if (hasTicker()) {
+        if (!getTicker()
+            .equals(other.getTicker())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId().hashCode();
+      hash = (37 * hash) + NAME_FIELD_NUMBER;
+      hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + STARTDATE_FIELD_NUMBER;
+      hash = (53 * hash) + getStartDate().hashCode();
+      hash = (37 * hash) + ENDDATE_FIELD_NUMBER;
+      hash = (53 * hash) + getEndDate().hashCode();
+      hash = (37 * hash) + STEPS_FIELD_NUMBER;
+      hash = (53 * hash) + getSteps();
+      hash = (37 * hash) + SCALE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getScale());
+      hash = (37 * hash) + SPLITBYDATE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getSplitByDate());
+      hash = (37 * hash) + COLS_FIELD_NUMBER;
+      hash = (53 * hash) + getCols().hashCode();
+      hash = (37 * hash) + TESTSIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getTestSize()));
+      hash = (37 * hash) + SHUFFLE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getShuffle());
+      hash = (37 * hash) + LOOKSTEP_FIELD_NUMBER;
+      hash = (53 * hash) + getLookStep();
+      hash = (37 * hash) + NSTEPS_FIELD_NUMBER;
+      hash = (53 * hash) + getNSteps();
+      hash = (37 * hash) + EPOCHS_FIELD_NUMBER;
+      hash = (53 * hash) + getEpochs();
+      hash = (37 * hash) + BATCHSIZE_FIELD_NUMBER;
+      hash = (53 * hash) + getBatchSize();
+      hash = (37 * hash) + UNITS_FIELD_NUMBER;
+      hash = (53 * hash) + getUnits();
+      if (hasTicker()) {
+        hash = (37 * hash) + TICKER_FIELD_NUMBER;
+        hash = (53 * hash) + getTicker().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code model.FilterDetailsResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:model.FilterDetailsResponse)
+        com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.tickers.io.protobuf.FiltersProto.internal_static_model_FilterDetailsResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.tickers.io.protobuf.FiltersProto.internal_static_model_FilterDetailsResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.class, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder.class);
+      }
+
+      // Construct using com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = "";
+
+        name_ = "";
+
+        startDate_ = "";
+
+        endDate_ = "";
+
+        steps_ = 0;
+
+        scale_ = false;
+
+        splitByDate_ = false;
+
+        cols_ = "";
+
+        testSize_ = 0D;
+
+        shuffle_ = false;
+
+        lookStep_ = 0;
+
+        nSteps_ = 0;
+
+        epochs_ = 0;
+
+        batchSize_ = 0;
+
+        units_ = 0;
+
+        if (tickerBuilder_ == null) {
+          ticker_ = null;
+        } else {
+          ticker_ = null;
+          tickerBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.tickers.io.protobuf.FiltersProto.internal_static_model_FilterDetailsResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse getDefaultInstanceForType() {
+        return com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse build() {
+        com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse buildPartial() {
+        com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse result = new com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse(this);
+        result.id_ = id_;
+        result.name_ = name_;
+        result.startDate_ = startDate_;
+        result.endDate_ = endDate_;
+        result.steps_ = steps_;
+        result.scale_ = scale_;
+        result.splitByDate_ = splitByDate_;
+        result.cols_ = cols_;
+        result.testSize_ = testSize_;
+        result.shuffle_ = shuffle_;
+        result.lookStep_ = lookStep_;
+        result.nSteps_ = nSteps_;
+        result.epochs_ = epochs_;
+        result.batchSize_ = batchSize_;
+        result.units_ = units_;
+        if (tickerBuilder_ == null) {
+          result.ticker_ = ticker_;
+        } else {
+          result.ticker_ = tickerBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse) {
+          return mergeFrom((com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse other) {
+        if (other == com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.getDefaultInstance()) return this;
+        if (!other.getId().isEmpty()) {
+          id_ = other.id_;
+          onChanged();
+        }
+        if (!other.getName().isEmpty()) {
+          name_ = other.name_;
+          onChanged();
+        }
+        if (!other.getStartDate().isEmpty()) {
+          startDate_ = other.startDate_;
+          onChanged();
+        }
+        if (!other.getEndDate().isEmpty()) {
+          endDate_ = other.endDate_;
+          onChanged();
+        }
+        if (other.getSteps() != 0) {
+          setSteps(other.getSteps());
+        }
+        if (other.getScale() != false) {
+          setScale(other.getScale());
+        }
+        if (other.getSplitByDate() != false) {
+          setSplitByDate(other.getSplitByDate());
+        }
+        if (!other.getCols().isEmpty()) {
+          cols_ = other.cols_;
+          onChanged();
+        }
+        if (other.getTestSize() != 0D) {
+          setTestSize(other.getTestSize());
+        }
+        if (other.getShuffle() != false) {
+          setShuffle(other.getShuffle());
+        }
+        if (other.getLookStep() != 0) {
+          setLookStep(other.getLookStep());
+        }
+        if (other.getNSteps() != 0) {
+          setNSteps(other.getNSteps());
+        }
+        if (other.getEpochs() != 0) {
+          setEpochs(other.getEpochs());
+        }
+        if (other.getBatchSize() != 0) {
+          setBatchSize(other.getBatchSize());
+        }
+        if (other.getUnits() != 0) {
+          setUnits(other.getUnits());
+        }
+        if (other.hasTicker()) {
+          mergeTicker(other.getTicker());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object id_ = "";
+      /**
+       * <code>string id = 1;</code>
+       * @return The id.
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return The bytes for id.
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string id = 1;</code>
+       * @param value The bytes for id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object name_ = "";
+      /**
+       * <code>string name = 2;</code>
+       * @return The name.
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return The bytes for name.
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearName() {
+        
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string name = 2;</code>
+       * @param value The bytes for name to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object startDate_ = "";
+      /**
+       * <code>string startDate = 3;</code>
+       * @return The startDate.
+       */
+      public java.lang.String getStartDate() {
+        java.lang.Object ref = startDate_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          startDate_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string startDate = 3;</code>
+       * @return The bytes for startDate.
+       */
+      public com.google.protobuf.ByteString
+          getStartDateBytes() {
+        java.lang.Object ref = startDate_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          startDate_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string startDate = 3;</code>
+       * @param value The startDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStartDate(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        startDate_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string startDate = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStartDate() {
+        
+        startDate_ = getDefaultInstance().getStartDate();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string startDate = 3;</code>
+       * @param value The bytes for startDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStartDateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        startDate_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object endDate_ = "";
+      /**
+       * <code>string endDate = 4;</code>
+       * @return The endDate.
+       */
+      public java.lang.String getEndDate() {
+        java.lang.Object ref = endDate_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          endDate_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string endDate = 4;</code>
+       * @return The bytes for endDate.
+       */
+      public com.google.protobuf.ByteString
+          getEndDateBytes() {
+        java.lang.Object ref = endDate_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          endDate_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string endDate = 4;</code>
+       * @param value The endDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEndDate(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        endDate_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string endDate = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEndDate() {
+        
+        endDate_ = getDefaultInstance().getEndDate();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string endDate = 4;</code>
+       * @param value The bytes for endDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEndDateBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        endDate_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int steps_ ;
+      /**
+       * <code>int32 steps = 5;</code>
+       * @return The steps.
+       */
+      public int getSteps() {
+        return steps_;
+      }
+      /**
+       * <code>int32 steps = 5;</code>
+       * @param value The steps to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSteps(int value) {
+        
+        steps_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 steps = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSteps() {
+        
+        steps_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean scale_ ;
+      /**
+       * <code>bool scale = 6;</code>
+       * @return The scale.
+       */
+      public boolean getScale() {
+        return scale_;
+      }
+      /**
+       * <code>bool scale = 6;</code>
+       * @param value The scale to set.
+       * @return This builder for chaining.
+       */
+      public Builder setScale(boolean value) {
+        
+        scale_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool scale = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearScale() {
+        
+        scale_ = false;
+        onChanged();
+        return this;
+      }
+
+      private boolean splitByDate_ ;
+      /**
+       * <code>bool splitByDate = 7;</code>
+       * @return The splitByDate.
+       */
+      public boolean getSplitByDate() {
+        return splitByDate_;
+      }
+      /**
+       * <code>bool splitByDate = 7;</code>
+       * @param value The splitByDate to set.
+       * @return This builder for chaining.
+       */
+      public Builder setSplitByDate(boolean value) {
+        
+        splitByDate_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool splitByDate = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearSplitByDate() {
+        
+        splitByDate_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object cols_ = "";
+      /**
+       * <code>string cols = 8;</code>
+       * @return The cols.
+       */
+      public java.lang.String getCols() {
+        java.lang.Object ref = cols_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          cols_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string cols = 8;</code>
+       * @return The bytes for cols.
+       */
+      public com.google.protobuf.ByteString
+          getColsBytes() {
+        java.lang.Object ref = cols_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          cols_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string cols = 8;</code>
+       * @param value The cols to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCols(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        cols_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string cols = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCols() {
+        
+        cols_ = getDefaultInstance().getCols();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string cols = 8;</code>
+       * @param value The bytes for cols to set.
+       * @return This builder for chaining.
+       */
+      public Builder setColsBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        cols_ = value;
+        onChanged();
+        return this;
+      }
+
+      private double testSize_ ;
+      /**
+       * <code>double testSize = 9;</code>
+       * @return The testSize.
+       */
+      public double getTestSize() {
+        return testSize_;
+      }
+      /**
+       * <code>double testSize = 9;</code>
+       * @param value The testSize to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTestSize(double value) {
+        
+        testSize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>double testSize = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTestSize() {
+        
+        testSize_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      private boolean shuffle_ ;
+      /**
+       * <code>bool shuffle = 10;</code>
+       * @return The shuffle.
+       */
+      public boolean getShuffle() {
+        return shuffle_;
+      }
+      /**
+       * <code>bool shuffle = 10;</code>
+       * @param value The shuffle to set.
+       * @return This builder for chaining.
+       */
+      public Builder setShuffle(boolean value) {
+        
+        shuffle_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool shuffle = 10;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearShuffle() {
+        
+        shuffle_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int lookStep_ ;
+      /**
+       * <code>int32 lookStep = 11;</code>
+       * @return The lookStep.
+       */
+      public int getLookStep() {
+        return lookStep_;
+      }
+      /**
+       * <code>int32 lookStep = 11;</code>
+       * @param value The lookStep to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLookStep(int value) {
+        
+        lookStep_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 lookStep = 11;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLookStep() {
+        
+        lookStep_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int nSteps_ ;
+      /**
+       * <code>int32 nSteps = 12;</code>
+       * @return The nSteps.
+       */
+      public int getNSteps() {
+        return nSteps_;
+      }
+      /**
+       * <code>int32 nSteps = 12;</code>
+       * @param value The nSteps to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNSteps(int value) {
+        
+        nSteps_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 nSteps = 12;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearNSteps() {
+        
+        nSteps_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int epochs_ ;
+      /**
+       * <code>int32 epochs = 13;</code>
+       * @return The epochs.
+       */
+      public int getEpochs() {
+        return epochs_;
+      }
+      /**
+       * <code>int32 epochs = 13;</code>
+       * @param value The epochs to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEpochs(int value) {
+        
+        epochs_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 epochs = 13;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEpochs() {
+        
+        epochs_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int batchSize_ ;
+      /**
+       * <code>int32 batchSize = 14;</code>
+       * @return The batchSize.
+       */
+      public int getBatchSize() {
+        return batchSize_;
+      }
+      /**
+       * <code>int32 batchSize = 14;</code>
+       * @param value The batchSize to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBatchSize(int value) {
+        
+        batchSize_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 batchSize = 14;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBatchSize() {
+        
+        batchSize_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int units_ ;
+      /**
+       * <code>int32 units = 15;</code>
+       * @return The units.
+       */
+      public int getUnits() {
+        return units_;
+      }
+      /**
+       * <code>int32 units = 15;</code>
+       * @param value The units to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUnits(int value) {
+        
+        units_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 units = 15;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUnits() {
+        
+        units_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.tickers.io.protobuf.TickersProto.TickerDetail ticker_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.tickers.io.protobuf.TickersProto.TickerDetail, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder, com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder> tickerBuilder_;
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       * @return Whether the ticker field is set.
+       */
+      public boolean hasTicker() {
+        return tickerBuilder_ != null || ticker_ != null;
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       * @return The ticker.
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerDetail getTicker() {
+        if (tickerBuilder_ == null) {
+          return ticker_ == null ? com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance() : ticker_;
+        } else {
+          return tickerBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       */
+      public Builder setTicker(com.tickers.io.protobuf.TickersProto.TickerDetail value) {
+        if (tickerBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ticker_ = value;
+          onChanged();
+        } else {
+          tickerBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       */
+      public Builder setTicker(
+          com.tickers.io.protobuf.TickersProto.TickerDetail.Builder builderForValue) {
+        if (tickerBuilder_ == null) {
+          ticker_ = builderForValue.build();
+          onChanged();
+        } else {
+          tickerBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       */
+      public Builder mergeTicker(com.tickers.io.protobuf.TickersProto.TickerDetail value) {
+        if (tickerBuilder_ == null) {
+          if (ticker_ != null) {
+            ticker_ =
+              com.tickers.io.protobuf.TickersProto.TickerDetail.newBuilder(ticker_).mergeFrom(value).buildPartial();
+          } else {
+            ticker_ = value;
+          }
+          onChanged();
+        } else {
+          tickerBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       */
+      public Builder clearTicker() {
+        if (tickerBuilder_ == null) {
+          ticker_ = null;
+          onChanged();
+        } else {
+          ticker_ = null;
+          tickerBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerDetail.Builder getTickerBuilder() {
+        
+        onChanged();
+        return getTickerFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       */
+      public com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder getTickerOrBuilder() {
+        if (tickerBuilder_ != null) {
+          return tickerBuilder_.getMessageOrBuilder();
+        } else {
+          return ticker_ == null ?
+              com.tickers.io.protobuf.TickersProto.TickerDetail.getDefaultInstance() : ticker_;
+        }
+      }
+      /**
+       * <code>.model.TickerDetail ticker = 16;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.tickers.io.protobuf.TickersProto.TickerDetail, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder, com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder> 
+          getTickerFieldBuilder() {
+        if (tickerBuilder_ == null) {
+          tickerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.tickers.io.protobuf.TickersProto.TickerDetail, com.tickers.io.protobuf.TickersProto.TickerDetail.Builder, com.tickers.io.protobuf.TickersProto.TickerDetailOrBuilder>(
+                  getTicker(),
+                  getParentForChildren(),
+                  isClean());
+          ticker_ = null;
+        }
+        return tickerBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:model.FilterDetailsResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:model.FilterDetailsResponse)
+    private static final com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse();
+    }
+
+    public static com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<FilterDetailsResponse>
+        PARSER = new com.google.protobuf.AbstractParser<FilterDetailsResponse>() {
+      @java.lang.Override
+      public FilterDetailsResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new FilterDetailsResponse(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<FilterDetailsResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<FilterDetailsResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_model_FilterResponse_descriptor;
   private static final 
@@ -2022,6 +4065,11 @@ public final class FiltersProto {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_model_FiltersResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_model_FilterDetailsResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_model_FilterDetailsResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2031,18 +4079,27 @@ public final class FiltersProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rFilters.proto\022\005model\032\rGeneric.proto\"N\n" +
-      "\016FilterResponse\022\n\n\002id\030\001 \001(\t\022\014\n\004name\030\002 \001(" +
-      "\t\022\021\n\tstartDate\030\003 \001(\t\022\017\n\007endDate\030\004 \001(\t\"d\n" +
-      "\017FiltersResponse\022&\n\007content\030\001 \003(\0132\025.mode" +
-      "l.FilterResponse\022)\n\010pageable\030\002 \001(\0132\027.mod" +
-      "el.PageableResponseB\'\n\027com.tickers.io.pr" +
-      "otobufB\014FiltersProtob\006proto3"
+      "\n\rFilters.proto\022\005model\032\rGeneric.proto\032\rT" +
+      "ickers.proto\"N\n\016FilterResponse\022\n\n\002id\030\001 \001" +
+      "(\t\022\014\n\004name\030\002 \001(\t\022\021\n\tstartDate\030\003 \001(\t\022\017\n\007e" +
+      "ndDate\030\004 \001(\t\"d\n\017FiltersResponse\022&\n\007conte" +
+      "nt\030\001 \003(\0132\025.model.FilterResponse\022)\n\010pagea" +
+      "ble\030\002 \001(\0132\027.model.PageableResponse\"\262\002\n\025F" +
+      "ilterDetailsResponse\022\n\n\002id\030\001 \001(\t\022\014\n\004name" +
+      "\030\002 \001(\t\022\021\n\tstartDate\030\003 \001(\t\022\017\n\007endDate\030\004 \001" +
+      "(\t\022\r\n\005steps\030\005 \001(\005\022\r\n\005scale\030\006 \001(\010\022\023\n\013spli" +
+      "tByDate\030\007 \001(\010\022\014\n\004cols\030\010 \001(\t\022\020\n\010testSize\030" +
+      "\t \001(\001\022\017\n\007shuffle\030\n \001(\010\022\020\n\010lookStep\030\013 \001(\005" +
+      "\022\016\n\006nSteps\030\014 \001(\005\022\016\n\006epochs\030\r \001(\005\022\021\n\tbatc" +
+      "hSize\030\016 \001(\005\022\r\n\005units\030\017 \001(\005\022#\n\006ticker\030\020 \001" +
+      "(\0132\023.model.TickerDetailB\'\n\027com.tickers.i" +
+      "o.protobufB\014FiltersProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.tickers.io.protobuf.GenericProtos.getDescriptor(),
+          com.tickers.io.protobuf.TickersProto.getDescriptor(),
         });
     internal_static_model_FilterResponse_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -2056,7 +4113,14 @@ public final class FiltersProto {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_model_FiltersResponse_descriptor,
         new java.lang.String[] { "Content", "Pageable", });
+    internal_static_model_FilterDetailsResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_model_FilterDetailsResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_model_FilterDetailsResponse_descriptor,
+        new java.lang.String[] { "Id", "Name", "StartDate", "EndDate", "Steps", "Scale", "SplitByDate", "Cols", "TestSize", "Shuffle", "LookStep", "NSteps", "Epochs", "BatchSize", "Units", "Ticker", });
     com.tickers.io.protobuf.GenericProtos.getDescriptor();
+    com.tickers.io.protobuf.TickersProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

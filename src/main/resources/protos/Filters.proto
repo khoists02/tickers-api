@@ -3,6 +3,7 @@ package model;
 option java_package = "com.tickers.io.protobuf";
 option java_outer_classname = "FiltersProto";
 import "Generic.proto";
+import "Tickers.proto";
 
 message FilterResponse {
   string id = 1;
@@ -14,4 +15,23 @@ message FilterResponse {
 message FiltersResponse {
   repeated FilterResponse content = 1;
   PageableResponse pageable = 2;
+}
+
+message FilterDetailsResponse {
+  string id = 1;
+  string name = 2;
+  string startDate = 3;
+  string endDate = 4;
+  int32 steps = 5;
+  bool scale = 6;
+  bool splitByDate = 7;
+  string cols = 8;
+  double testSize = 9;
+  bool shuffle = 10;
+  int32 lookStep = 11;
+  int32 nSteps = 12;
+  int32 epochs = 13;
+  int32 batchSize = 14;
+  int32 units = 15;
+  TickerDetail ticker = 16;
 }
