@@ -5,5 +5,5 @@ import com.tickers.io.applicationapi.support.BaseEntityRepository;
 
 import java.util.UUID;
 
-public interface FilterRepository extends BaseEntityRepository<Filter, UUID> {
+public interface FiltersRepository extends BaseEntityRepository<Filter, UUID> {
 }
