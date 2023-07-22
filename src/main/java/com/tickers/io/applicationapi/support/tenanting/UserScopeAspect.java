@@ -42,7 +42,7 @@ public class UserScopeAspect {
             if (session.getEnabledFilter(UserScoped.USER_FILTER_ID) != null)
                 session.disableFilter(UserScoped.USER_FILTER_ID);
         }  else  if (!signature.getMethod().getName().equals("createEntityGraph")){
-            Assert.isTrue(TransactionSynchronizationManager.isActualTransactionActive(), "A Transaction must be active before attempting a tenanted database request");
+//            Assert.isTrue(TransactionSynchronizationManager.isActualTransactionActive(), "A Transaction must be active before attempting a tenanted database request");
 
             Query queryAnnotation = signature.getMethod().getAnnotation(Query.class);
 

@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -34,6 +35,7 @@ public class FiltersController {
     private ModelMapper mapper;
 
     @GetMapping
+    @Transactional
     public FiltersProto.FiltersResponse getFilter(
             @RequestParam("searchKey") Optional<String> searchKey,
             @RequestParam("mode") Optional<String> mode,
@@ -60,7 +62,9 @@ public class FiltersController {
                 .build();
     }
 
+
     @GetMapping("/{id}")
+    @Transactional
     public FiltersProto.FilterDetailsResponse getFilterDetails(@PathVariable @PathUUID String id) {
         EntityGraph<Filter> entityGraph = filtersRepository.createEntityGraph();
         entityGraph.addAttributeNodes("tickerDetails");

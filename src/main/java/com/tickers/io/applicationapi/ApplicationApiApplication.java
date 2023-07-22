@@ -13,9 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 @EnableJpaRepositories(repositoryFactoryBeanClass = MyJpaRepositoryFactoryBean.class, basePackages = "com.tickers.io")
-@ComponentScan(basePackages = {"com.tickers.io"}, excludeFilters = {
-		@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = UserScopeAspect.class),
-})
+@ComponentScan(basePackages = {"com.tickers.io"})
 @EntityScan(basePackages = "com.tickers.io")
 public class ApplicationApiApplication {
 
