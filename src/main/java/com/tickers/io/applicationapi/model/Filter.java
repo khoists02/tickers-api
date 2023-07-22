@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.ZonedDateTime;
 
@@ -56,7 +55,7 @@ public class Filter extends BaseUserEntity {
     @Getter
     @Setter
     @Column(name = "look_step")
-    private Boolean lookStep;
+    private Integer lookStep;
 
     @Getter
     @Setter
