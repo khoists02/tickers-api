@@ -13,7 +13,7 @@ message FilterResponse {
 }
 
 message FiltersResponse {
-  repeated FilterResponse content = 1;
+  repeated FilterDetailsResponse content = 1;
   PageableResponse pageable = 2;
 }
 

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "filters")
@@ -81,11 +82,6 @@ public class Filter extends UserScoped {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticker_id")
     private TickerDetails tickerDetails;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    @NotNull
-//    private User user;
 
 
     public Filter(TickerDetails tickerDetails) {

@@ -1029,27 +1029,27 @@ public final class FiltersProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    java.util.List<com.tickers.io.protobuf.FiltersProto.FilterResponse> 
+    java.util.List<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse> 
         getContentList();
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    com.tickers.io.protobuf.FiltersProto.FilterResponse getContent(int index);
+    com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse getContent(int index);
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
     int getContentCount();
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    java.util.List<? extends com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder> 
+    java.util.List<? extends com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder> 
         getContentOrBuilderList();
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder getContentOrBuilder(
+    com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder getContentOrBuilder(
         int index);
 
     /**
@@ -1116,11 +1116,11 @@ public final class FiltersProto {
               break;
             case 10: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                content_ = new java.util.ArrayList<com.tickers.io.protobuf.FiltersProto.FilterResponse>();
+                content_ = new java.util.ArrayList<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse>();
                 mutable_bitField0_ |= 0x00000001;
               }
               content_.add(
-                  input.readMessage(com.tickers.io.protobuf.FiltersProto.FilterResponse.parser(), extensionRegistry));
+                  input.readMessage(com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.parser(), extensionRegistry));
               break;
             }
             case 18: {
@@ -1172,36 +1172,36 @@ public final class FiltersProto {
     }
 
     public static final int CONTENT_FIELD_NUMBER = 1;
-    private java.util.List<com.tickers.io.protobuf.FiltersProto.FilterResponse> content_;
+    private java.util.List<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse> content_;
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    public java.util.List<com.tickers.io.protobuf.FiltersProto.FilterResponse> getContentList() {
+    public java.util.List<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse> getContentList() {
       return content_;
     }
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    public java.util.List<? extends com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder> 
+    public java.util.List<? extends com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder> 
         getContentOrBuilderList() {
       return content_;
     }
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
     public int getContentCount() {
       return content_.size();
     }
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    public com.tickers.io.protobuf.FiltersProto.FilterResponse getContent(int index) {
+    public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse getContent(int index) {
       return content_.get(index);
     }
     /**
-     * <code>repeated .model.FilterResponse content = 1;</code>
+     * <code>repeated .model.FilterDetailsResponse content = 1;</code>
      */
-    public com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder getContentOrBuilder(
+    public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder getContentOrBuilder(
         int index) {
       return content_.get(index);
     }
@@ -1601,22 +1601,22 @@ public final class FiltersProto {
       }
       private int bitField0_;
 
-      private java.util.List<com.tickers.io.protobuf.FiltersProto.FilterResponse> content_ =
+      private java.util.List<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse> content_ =
         java.util.Collections.emptyList();
       private void ensureContentIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          content_ = new java.util.ArrayList<com.tickers.io.protobuf.FiltersProto.FilterResponse>(content_);
+          content_ = new java.util.ArrayList<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse>(content_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.tickers.io.protobuf.FiltersProto.FilterResponse, com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder, com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder> contentBuilder_;
+          com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder> contentBuilder_;
 
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public java.util.List<com.tickers.io.protobuf.FiltersProto.FilterResponse> getContentList() {
+      public java.util.List<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse> getContentList() {
         if (contentBuilder_ == null) {
           return java.util.Collections.unmodifiableList(content_);
         } else {
@@ -1624,7 +1624,7 @@ public final class FiltersProto {
         }
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public int getContentCount() {
         if (contentBuilder_ == null) {
@@ -1634,9 +1634,9 @@ public final class FiltersProto {
         }
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public com.tickers.io.protobuf.FiltersProto.FilterResponse getContent(int index) {
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse getContent(int index) {
         if (contentBuilder_ == null) {
           return content_.get(index);
         } else {
@@ -1644,10 +1644,10 @@ public final class FiltersProto {
         }
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder setContent(
-          int index, com.tickers.io.protobuf.FiltersProto.FilterResponse value) {
+          int index, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse value) {
         if (contentBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1661,10 +1661,10 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder setContent(
-          int index, com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder builderForValue) {
+          int index, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder builderForValue) {
         if (contentBuilder_ == null) {
           ensureContentIsMutable();
           content_.set(index, builderForValue.build());
@@ -1675,9 +1675,9 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public Builder addContent(com.tickers.io.protobuf.FiltersProto.FilterResponse value) {
+      public Builder addContent(com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse value) {
         if (contentBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1691,10 +1691,10 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder addContent(
-          int index, com.tickers.io.protobuf.FiltersProto.FilterResponse value) {
+          int index, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse value) {
         if (contentBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1708,10 +1708,10 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder addContent(
-          com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder builderForValue) {
+          com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder builderForValue) {
         if (contentBuilder_ == null) {
           ensureContentIsMutable();
           content_.add(builderForValue.build());
@@ -1722,10 +1722,10 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder addContent(
-          int index, com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder builderForValue) {
+          int index, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder builderForValue) {
         if (contentBuilder_ == null) {
           ensureContentIsMutable();
           content_.add(index, builderForValue.build());
@@ -1736,10 +1736,10 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder addAllContent(
-          java.lang.Iterable<? extends com.tickers.io.protobuf.FiltersProto.FilterResponse> values) {
+          java.lang.Iterable<? extends com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse> values) {
         if (contentBuilder_ == null) {
           ensureContentIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -1751,7 +1751,7 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder clearContent() {
         if (contentBuilder_ == null) {
@@ -1764,7 +1764,7 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
       public Builder removeContent(int index) {
         if (contentBuilder_ == null) {
@@ -1777,16 +1777,16 @@ public final class FiltersProto {
         return this;
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder getContentBuilder(
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder getContentBuilder(
           int index) {
         return getContentFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder getContentOrBuilder(
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder getContentOrBuilder(
           int index) {
         if (contentBuilder_ == null) {
           return content_.get(index);  } else {
@@ -1794,9 +1794,9 @@ public final class FiltersProto {
         }
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public java.util.List<? extends com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder> 
+      public java.util.List<? extends com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder> 
            getContentOrBuilderList() {
         if (contentBuilder_ != null) {
           return contentBuilder_.getMessageOrBuilderList();
@@ -1805,33 +1805,33 @@ public final class FiltersProto {
         }
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder addContentBuilder() {
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder addContentBuilder() {
         return getContentFieldBuilder().addBuilder(
-            com.tickers.io.protobuf.FiltersProto.FilterResponse.getDefaultInstance());
+            com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.getDefaultInstance());
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder addContentBuilder(
+      public com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder addContentBuilder(
           int index) {
         return getContentFieldBuilder().addBuilder(
-            index, com.tickers.io.protobuf.FiltersProto.FilterResponse.getDefaultInstance());
+            index, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.getDefaultInstance());
       }
       /**
-       * <code>repeated .model.FilterResponse content = 1;</code>
+       * <code>repeated .model.FilterDetailsResponse content = 1;</code>
        */
-      public java.util.List<com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder> 
+      public java.util.List<com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder> 
            getContentBuilderList() {
         return getContentFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.tickers.io.protobuf.FiltersProto.FilterResponse, com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder, com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder> 
+          com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder> 
           getContentFieldBuilder() {
         if (contentBuilder_ == null) {
           contentBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.tickers.io.protobuf.FiltersProto.FilterResponse, com.tickers.io.protobuf.FiltersProto.FilterResponse.Builder, com.tickers.io.protobuf.FiltersProto.FilterResponseOrBuilder>(
+              com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponse.Builder, com.tickers.io.protobuf.FiltersProto.FilterDetailsResponseOrBuilder>(
                   content_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -4082,18 +4082,18 @@ public final class FiltersProto {
       "\n\rFilters.proto\022\005model\032\rGeneric.proto\032\rT" +
       "ickers.proto\"N\n\016FilterResponse\022\n\n\002id\030\001 \001" +
       "(\t\022\014\n\004name\030\002 \001(\t\022\021\n\tstartDate\030\003 \001(\t\022\017\n\007e" +
-      "ndDate\030\004 \001(\t\"d\n\017FiltersResponse\022&\n\007conte" +
-      "nt\030\001 \003(\0132\025.model.FilterResponse\022)\n\010pagea" +
-      "ble\030\002 \001(\0132\027.model.PageableResponse\"\262\002\n\025F" +
-      "ilterDetailsResponse\022\n\n\002id\030\001 \001(\t\022\014\n\004name" +
-      "\030\002 \001(\t\022\021\n\tstartDate\030\003 \001(\t\022\017\n\007endDate\030\004 \001" +
-      "(\t\022\r\n\005steps\030\005 \001(\005\022\r\n\005scale\030\006 \001(\010\022\023\n\013spli" +
-      "tByDate\030\007 \001(\010\022\014\n\004cols\030\010 \001(\t\022\020\n\010testSize\030" +
-      "\t \001(\001\022\017\n\007shuffle\030\n \001(\010\022\020\n\010lookStep\030\013 \001(\005" +
-      "\022\016\n\006nSteps\030\014 \001(\005\022\016\n\006epochs\030\r \001(\005\022\021\n\tbatc" +
-      "hSize\030\016 \001(\005\022\r\n\005units\030\017 \001(\005\022#\n\006ticker\030\020 \001" +
-      "(\0132\023.model.TickerDetailB\'\n\027com.tickers.i" +
-      "o.protobufB\014FiltersProtob\006proto3"
+      "ndDate\030\004 \001(\t\"k\n\017FiltersResponse\022-\n\007conte" +
+      "nt\030\001 \003(\0132\034.model.FilterDetailsResponse\022)" +
+      "\n\010pageable\030\002 \001(\0132\027.model.PageableRespons" +
+      "e\"\262\002\n\025FilterDetailsResponse\022\n\n\002id\030\001 \001(\t\022" +
+      "\014\n\004name\030\002 \001(\t\022\021\n\tstartDate\030\003 \001(\t\022\017\n\007endD" +
+      "ate\030\004 \001(\t\022\r\n\005steps\030\005 \001(\005\022\r\n\005scale\030\006 \001(\010\022" +
+      "\023\n\013splitByDate\030\007 \001(\010\022\014\n\004cols\030\010 \001(\t\022\020\n\010te" +
+      "stSize\030\t \001(\001\022\017\n\007shuffle\030\n \001(\010\022\020\n\010lookSte" +
+      "p\030\013 \001(\005\022\016\n\006nSteps\030\014 \001(\005\022\016\n\006epochs\030\r \001(\005\022" +
+      "\021\n\tbatchSize\030\016 \001(\005\022\r\n\005units\030\017 \001(\005\022#\n\006tic" +
+      "ker\030\020 \001(\0132\023.model.TickerDetailB\'\n\027com.ti" +
+      "ckers.io.protobufB\014FiltersProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

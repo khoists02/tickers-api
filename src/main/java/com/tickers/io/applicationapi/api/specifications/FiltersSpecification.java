@@ -22,6 +22,11 @@ public class FiltersSpecification {
                 Expression<String> searchLikeExpression =  criteriaBuilder.lower(criteriaBuilder.literal("%" + criteria.getSearchKey() + "%"));
                 predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), searchLikeExpression));
             }
+
+            if (criteria.getTickerId() != null) {
+                Expression<String> searchLikeExpression =  criteriaBuilder.lower(criteriaBuilder.literal("%" + criteria.getTickerId().toString() + "%"));
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("tickerDetails").as(String.class)), searchLikeExpression));
+            }
             return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
     }
