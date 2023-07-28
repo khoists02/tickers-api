@@ -26,9 +26,22 @@ public class PredictionHistoryController {
 
     @GetMapping("/{filterId}")
     public PredictionHistoryProto.PredictionsHistoryResponse getHistoryDetails(@PathVariable @PathUUID String filterId) {
-        PredictionsHistory history = predictionsHistoryRepository.findFirstByFilter(UUID.fromString(filterId)).orElseThrow(NotFoundException::new);
+        PredictionsHistory history = predictionsHistoryRepository.findHistoryByFilterId(UUID.fromString(filterId)).orElseThrow(NotFoundException::new);
 
-        return mapper.map(history, PredictionHistoryProto.PredictionsHistoryResponse.Builder.class).build();
+        PredictionHistoryProto.PredictionsHistoryResponse.Builder builder = mapper.map(history, PredictionHistoryProto.PredictionsHistoryResponse.Builder.class);
+        builder.setAccuracyScore(history.getAccuracyScore());
+        builder.setTotalBuyProfit(history.getTotalBuyProfit());
+        builder.setFeaturePrice(history.getFeaturePrice());
+        builder.setTotalBuyProfit(history.getTotalProfit());
+        builder.setTotalSellProfit(history.getTotalSellProfit());
+        builder.setProfitPerTrade(history.getProfitPerTrade());
+        builder.setTotalProfit(history.getTotalProfit());
+        return  builder.build();
+    }
+
+    @GetMapping("/check/{filterId}")
+    public Boolean checkFilterExitsHistory(@PathVariable @PathUUID String filterId) {
+        return  predictionsHistoryRepository.checkExistFilterInHistory(UUID.fromString(filterId));
     }
 
 }
