@@ -9,7 +9,7 @@ import org.hibernate.annotations.LazyToOneOption;
 
 @Entity
 @Table(name = "predictions_history")
-public class PredictionsHistory extends BaseEntity{
+public class PredictionsHistory extends UserScoped {
     @Getter
     @Setter
     @NotNull
@@ -52,17 +52,8 @@ public class PredictionsHistory extends BaseEntity{
     @NotNull
     private Filter filter;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @NotNull
-    private User user;
-
     public PredictionsHistory() {
 
-    }
-
-    public PredictionsHistory(User user) {
-        this.user = user;
     }
 
     public PredictionsHistory(Filter filter) {

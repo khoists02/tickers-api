@@ -1,0 +1,17 @@
+syntax = "proto3";
+package model;
+option java_package = "com.tickers.io.protobuf";
+option java_outer_classname = "PredictionHistoryProto";
+import "Generic.proto";
+
+
+message PredictionsHistoryResponse {
+  string id = 1;
+  string loss = 2;
+  string feature_price = 3;
+  string accuracy_score = 4;
+  string total_buy_profit = 5;
+  string total_sell_profit = 6;
+  string total_profit = 7;
+  string profit_per_trade = 8;
+}

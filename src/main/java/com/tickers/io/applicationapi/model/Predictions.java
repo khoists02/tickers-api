@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Setter
 @Entity
 @Table(name = "predictions")
-public class Predictions extends BaseEntity {
+public class Predictions extends UserScoped {
     @Getter
     @Setter
     @NotNull
@@ -58,11 +58,6 @@ public class Predictions extends BaseEntity {
     public Set<TickerDetails> getTickerDetailsPredictions() {
         return this.tickerDetailsPredictions.stream().map(TickerDetailsPredictions::getTickerDetails).collect(Collectors.toSet());
     }
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @LazyToOne(LazyToOneOption.NO_PROXY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @Override
     public boolean equals(Object o) {

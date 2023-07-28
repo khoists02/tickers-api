@@ -41,4 +41,6 @@ public class MyJpaRepositoryFactory extends JpaRepositoryFactory {
         }
         return super.getRepositoryBaseClass(metadata);
     }
+
+
 }

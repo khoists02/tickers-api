@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "filters")
-public class Filter extends BaseUserEntity {
+public class Filter extends UserScoped {
     @Getter
     @Setter
     @NotNull
@@ -56,7 +56,7 @@ public class Filter extends BaseUserEntity {
     @Getter
     @Setter
     @Column(name = "look_step")
-    private Boolean lookStep;
+    private Integer lookStep;
 
     @Getter
     @Setter
@@ -76,27 +76,19 @@ public class Filter extends BaseUserEntity {
     @Setter
     private Integer units;
 
+    @Getter
+    @Setter
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ticker_id")
     private TickerDetails tickerDetails;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @NotNull
-    private User user;
 
 
     public Filter(TickerDetails tickerDetails) {
         this.tickerDetails = tickerDetails;
     }
 
-    public Filter(User user) {
-        this.user = user;
-    }
-
     public Filter(TickerDetails tickerDetails, User user) {
-        this.user = user;
         this.tickerDetails = tickerDetails;
     }
 
