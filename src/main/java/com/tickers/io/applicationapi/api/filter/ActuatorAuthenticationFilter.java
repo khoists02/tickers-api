@@ -17,7 +17,6 @@ public class ActuatorAuthenticationFilter extends OncePerRequestFilter {
     private static final String HEADER = "Authorization";
     private static final String PREFIX = "Bearer ";
 
-//    @Value("${advapacs.actuator.token:#{null}}")
 //    private String token;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
